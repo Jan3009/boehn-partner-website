@@ -118,7 +118,11 @@ dazu `style.css` und `main.js` (Mobile-Menü, Scroll-Animationen).
 2. **Kontaktformular braucht echtes Backend** (z. B. Formspree, oder serverseitige
    Lösung je nach Hosting)
 3. **Telefonnummer** im Kontaktbereich ist noch Platzhalter
-4. **Bildmaterial** fehlt komplett, aktuell reiner Text-/Farb-Aufbau
+4. ~~Bildmaterial fehlt komplett~~ — erledigt (07/2026): Hero- und Team-Fotos
+   sind echte Aufnahmen von Jan &amp; Tim, Leistungen-Bilder sind KI-generiert
+   (Website-Mockup, Kampagnen-Grafik, Redaktionsplan) bzw. aus echtem Logo/
+   Farbcode gebaut (Branding). Alle Dateien liegen in `images/`. Vor
+   Livegang noch komprimieren (aktuell ca. 5 MB gesamt, siehe Punkt unten).
 5. **Reale Fixkosten** (Domain, Workspace, Tools, Hosting) noch nicht in
    Preiskalkulation eingearbeitet
 6. **Erster Kunde:** Fahrschule als Referenzprojekt geplant — Leistungsumfang

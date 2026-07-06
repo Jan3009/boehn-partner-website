@@ -102,6 +102,7 @@ section.dark .section-head p{color:rgba(255,255,255,0.75);}
 /* ---------- Hero ---------- */
 .hero{padding:96px 0 72px;}
 .hero-inner{display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;}
+.hero-photo{width:100%;height:auto;display:block;border-radius:18px;box-shadow:var(--shadow-md);}
 .badge-pill{
   display:inline-flex;align-items:center;gap:9px;
   background:var(--card);border:1px solid var(--line);
@@ -141,6 +142,41 @@ section.dark .section-head p{color:rgba(255,255,255,0.75);}
 .img-ph.ratio-portrait{aspect-ratio:4/5;}
 .img-ph.ratio-landscape{aspect-ratio:16/10;}
 .img-ph.ratio-wide{aspect-ratio:21/9;}
+
+.service-photo{
+  width:100%;height:auto;display:block;
+  border-radius:18px;
+  box-shadow:var(--shadow-md);
+}
+
+/* ---------- Brand board (real logo + real colors, no stock photo) ---------- */
+.brand-board{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow-md);padding:36px;
+  display:flex;flex-direction:column;gap:26px;
+}
+.brand-board-logo{
+  border-radius:12px;padding:26px;display:flex;align-items:center;justify-content:center;
+}
+.brand-board-logo--light{background:var(--card);}
+.brand-board-logo--dark{background:var(--navy-dark);}
+.brand-board-logo .logo{font-size:22px;}
+.brand-board-swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.swatch{
+  border-radius:10px;padding:14px 10px;min-height:74px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:4px;
+  color:#fff;font-size:11.5px;font-weight:600;
+}
+.swatch code{font-family:'Work Sans',sans-serif;font-size:10.5px;font-weight:500;opacity:0.85;}
+.swatch--light{color:var(--navy-dark);}
+.brand-board-type{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:22px;}
+.brand-board-type-sample{
+  background:var(--card);border-radius:10px;padding:16px 20px;
+  font-size:17px;color:var(--navy-dark);
+}
+@media (max-width:520px){
+  .brand-board-swatches{grid-template-columns:repeat(3,1fr);}
+}
 
 /* ---------- Stats / Problem section ---------- */
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
@@ -244,6 +280,7 @@ section:not(.alt) .process-step .step-num{border-color:#fff;}
 .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:940px;margin:0 auto;}
 .team-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);}
 .team-card .img-ph{border-radius:0;border:none;border-bottom:1.5px dashed rgba(22,58,92,0.28);aspect-ratio:4/3.4;}
+.team-photo{width:100%;aspect-ratio:4/3.4;object-fit:cover;object-position:center 22%;display:block;}
 .team-card-body{padding:30px 32px 34px;}
 .team-card h3{font-size:23px;margin-bottom:4px;}
 .team-role{color:var(--orange-onlight);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}
