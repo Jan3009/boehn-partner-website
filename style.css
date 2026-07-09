@@ -343,18 +343,30 @@ footer a:hover{color:#fff;}
   position:fixed;left:0;right:0;bottom:0;z-index:500;
   background:var(--navy-dark);
   padding:20px 24px;
-  display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
   box-shadow:0 -8px 24px rgba(0,0,0,0.18);
+  max-height:82vh;overflow-y:auto;
 }
-.cookie-banner p{margin:0;font-size:14px;color:rgba(255,255,255,0.85);max-width:640px;}
-.cookie-banner a{color:var(--orange-ondark);text-decoration:underline;}
-.cookie-banner button{
-  background:var(--orange-onlight);color:#fff;border:none;
-  padding:11px 24px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;
-  transition:background .15s ease;
+.cookie-banner-main{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;max-width:1160px;margin:0 auto;}
+.cookie-banner-main p{margin:0;font-size:14px;color:rgba(255,255,255,0.85);max-width:560px;}
+.cookie-banner-main a{color:var(--orange-ondark);text-decoration:underline;}
+.cookie-banner-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.cookie-banner .btn-primary{padding:11px 22px;font-size:14px;white-space:nowrap;}
+.cookie-banner .btn-ghost{padding:11px 22px;font-size:14px;color:#fff;border-color:rgba(255,255,255,0.35);white-space:nowrap;}
+.cookie-banner .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+.cookie-settings-panel{
+  max-width:640px;margin:20px auto 0;padding-top:20px;
+  border-top:1px solid rgba(255,255,255,0.12);
+  display:flex;flex-direction:column;gap:16px;
 }
-.cookie-banner button:hover{background:#a5421a;}
-@media (max-width:640px){.cookie-banner{flex-direction:column;text-align:center;padding:18px;}}
+.cookie-category{display:flex;align-items:flex-start;gap:12px;color:rgba(255,255,255,0.8);font-size:13.5px;line-height:1.5;cursor:pointer;}
+.cookie-category input{width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--orange-onlight);cursor:pointer;}
+.cookie-category strong{color:#fff;font-size:14px;}
+.cookie-settings-panel .btn-primary{align-self:flex-start;}
+@media (max-width:640px){
+  .cookie-banner-main{flex-direction:column;text-align:center;}
+  .cookie-banner-actions{width:100%;justify-content:center;}
+  .cookie-settings-panel .btn-primary{align-self:stretch;justify-content:center;}
+}
 
 /* ---------- Contact page ---------- */
 .page-hero{padding:88px 0 64px;}
