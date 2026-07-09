@@ -29,4 +29,18 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     revealEls.forEach(function (el) { el.classList.add('visible'); });
   }
+
+  var CONSENT_KEY = 'bp-cookie-consent';
+  if (!localStorage.getItem(CONSENT_KEY)) {
+    var banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.innerHTML =
+      '<p>Diese Website nutzt keine Tracking-Cookies. Zur Darstellung der Schrift wird eine Verbindung zu Google Fonts aufgebaut. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>' +
+      '<button type="button">Verstanden</button>';
+    document.body.appendChild(banner);
+    banner.querySelector('button').addEventListener('click', function () {
+      localStorage.setItem(CONSENT_KEY, '1');
+      banner.remove();
+    });
+  }
 });
