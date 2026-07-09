@@ -49,7 +49,7 @@ header{
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
 }
-.header-inner{position:relative;display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+.header-inner{position:relative;display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;}
 .logo{font-weight:700;font-size:19px;letter-spacing:0.03em;color:var(--navy);}
 .logo .amp{color:var(--orange-onlight);}
 nav{display:flex;align-items:center;gap:4px;}
