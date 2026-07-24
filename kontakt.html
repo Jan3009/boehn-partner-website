@@ -86,6 +86,12 @@
       document.getElementById('kontakt-form').addEventListener('submit', function (event) {
         event.preventDefault();
         // TODO: echtes Backend anbinden (z. B. Formspree) statt clientseitiger Erfolgsmeldung
+        if (typeof gtag === 'function') {
+          gtag('event', 'contact_form_submit', {
+            event_category: 'engagement',
+            event_label: 'Kontaktformular'
+          });
+        }
         this.reset();
         document.getElementById('kontakt-form-success').style.display = 'block';
       });
