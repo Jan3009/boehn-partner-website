@@ -36,13 +36,19 @@ document.addEventListener('DOMContentLoaded', function () {
     try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); } catch (e) { return null; }
   }
 
+  var GA_MEASUREMENT_ID = 'G-TZX8KG2VQV';
+
   function applyConsent(consent) {
-    if (consent.statistics) {
-      // TODO: Google Analytics einbinden, sobald die Property angelegt ist, z. B.:
-      // var s = document.createElement('script');
-      // s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX';
-      // s.async = true;
-      // document.head.appendChild(s);
+    if (consent.statistics && !window.gaLoaded) {
+      window.gaLoaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+      document.head.appendChild(s);
     }
     if (consent.marketing) {
       // TODO: Google Ads Remarketing-Tag / Meta Pixel einbinden, sobald IDs vorhanden sind.
