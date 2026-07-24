@@ -112,11 +112,16 @@ dazu `style.css` und `main.js` (Mobile-Menü, Scroll-Animationen).
 
 ## Offene / noch zu erledigende Punkte
 
-1. **Impressum & Datenschutzerklärung fehlen komplett** (nur Platzhalter-Links
-   vorhanden) — rechtlich zwingend vor dem Livegang (§5 TMG, DSGVO). Texte über
-   eRecht24 oder Anwalt besorgen, NICHT von der KI generieren lassen.
-2. **Kontaktformular braucht echtes Backend** (z. B. Formspree, oder serverseitige
-   Lösung je nach Hosting)
+1. **Impressum & Datenschutzerklärung**: Entwürfe stehen (mit Hinweisbox, klar
+   als nicht rechtsverbindlich markiert), Name jetzt an die Gewerbeanmeldung
+   angeglichen ("Böhn und Partner", Inhaber: Jan Kevin Maximilian Böhn & Tim
+   Jonas Fabian Böhn GbR). Vor Livegang weiterhin zwingend über eRecht24 oder
+   Anwalt final prüfen/ersetzen lassen (§5 TMG, DSGVO) — inkl. neuer Abschnitte
+   zu Cookies/Google Analytics/Google Ads, die noch befüllt werden müssen.
+2. ~~Kontaktformular braucht echtes Backend~~ — erledigt (07/2026): läuft über
+   Formspree (Endpoint `mlgqpqzw`, Formular-Name "Kontaktformular" im
+   Formspree-Konto von Jan), per fetch()/AJAX ohne Redirect. Live getestet,
+   Zustellung bestätigt.
 3. **Telefonnummer** im Kontaktbereich ist noch Platzhalter
 4. ~~Bildmaterial fehlt komplett~~ — erledigt (07/2026): Hero- und Team-Fotos
    sind echte Aufnahmen von Jan &amp; Tim, Leistungen-Bilder sind KI-generiert
@@ -131,6 +136,20 @@ dazu `style.css` und `main.js` (Mobile-Menü, Scroll-Animationen).
    Formulare/Dienste akzeptieren sie nicht direkt (z. B. TikTok-Registrierung
    scheiterte daran). Ggf. zusätzlich boehnpartner.de (ausgeschrieben) als
    Ausweich-Domain registrieren.
+8. **Website läuft noch auf GitHub Pages** (`jan3009.github.io/boehn-partner-website`),
+   nicht auf der echten Domain böhnpartner.de — DNS-Umstellung bei GoDaddy noch
+   offen.
+9. **Tracking-Setup (07/2026):** Google Analytics (GA4, Property "böhnpartner.de",
+   Measurement-ID `G-TZX8KG2VQV`) läuft, gated hinter dem Cookie-Banner
+   (Kategorien Notwendig/Statistik/Marketing, Einstellungen jederzeit über
+   Footer-Link änderbar). Google-Ads-Konto (583-085-5921) angelegt und mit GA4
+   verknüpft (Audience-/Messwert-Import aktiv), aber ohne aktive Kampagne.
+   Google-Business-Profil in Erstellung. Offen: Identitätsprüfung des
+   Ads-Kontos läuft (Dun & Bradstreet, 3–5 Werktage), `contact_form_submit`
+   muss in GA4 noch als Schlüsselereignis markiert und in Google Ads als
+   Conversion importiert werden. Marketing-Pixel (Google Ads Remarketing /
+   Meta) sind vorbereitet (`TODO` in `main.js`), aber mangels Konten/IDs noch
+   nicht eingebaut.
 
 ## Fixkosten-Übersicht (Software, Stand aktuell)
 
