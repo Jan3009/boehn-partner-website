@@ -44,7 +44,7 @@
 <section style="padding-top:24px;">
   <div class="wrap contact-grid">
 
-    <form id="kontakt-form" class="form-card">
+    <form id="kontakt-form" class="form-card" action="https://formspree.io/f/mlgqpqzw" method="POST">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Dein Name" required>
@@ -81,19 +81,40 @@
       <p id="kontakt-form-success" style="display:none;margin-top:18px;color:var(--green);font-weight:600;">
         Danke für deine Nachricht! Wir melden uns innerhalb von 1–2 Werktagen bei dir.
       </p>
+      <p id="kontakt-form-error" style="display:none;margin-top:18px;color:#b42318;font-weight:600;">
+        Da ist leider etwas schiefgelaufen. Schreib uns stattdessen gern direkt an
+        <a href="mailto:info@böhnpartner.de" style="text-decoration:underline;">info@böhnpartner.de</a>.
+      </p>
     </form>
     <script>
-      document.getElementById('kontakt-form').addEventListener('submit', function (event) {
+      var kontaktForm = document.getElementById('kontakt-form');
+      kontaktForm.addEventListener('submit', function (event) {
         event.preventDefault();
-        // TODO: echtes Backend anbinden (z. B. Formspree) statt clientseitiger Erfolgsmeldung
-        if (typeof gtag === 'function') {
-          gtag('event', 'contact_form_submit', {
-            event_category: 'engagement',
-            event_label: 'Kontaktformular'
-          });
-        }
-        this.reset();
-        document.getElementById('kontakt-form-success').style.display = 'block';
+        var form = this;
+        var submitBtn = form.querySelector('button[type=submit]');
+        submitBtn.disabled = true;
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(function (response) {
+          if (!response.ok) throw new Error('Formspree error');
+          if (typeof gtag === 'function') {
+            gtag('event', 'contact_form_submit', {
+              event_category: 'engagement',
+              event_label: 'Kontaktformular'
+            });
+          }
+          form.reset();
+          document.getElementById('kontakt-form-error').style.display = 'none';
+          document.getElementById('kontakt-form-success').style.display = 'block';
+        }).catch(function () {
+          document.getElementById('kontakt-form-success').style.display = 'none';
+          document.getElementById('kontakt-form-error').style.display = 'block';
+        }).finally(function () {
+          submitBtn.disabled = false;
+        });
       });
     </script>
 
