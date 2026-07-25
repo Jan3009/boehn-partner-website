@@ -79,15 +79,18 @@ document.addEventListener('DOMContentLoaded', function () {
       '<div class="cookie-settings-panel" hidden>' +
         '<label class="cookie-category">' +
           '<input type="checkbox" checked disabled>' +
-          '<span><strong>Notwendig</strong><br>Für den Betrieb der Website erforderlich, z. B. um deine Cookie-Auswahl zu speichern.</span>' +
+          '<span class="cookie-check" aria-hidden="true"></span>' +
+          '<span class="cookie-text"><strong>Notwendig</strong><br>Für den Betrieb der Website erforderlich, z. B. um deine Cookie-Auswahl zu speichern.</span>' +
         '</label>' +
         '<label class="cookie-category">' +
           '<input type="checkbox" class="cookie-cat-statistics">' +
-          '<span><strong>Statistik</strong><br>Google Analytics, hilft uns zu verstehen, wie die Website genutzt wird.</span>' +
+          '<span class="cookie-check" aria-hidden="true"></span>' +
+          '<span class="cookie-text"><strong>Statistik</strong><br>Google Analytics, hilft uns zu verstehen, wie die Website genutzt wird.</span>' +
         '</label>' +
         '<label class="cookie-category">' +
           '<input type="checkbox" class="cookie-cat-marketing">' +
-          '<span><strong>Marketing</strong><br>Google/Meta Ads, misst die Wirkung unserer Werbeanzeigen.</span>' +
+          '<span class="cookie-check" aria-hidden="true"></span>' +
+          '<span class="cookie-text"><strong>Marketing</strong><br>Google/Meta Ads, misst die Wirkung unserer Werbeanzeigen.</span>' +
         '</label>' +
         '<button type="button" class="btn-primary cookie-btn-save">Auswahl speichern</button>' +
       '</div>';
