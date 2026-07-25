@@ -120,6 +120,9 @@
               event_label: 'Kontaktformular'
             });
           }
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead');
+          }
           form.reset();
           document.getElementById('kontakt-form-error').style.display = 'none';
           document.getElementById('kontakt-form-success').style.display = 'block';
