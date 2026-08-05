@@ -136,20 +136,24 @@ dazu `style.css` und `main.js` (Mobile-Menü, Scroll-Animationen).
    Formulare/Dienste akzeptieren sie nicht direkt (z. B. TikTok-Registrierung
    scheiterte daran). Ggf. zusätzlich boehnpartner.de (ausgeschrieben) als
    Ausweich-Domain registrieren.
-8. **Website läuft noch auf GitHub Pages** (`jan3009.github.io/boehn-partner-website`),
-   nicht auf der echten Domain böhnpartner.de — DNS-Umstellung bei GoDaddy noch
-   offen.
-9. **Tracking-Setup (07/2026):** Google Analytics (GA4, Property "böhnpartner.de",
-   Measurement-ID `G-TZX8KG2VQV`) läuft, gated hinter dem Cookie-Banner
-   (Kategorien Notwendig/Statistik/Marketing, Einstellungen jederzeit über
-   Footer-Link änderbar). Google-Ads-Konto (583-085-5921) angelegt und mit GA4
-   verknüpft (Audience-/Messwert-Import aktiv), aber ohne aktive Kampagne.
-   Google-Business-Profil in Erstellung. Offen: Identitätsprüfung des
-   Ads-Kontos läuft (Dun & Bradstreet, 3–5 Werktage), `contact_form_submit`
-   muss in GA4 noch als Schlüsselereignis markiert und in Google Ads als
-   Conversion importiert werden. Marketing-Pixel (Google Ads Remarketing /
-   Meta) sind vorbereitet (`TODO` in `main.js`), aber mangels Konten/IDs noch
-   nicht eingebaut.
+8. ~~Website läuft noch auf GitHub Pages~~ — erledigt (07/2026): läuft live auf
+   der echten Domain https://böhnpartner.de (DNS bei GoDaddy umgestellt, HTTPS
+   aktiv, Punycode-Form `xn--bhnpartner-ecb.de` funktioniert als Fallback).
+9. ~~Tracking-Setup~~ — erledigt (07/2026): GA4 (Measurement-ID `G-TZX8KG2VQV`)
+   läuft, `contact_form_submit` als Schlüsselereignis markiert und in Google
+   Ads als Conversion importiert. Google-Ads-Konto (583-085-5921) mit GA4
+   verknüpft, Identitätsprüfung (Dun & Bradstreet) noch offen (3–5 Werktage,
+   automatisch, keine Aktion nötig). Meta Pixel (ID `1600523948405792`) auf
+   der Live-Domain eingebaut und verifiziert (PageView + Lead-Events kommen
+   nachweislich bei Facebook an, Fehlerdiagnose zeigt keine Fehler). Beides
+   gated hinter dem Cookie-Banner (Notwendig/Statistik/Marketing). Noch keine
+   aktive Ads-Kampagne (bewusst — Budget-Entscheidung steht noch aus).
+10. **Google Business Profil**: in Erstellung, Verifizierung läuft separat
+    beim Nutzer. Website-Feld dort auf https://böhnpartner.de aktualisieren,
+    sobald zugänglich.
+11. **Formular-E-Mail-Benachrichtigung**: in Formspree unter Workflow → Aktionen
+    bereits aktiv ("E-mail — für jede Formulareinreichung"), Empfänger-Adresse
+    sollte nochmal geprüft werden.
 
 ## Fixkosten-Übersicht (Software, Stand aktuell)
 
