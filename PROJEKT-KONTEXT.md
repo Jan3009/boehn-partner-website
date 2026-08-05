@@ -112,17 +112,22 @@ dazu `style.css` und `main.js` (Mobile-Menü, Scroll-Animationen).
 
 ## Offene / noch zu erledigende Punkte
 
-1. **Impressum & Datenschutzerklärung**: Entwürfe stehen (mit Hinweisbox, klar
-   als nicht rechtsverbindlich markiert), Name jetzt an die Gewerbeanmeldung
-   angeglichen ("Böhn und Partner", Inhaber: Jan Kevin Maximilian Böhn & Tim
-   Jonas Fabian Böhn GbR). Vor Livegang weiterhin zwingend über eRecht24 oder
-   Anwalt final prüfen/ersetzen lassen (§5 TMG, DSGVO) — inkl. neuer Abschnitte
-   zu Cookies/Google Analytics/Google Ads, die noch befüllt werden müssen.
+1. ~~Impressum & Datenschutzerklärung~~ — erledigt (08/2026): beide Texte
+   kommen jetzt von Händlerbund (Mitgliedschaft "Basic"), nicht mehr
+   KI-generiert. Impressum mit echter Telefonnummer (+49 1520 3118157) und
+   korrektem Namen (Jan Kevin Maximilian Böhn, Tim Jonas Fabian Böhn). Zwei
+   generische Händlerbund-Textbausteine wurden bewusst weggelassen, da nicht
+   zutreffend: TCO-VO/DSA-Meldestellen (nur für Plattformen mit
+   nutzergenerierten Inhalten) und der Kündigungsbutton-Absatz (kein
+   Abo-Modell). Für diese zwei Stellen greift Händlerbunds Haftungsübernahme
+   nicht, für den Rest (unverändert von Händlerbund generiert) schon.
 2. ~~Kontaktformular braucht echtes Backend~~ — erledigt (07/2026): läuft über
    Formspree (Endpoint `mlgqpqzw`, Formular-Name "Kontaktformular" im
    Formspree-Konto von Jan), per fetch()/AJAX ohne Redirect. Live getestet,
    Zustellung bestätigt.
-3. **Telefonnummer** im Kontaktbereich ist noch Platzhalter
+3. **Telefonnummer** im Kontaktbereich (kontakt.html) ist noch Platzhalter —
+   im Impressum/Datenschutz steht bereits die echte Nummer
+   (+49 1520 3118157), sollte hier zur Konsistenz übernommen werden.
 4. ~~Bildmaterial fehlt komplett~~ — erledigt (07/2026): Hero- und Team-Fotos
    sind echte Aufnahmen von Jan &amp; Tim, Leistungen-Bilder sind KI-generiert
    (Website-Mockup, Kampagnen-Grafik, Redaktionsplan) bzw. aus echtem Logo/
@@ -145,9 +150,13 @@ dazu `style.css` und `main.js` (Mobile-Menü, Scroll-Animationen).
    verknüpft, Identitätsprüfung (Dun & Bradstreet) noch offen (3–5 Werktage,
    automatisch, keine Aktion nötig). Meta Pixel (ID `1600523948405792`) auf
    der Live-Domain eingebaut und verifiziert (PageView + Lead-Events kommen
-   nachweislich bei Facebook an, Fehlerdiagnose zeigt keine Fehler). Beides
-   gated hinter dem Cookie-Banner (Notwendig/Statistik/Marketing). Noch keine
-   aktive Ads-Kampagne (bewusst — Budget-Entscheidung steht noch aus).
+   nachweislich bei Facebook an, Fehlerdiagnose zeigt keine Fehler). Cookie-
+   Banner ist seit 08/2026 CCM19 (gehostet bei Händlerbund, kostenlos in der
+   Basic-Mitgliedschaft enthalten, ersetzt den alten selbstgebauten Banner),
+   Kategorien Technisch notwendig/Analyse-Statistiken/Anzeigen-Ads, GA4 und
+   Meta Pixel sind dort unter "Quellcode der Einbindung" hinterlegt und laden
+   erst nach Einwilligung. Noch keine aktive Ads-Kampagne (bewusst —
+   Budget-Entscheidung steht noch aus).
 10. **Google Business Profil**: in Erstellung, Verifizierung läuft separat
     beim Nutzer. Website-Feld dort auf https://böhnpartner.de aktualisieren,
     sobald zugänglich.
