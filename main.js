@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
+  var promoBar = document.querySelector('.promo-bar');
+  if (promoBar) {
+    if (localStorage.getItem('promoBarClosed') === '1') {
+      promoBar.style.display = 'none';
+    } else {
+      var promoClose = promoBar.querySelector('.promo-close');
+      if (promoClose) {
+        promoClose.addEventListener('click', function () {
+          promoBar.style.display = 'none';
+          localStorage.setItem('promoBarClosed', '1');
+        });
+      }
+    }
+  }
+
   var header = document.querySelector('header');
   var toggle = document.querySelector('.nav-toggle');
 

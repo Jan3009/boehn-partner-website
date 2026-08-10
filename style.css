@@ -84,6 +84,24 @@ ul{list-style:none;}
   .reveal{opacity:1;transform:none;transition:none;}
 }
 
+/* ---------- Promo bar ---------- */
+.promo-bar{
+  background:var(--orange-onlight);color:#fff;text-align:center;
+  padding:11px 46px 11px 16px;font-size:14.5px;font-weight:500;position:relative;
+}
+.promo-bar strong{font-weight:700;}
+.promo-bar a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:2px;}
+.promo-bar a:hover{text-decoration:none;}
+.promo-close{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:#fff;opacity:.7;cursor:pointer;
+  font-size:20px;line-height:1;padding:6px;
+}
+.promo-close:hover{opacity:1;}
+@media (max-width:640px){
+  .promo-bar{font-size:13px;padding:10px 40px 10px 12px;}
+}
+
 /* ---------- Header ---------- */
 header{
   position:sticky;top:0;z-index:300;
