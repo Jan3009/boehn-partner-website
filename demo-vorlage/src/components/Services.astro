@@ -1,0 +1,102 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+import { slugify } from '../lib/slugify';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  slug: string;
+  mode?: 'teaser' | 'full';
+}
+
+const { demo, slug, mode = 'full' } = Astro.props;
+const shown = mode === 'teaser' ? demo.leistungen.slice(0, 3) : demo.leistungen;
+const rest = mode === 'full' ? [] : demo.leistungen.slice(3);
+---
+
+<section id="leistungen" class="px-6 sm:px-12 py-24 sm:py-32">
+  <div class="max-w-[1320px] mx-auto">
+    {mode === 'teaser' && (
+      <div class="flex flex-wrap items-end justify-between gap-6 mb-16">
+        <div>
+          <p class="kicker mb-4">Leistungen</p>
+          <h2 class="font-heading text-4xl sm:text-5xl max-w-xl" style="color:var(--ink);">
+            Was {demo.firmenname} für dich übernimmt
+          </h2>
+        </div>
+        <Button demo={demo} href={`/demo/${slug}/leistungen/`}>Alle Leistungen ansehen</Button>
+      </div>
+    )}
+
+    <div class="space-y-20 sm:space-y-28">
+      {shown.map((leistung, i) => {
+        const hatOrdner = !!leistung.bilder && leistung.bilder.length > 0;
+        const ordnerHref = hatOrdner ? `/demo/${slug}/leistungen/${slugify(leistung.titel)}/` : null;
+        const cover = leistung.bilder?.[0] ?? demo.bilder[i % demo.bilder.length];
+        const flip = i % 2 === 1;
+        return (
+          <div class="reveal grid gap-8 sm:gap-14 sm:grid-cols-2 items-center">
+            <div class={flip ? 'sm:order-2' : ''}>
+              <span
+                class="font-heading text-6xl block mb-4"
+                style="color:color-mix(in srgb, var(--accent) 30%, var(--bg));"
+              >
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="font-heading text-2xl mb-3" style="color:var(--ink);">{leistung.titel}</h3>
+              <p style="color:var(--ink-soft);" class="max-w-sm mb-4">{leistung.text}</p>
+              {hatOrdner && (
+                <a href={ordnerHref} class="inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">
+                  {leistung.bilder!.length} {leistung.bilder!.length === 1 ? 'Foto' : 'Fotos'} ansehen
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              )}
+            </div>
+            <div class={flip ? 'sm:order-1' : ''}>
+              <a
+                href={ordnerHref ?? undefined}
+                class={`block overflow-hidden aspect-[4/3] relative border border-dashed ${hatOrdner ? 'group' : ''}`}
+                style="border-radius:var(--radius-lg); border-color:var(--line); background:var(--surface);"
+              >
+                {cover?.src
+                  ? <img src={cover.src} alt={cover.alt} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                  : (
+                    <div class="w-full h-full flex items-center justify-center">
+                      <p class="text-sm text-center px-6" style="color:var(--ink-soft);">Bild-Platzhalter: {cover?.alt ?? leistung.titel}</p>
+                    </div>
+                  )}
+                {hatOrdner && (
+                  <span
+                    class="absolute bottom-3 right-3 text-xs font-semibold px-3 py-1.5"
+                    style="border-radius:var(--radius-pill); background:var(--dark); color:var(--dark-ink);"
+                  >
+                    {leistung.bilder!.length} {leistung.bilder!.length === 1 ? 'Foto' : 'Fotos'}
+                  </span>
+                )}
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    {rest.length > 0 && (
+      <div class="reveal mt-20 pt-10 border-t" style="border-color:var(--line);">
+        <p class="text-sm font-semibold mb-4" style="color:var(--ink);">Und außerdem</p>
+        <div class="flex flex-wrap gap-3">
+          {rest.map((leistung) => {
+            const hatOrdner = !!leistung.bilder && leistung.bilder.length > 0;
+            const pillStyle = 'border-radius:var(--radius-pill); background:var(--surface); color:var(--ink-soft);';
+            return hatOrdner ? (
+              <a href={`/demo/${slug}/leistungen/${slugify(leistung.titel)}/`} class="text-sm px-4 py-2 hover:opacity-80" style={pillStyle}>
+                {leistung.titel}
+              </a>
+            ) : (
+              <span class="text-sm px-4 py-2" style={pillStyle}>{leistung.titel}</span>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </div>
+</section>

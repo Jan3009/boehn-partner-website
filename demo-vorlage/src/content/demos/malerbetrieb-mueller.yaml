@@ -1,0 +1,91 @@
+# Echter Kaltakquise-Entwurf für Malerbetrieb Müller, Düsseldorf.
+# Quelle: eigene Website https://malerbetriebmueller.de.tl (Startseite, Über
+# uns, Services, Kontakt, Impressum), Stand 17.08.2026. Farben (Rot-Akzent,
+# fast-schwarze Flächen, heller Hintergrund) bewusst von der bestehenden
+# Seite übernommen -- nur Schrift/Layout/Bau modernisiert, keine neue
+# Markenfarbe erfunden. Texte selbst formuliert (nicht von der Originalseite
+# kopiert), nur Fakten übernommen.
+#
+# ALLE FOTOS SIND PLATZHALTER: lizenzfreie, kommerziell nutzbare Stockfotos
+# (Unsplash) -- zeigen NICHT den echten Betrieb oder echte Arbeiten von ihm.
+# Nur eingesetzt, damit die Demo nicht leer wirkt. Vor echtem Einsatz beim
+# Kunden durch dessen eigene Fotos ersetzen.
+
+firmenname: "Malerbetrieb Müller"
+branche: "Malerbetrieb"
+ort: "Düsseldorf"
+gruendungsjahr: "2014"
+
+tagline: "Saubere Maler- und Renovierungsarbeiten in Düsseldorf -- persönlich betreut, termingenau umgesetzt."
+
+# "kontrast" ist strukturell die beste Näherung an die echte Seite (heller
+# Hintergrund, fast schwarze Flächen) -- die Akzentfarbe unten ist ihr
+# tatsächliches Rot von der Originalseite (Überschriften-Farbe #B50433).
+style: kontrast
+akzentfarbe: "#B50433"
+
+leistungen:
+  - titel: "Maler- und Renovierungsarbeiten"
+    text: "Von der Einzelwand bis zur Komplettrenovierung -- sauber vorbereitet und fachgerecht ausgeführt."
+    bilder:
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-maler-1.webp"
+        alt: "Maler bei Renovierungsarbeiten (Platzhalterfoto)"
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-maler-2.webp"
+        alt: "Wandanstrich in Arbeit (Platzhalterfoto)"
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-maler-3.webp"
+        alt: "Frisch gestrichene Wand (Platzhalterfoto)"
+  - titel: "Wärmedämmung (WDVS)"
+    text: "Fachgerechte Dämmarbeiten für spürbar bessere Energieeffizienz."
+    bilder:
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-wdvs-1.webp"
+        alt: "Gerüst an einer Fassade (Platzhalterfoto)"
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-wdvs-2.webp"
+        alt: "Arbeiten auf dem Gerüst (Platzhalterfoto)"
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-wdvs-3.webp"
+        alt: "Fassadenarbeiten mit Gerüst (Platzhalterfoto)"
+  - titel: "Design- und Dekorarbeiten"
+    text: "Individuelle Wandgestaltung und Dekortechniken, abgestimmt auf Ihren Geschmack."
+    bilder:
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-design-1.webp"
+        alt: "Strukturierte Wandoberfläche (Platzhalterfoto)"
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-design-2.webp"
+        alt: "Dekorative Wandstruktur im Detail (Platzhalterfoto)"
+  - titel: "Spritztechnik & Lackspritzen"
+    text: "Professionelles Lackspritzen für ein makelloses, gleichmäßiges Ergebnis."
+    bilder:
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-spritz-1.webp"
+        alt: "Lackspritzarbeiten an einer Wand (Platzhalterfoto)"
+      - src: "/demo/images/demos/malerbetrieb-mueller/leistung-spritz-2.webp"
+        alt: "Farbsprühgerät im Einsatz (Platzhalterfoto)"
+
+geschichte: "Seit 2014 in Düsseldorf im Einsatz -- als kleiner, persönlich geführter Betrieb ohne wechselnde Subunternehmer. Von der ersten Beratung bis zur fertigen, fachgerechten Arbeit begleiten wir jeden Auftrag selbst, mit einem festen Ansprechpartner und einem kostenlosen Angebot nach Aufmaß."
+
+kontakt:
+  # Straße war auf der Originalseite nirgends öffentlich angegeben (auch im
+  # Impressum nur "Adresse Strasse" als Platzhalter) -- deshalb nur Ort.
+  telefon: "0177 6003099"
+  adresse: "Düsseldorf"
+  email: "omueller@unitybox.de"
+
+bilder:
+  - src: "/demo/images/demos/malerbetrieb-mueller/hero.webp"
+    alt: "Maler bei der Arbeit an einer Wand (Platzhalterfoto)"
+  - src: "/demo/images/demos/malerbetrieb-mueller/portrait.webp"
+    alt: "Handwerker-Porträt (Platzhalterfoto)"
+
+galerie:
+  - src: "/demo/images/demos/malerbetrieb-mueller/galerie-1.webp"
+    alt: "Frisch gestrichene Wand (Platzhalterfoto)"
+  - src: "/demo/images/demos/malerbetrieb-mueller/galerie-2.webp"
+    alt: "Gerüstarbeiten an einer Fassade (Platzhalterfoto)"
+  - src: "/demo/images/demos/malerbetrieb-mueller/galerie-3.webp"
+    alt: "Strukturierte Wandoberfläche (Platzhalterfoto)"
+
+# Kein echter Screenshot der alten Seite eingebunden (Browser-Screenshot in
+# dieser Session technisch nicht möglich) -- Platzhalter mit ehrlicher
+# Beschreibung, kann später per echtem Screenshot ersetzt werden.
+altesScreenshot:
+  src: ""
+  alt: "Bisherige Website: einfache Baukasten-Seite (homepage-baukasten.de), Referenzen-Seite noch ohne Fotos"
+
+quelle: "malerbetriebmueller.de.tl (Startseite, Über uns, Services, Kontakt, Impressum), Stand 17.08.2026"

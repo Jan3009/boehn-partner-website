@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /impressum.html
 Disallow: /datenschutz.html
+Disallow: /demo/
 
 Sitemap: https://böhnpartner.de/sitemap.xml

@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* Fonts self-hosted (public/fonts/), per curl von Google Fonts geladen --
+   kein Runtime-CDN, gleiches Prinzip wie die Haupt-Website. */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/newsreader-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../fonts/playfair-display-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/space-grotesk-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/inter-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/inter-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/inter-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/inter-700.woff2') format('woff2');
+}
+
+/* Shadow/Transition-Konventionen aus style.css der Hauptseite übernommen --
+   Farben/Radius/Fonts kommen jetzt per Preset (siehe presets.ts), werden auf
+   <html> als Inline-Style gesetzt. Werte hier sind nur Fallback. */
+:root {
+  --shadow-sm: 0 2px 6px rgba(11, 30, 51, 0.06);
+  --shadow-md: 0 18px 40px rgba(11, 30, 51, 0.14);
+  --ease-fast: 0.15s ease;
+  --ease-normal: 0.2s ease;
+  --ease-reveal: 0.7s ease;
+
+  --font-heading: 'Newsreader', serif;
+  --font-heading-weight: 600;
+  --font-heading-tracking: -0.005em;
+  --font-body: 'Inter', sans-serif;
+  --hero-scale: clamp(2.8rem, 6.4vw, 5rem);
+  --accent: #241e17;
+  --bg: #fbf7ef;
+  --surface: #f2ead9;
+  --ink: #241e17;
+  --ink-soft: #6b6153;
+  --line: rgba(36, 30, 23, 0.12);
+  --dark: #2b221a;
+  --dark-ink: #f5efe2;
+  --dark-ink-soft: rgba(245, 239, 226, 0.65);
+  --radius-sm: 6px;
+  --radius-card: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+.font-heading {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: var(--font-heading-tracking);
+  line-height: 1.05;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 600;
+}
+.kicker::before {
+  content: '';
+  width: 28px;
+  height: 1.5px;
+  background: var(--accent);
+  display: block;
+}
+
+/* Buttons -- drei Charaktere je Preset, siehe Button.astro. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+.btn-outline-ink {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+.btn-outline-ink:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn-outline-accent {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+.btn-outline-accent:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-solid-sharp {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.btn-solid-sharp:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+/* Varianten auf dunklem Untergrund (Comparison/ContactCta/Footer/Header-dark) */
+.btn-on-dark.btn-outline-ink {
+  border-color: var(--dark-ink);
+  color: var(--dark-ink);
+}
+.btn-on-dark.btn-outline-ink:hover {
+  background: var(--dark-ink);
+  color: var(--dark);
+}
+.btn-on-dark.btn-solid-sharp {
+  background: var(--dark-ink);
+  color: var(--dark);
+  border-color: var(--dark-ink);
+}
+.btn-on-dark.btn-solid-sharp:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--dark-ink);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Kontaktformular (ContactForm.astro) */
+.form-input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+textarea.form-input {
+  resize: vertical;
+}
+.hidden-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  slug: string;
+  mode?: 'teaser' | 'full';
+}
+
+const { demo, slug, mode = 'full' } = Astro.props;
+const image = demo.bilder[1] ?? demo.bilder[0];
+---
+
+<section id="ueber-uns" class="px-6 sm:px-12 py-24 sm:py-32" style="background:var(--surface);">
+  <div class="reveal max-w-[1320px] mx-auto grid gap-12 sm:grid-cols-[0.85fr_1.15fr] items-center">
+    <div class="relative">
+      <div
+        class="overflow-hidden aspect-[3/4] flex items-center justify-center border border-dashed"
+        style="border-radius:var(--radius-lg); border-color:var(--line); background:var(--bg);"
+      >
+        {image.src
+          ? <img src={image.src} alt={image.alt} class="w-full h-full object-cover" />
+          : <p class="text-sm text-center px-6" style="color:var(--ink-soft);">Bild-Platzhalter: {image.alt}</p>}
+      </div>
+      {demo.gruendungsjahr && (
+        <div
+          class="absolute -bottom-5 -right-5 px-5 py-4 text-center"
+          style="background:var(--dark); border-radius:var(--radius-card);"
+        >
+          <p class="font-heading text-2xl" style="color:var(--dark-ink);">{demo.gruendungsjahr}</p>
+          <p class="text-[11px] uppercase tracking-widest" style="color:var(--dark-ink-soft);">seit</p>
+        </div>
+      )}
+    </div>
+    <div>
+      <p class="kicker mb-4">Unsere Geschichte</p>
+      <h2 class="font-heading text-3xl sm:text-4xl mb-5" style="color:var(--ink);">Warum {demo.firmenname}</h2>
+      <p class="text-lg max-w-md mb-8" style="color:var(--ink-soft);">{demo.geschichte}</p>
+      {mode === 'teaser' && (
+        <Button demo={demo} href={`/demo/${slug}/ueber-uns/`}>Mehr über uns</Button>
+      )}
+    </div>
+  </div>
+</section>

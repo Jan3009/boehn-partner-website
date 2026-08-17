@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import Geschichte from '../../components/Geschichte.astro';
+import Gallery from '../../components/Gallery.astro';
+import Comparison from '../../components/Comparison.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import ContactCta from '../../components/ContactCta.astro';
+
+export async function getStaticPaths() {
+  const demos = await getCollection('demos');
+  return demos.map((entry) => ({
+    params: { slug: entry.id },
+    props: { demo: entry.data },
+  }));
+}
+
+const { demo } = Astro.props;
+const { slug } = Astro.params;
+---
+
+<PageLayout demo={demo} slug={slug}>
+  <Hero demo={demo} slug={slug} />
+  <Services demo={demo} slug={slug} mode="teaser" />
+  <Geschichte demo={demo} slug={slug} mode="teaser" />
+  <Gallery demo={demo} slug={slug} mode="teaser" />
+  <BeforeAfter demo={demo} />
+  <Comparison />
+  <ContactCta demo={demo} />
+</PageLayout>

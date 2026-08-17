@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import ContactCta from '../../../components/ContactCta.astro';
+import { slugify } from '../../../lib/slugify';
+
+export async function getStaticPaths() {
+  const demos = await getCollection('demos');
+  const paths = [];
+  for (const entry of demos) {
+    for (const leistung of entry.data.leistungen) {
+      if (leistung.bilder && leistung.bilder.length > 0) {
+        paths.push({
+          params: { slug: entry.id, leistung: slugify(leistung.titel) },
+          props: { demo: entry.data, leistung },
+        });
+      }
+    }
+  }
+  return paths;
+}
+
+const { demo, leistung } = Astro.props;
+const { slug } = Astro.params;
+---
+
+<PageLayout demo={demo} slug={slug} pageTitle={leistung.titel}>
+  <PageHeader kicker="Leistungen" title={leistung.titel} lede={leistung.text} />
+  <section class="px-6 sm:px-12 pb-24 sm:pb-32">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+      {leistung.bilder.map((bild) => (
+        <div
+          class="aspect-square overflow-hidden border border-dashed flex items-center justify-center"
+          style="border-radius:var(--radius-card); border-color:var(--line); background:var(--surface);"
+        >
+          {bild.src
+            ? <img src={bild.src} alt={bild.alt} class="w-full h-full object-cover" />
+            : <p class="text-xs text-center px-4" style="color:var(--ink-soft);">Foto-Platzhalter: {bild.alt}</p>}
+        </div>
+      ))}
+    </div>
+  </section>
+  <ContactCta demo={demo} />
+</PageLayout>

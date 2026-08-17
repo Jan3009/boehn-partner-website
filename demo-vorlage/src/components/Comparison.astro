@@ -1,0 +1,50 @@
+---
+const ohne = [
+  'Wirkt auf dem Handy zusammengequetscht oder lädt langsam',
+  'Kein klarer nächster Schritt für Interessenten',
+  'Taucht bei Google kaum auf',
+  'Sieht aus wie seit Jahren nicht angefasst',
+];
+const mit = [
+  'Klar lesbar auf jedem Gerät, in Sekunden geladen',
+  'Ein Ziel pro Seite: anfragen, anrufen, Kontakt aufnehmen',
+  'Technisch sauber für Google aufbereitet',
+  'Wirkt wie ein Betrieb, der etwas auf sich hält',
+];
+---
+
+<section class="px-6 sm:px-12 py-24 sm:py-32" style="background:var(--dark); color:var(--dark-ink);">
+  <div class="max-w-[1320px] mx-auto">
+    <p class="kicker mb-4" style="color:color-mix(in srgb, var(--accent) 60%, var(--dark-ink));">Der Unterschied</p>
+    <h2 class="font-heading text-3xl sm:text-4xl mb-14 max-w-xl" style="color:var(--dark-ink);">
+      Was eine durchdachte Website wirklich ändert
+    </h2>
+    <div class="grid sm:grid-cols-2 gap-12 sm:gap-16">
+      <div class="reveal">
+        <p class="text-sm font-semibold uppercase tracking-wide mb-5" style="color:var(--dark-ink-soft);">Ohne durchdachte Website</p>
+        <ul class="space-y-4">
+          {ohne.map((punkt) => (
+            <li class="flex gap-3" style="color:var(--dark-ink-soft);">
+              <span aria-hidden="true" class="mt-0.5">&times;</span>
+              <span>{punkt}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="reveal">
+        <p class="text-sm font-semibold uppercase tracking-wide mb-5" style="color:color-mix(in srgb, var(--accent) 55%, var(--dark-ink));">Mit diesem Entwurf</p>
+        <ul class="space-y-4">
+          {mit.map((punkt) => (
+            <li class="flex gap-3" style="color:var(--dark-ink);">
+              <span aria-hidden="true" class="mt-0.5" style={`color:color-mix(in srgb, var(--accent) 55%, var(--dark-ink));`}>&check;</span>
+              <span>{punkt}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <p class="reveal text-xs mt-16" style="color:var(--dark-ink-soft);">
+      0,05 Sek. entscheiden über den ersten Eindruck, 88 % kehren nach einer schlechten Erfahrung nicht zurück — Branchenwerte aus öffentlichen Studien.
+    </p>
+  </div>
+</section>

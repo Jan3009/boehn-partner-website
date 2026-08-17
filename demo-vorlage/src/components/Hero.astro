@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  slug: string;
+}
+
+const { demo, slug } = Astro.props;
+const heroImage = demo.bilder[0];
+const initial = demo.firmenname.trim().charAt(0).toUpperCase();
+---
+
+{heroImage.src ? (
+  <section class="relative min-h-[92vh] flex items-end overflow-hidden" style="background:var(--dark);">
+    <img src={heroImage.src} alt={heroImage.alt} class="absolute inset-0 w-full h-full object-cover" />
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(0deg, var(--dark) 0%, color-mix(in srgb, var(--dark) 55%, transparent) 45%, color-mix(in srgb, var(--dark) 10%, transparent) 75%);"
+    >
+    </div>
+    <div class="relative px-6 sm:px-12 pb-16 sm:pb-24 max-w-2xl">
+      <p class="kicker mb-6" style="color:var(--accent);">{demo.branche} · {demo.ort}</p>
+      <h1 class="font-heading mb-6" style={`font-size:var(--hero-scale); color:var(--dark-ink);`}>
+        {demo.firmenname}
+      </h1>
+      <p class="text-lg mb-10 max-w-md" style="color:var(--dark-ink-soft);">{demo.tagline}</p>
+      <Button demo={demo} href={`/demo/${slug}/kontakt/`} onDark>Jetzt anfragen</Button>
+    </div>
+  </section>
+) : (
+  <section class="grid sm:grid-cols-[1.1fr_0.9fr] min-h-[88vh]">
+    <div class="flex items-center px-6 sm:px-12 py-20 sm:py-0 order-2 sm:order-1">
+      <div class="max-w-lg">
+        <p class="kicker mb-6">{demo.branche} · {demo.ort}</p>
+        <h1 class="font-heading mb-6" style={`font-size:var(--hero-scale); color:var(--ink);`}>
+          {demo.firmenname}
+        </h1>
+        <p class="text-lg mb-10 max-w-md" style="color:var(--ink-soft);">{demo.tagline}</p>
+        <Button demo={demo} href={`/demo/${slug}/kontakt/`}>Jetzt anfragen</Button>
+      </div>
+    </div>
+    <div
+      class="relative overflow-hidden order-1 sm:order-2 min-h-[46vh] sm:min-h-0 flex flex-col items-center justify-center gap-6"
+      style="background:var(--dark);"
+    >
+      <div
+        aria-hidden="true"
+        class="font-heading flex items-center justify-center rounded-full border"
+        style={`width:9rem; height:9rem; font-size:3.4rem; color:var(--accent); border-color:var(--accent); border-width:1.5px;`}
+      >
+        {initial}
+      </div>
+      <p class="text-sm font-semibold uppercase tracking-widest" style="color:var(--dark-ink-soft);">
+        {demo.branche}
+      </p>
+    </div>
+  </section>
+)}

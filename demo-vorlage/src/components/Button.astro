@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { presets } from '../presets';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  href: string;
+  onDark?: boolean;
+}
+
+const { demo, href, onDark = false } = Astro.props;
+const preset = presets[demo.style];
+const classes = ['btn', `btn-${preset.buttonStyle}`, onDark ? 'btn-on-dark' : ''].filter(Boolean).join(' ');
+---
+
+<a href={href} class={classes}><slot /></a>

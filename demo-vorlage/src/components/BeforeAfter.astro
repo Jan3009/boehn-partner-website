@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+const altesScreenshot = demo.altesScreenshot;
+const heroImage = demo.bilder[0];
+---
+
+{altesScreenshot && (
+  <section class="px-6 sm:px-12 py-24 sm:py-32" style="background:var(--surface);">
+    <div class="reveal max-w-[1320px] mx-auto">
+      <p class="kicker mb-4">Vorher / Nachher</p>
+      <h2 class="font-heading text-3xl sm:text-4xl mb-14" style="color:var(--ink);">So war es — so könnte es sein</h2>
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+          <p class="text-xs font-semibold mb-2 uppercase tracking-wide" style="color:var(--ink-soft);">Bisherige Website</p>
+          <div
+            class="overflow-hidden aspect-[4/3] flex items-center justify-center border border-dashed"
+            style="border-radius:var(--radius-card); border-color:var(--line); background:var(--bg);"
+          >
+            {altesScreenshot.src
+              ? <img src={altesScreenshot.src} alt={altesScreenshot.alt} class="w-full h-full object-cover grayscale" />
+              : <p class="text-sm text-center px-6" style="color:var(--ink-soft);">Bild-Platzhalter: {altesScreenshot.alt}</p>}
+          </div>
+        </div>
+        <div>
+          <p class="text-xs font-semibold mb-2 uppercase tracking-wide" style="color:var(--accent);">Dieser Entwurf</p>
+          <div
+            class="overflow-hidden aspect-[4/3] flex items-center justify-center border border-dashed"
+            style="border-radius:var(--radius-card); border-color:var(--line); background:var(--bg);"
+          >
+            {heroImage.src
+              ? <img src={heroImage.src} alt={heroImage.alt} class="w-full h-full object-cover" />
+              : <p class="text-sm text-center px-6" style="color:var(--ink-soft);">Bild-Platzhalter: {heroImage.alt}</p>}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}

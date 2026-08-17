@@ -1,0 +1,89 @@
+# VORLAGE für eine neue Kunden-Demo.
+#
+# So geht's (siehe auch README.md):
+# 1. Diese Datei kopieren nach: src/content/demos/<kunden-slug>.yaml
+#    (der Dateiname OHNE .yaml wird die URL: böhnpartner.de/demo/<kunden-slug>/)
+# 2. Alle Felder unten mit echten, öffentlich verfügbaren Infos zum Betrieb
+#    füllen (Google-Unternehmensprofil, Facebook-Seite, ggf. bestehende
+#    Website).
+# 3. Fotos des Betriebs (Hero/Porträt) und fertiger Arbeiten (Galerie) nach
+#    public/images/demos/<kunden-slug>/ legen und unten verlinken. Pfad immer
+#    mit /demo/ beginnen: "/demo/images/demos/<slug>/dateiname.webp". Kein
+#    Foto vorhanden? "src" einfach weglassen -- wird als beschriftete
+#    Platzhalter-Fläche gerendert statt ein falsches Bild zu zeigen.
+# 4. npm run build ausführen, Ergebnis unter demo/<kunden-slug>/ prüfen (5
+#    Seiten: Start, leistungen/, ueber-uns/, galerie/, kontakt/).
+#
+# WICHTIG: Diese Datei selbst NICHT nach src/content/demos/ kopieren, ohne
+# sie umzubenennen und mit echten Werten zu füllen -- der Platzhaltertext
+# unten ist kein gültiger Zod-Schema-Wert für "akzentfarbe" (Kommentar statt
+# Hexcode) und würde den Build zum Absturz bringen.
+
+firmenname: "" # z. B. "Fahrschule Muster"
+branche: "" # z. B. "Fahrschule" -- kurzes Gewerk/Branchenwort
+ort: "" # z. B. "Walsrode"
+gruendungsjahr: "" # optional, z. B. "2009" -- ganz weglassen wenn unbekannt
+
+tagline: "" # ein Satz Nutzenversprechen für den Hero, aktiv formuliert
+
+# Preset wählen -- jedes Preset ist eine komplett eigene Farbwelt + Schriftpaarung,
+# passend zum Charakter des Betriebs:
+#   editorial   -> warmes Creme, Serifen-Headline (Newsreader), ruhig/seriös
+#                  (Handwerk, Fahrschule, Boutique-Dienstleister)
+#   schwarzgold -> nahezu schwarz + Gold-/Metallakzent, Playfair-Display-Headline,
+#                  luxuriös/selbstbewusst (Premium-Handwerk, Gastronomie, Beauty)
+#   kontrast    -> reinweiß + kräftiges Schwarz, geometrische Headline (Space
+#                  Grotesk), modern/direkt (Bau, Reinigung, Fitness)
+style: editorial
+
+# Hex-Farbcode als Signalfarbe innerhalb der gewählten Palette (bei
+# "schwarzgold" z. B. der Metallton: Gold, Kupfer, Silber).
+akzentfarbe: "#1E6B4F"
+
+leistungen: # 3 bis 6 Einträge
+  - titel: ""
+    text: ""
+    # Optional: eigener Foto-"Ordner" für diese Leistung. Wenn gesetzt, wird
+    # die Karte auf der Leistungen-Seite klickbar und führt zu einer eigenen
+    # Unterseite mit allen Fotos dazu (URL: leistungen/<titel-als-slug>/).
+    # Ganz weglassen, wenn es dafür (noch) keine eigenen Fotos gibt.
+    # bilder:
+    #   - src: ""
+    #     alt: ""
+    #   - src: ""
+    #     alt: ""
+  - titel: ""
+    text: ""
+  - titel: ""
+    text: ""
+
+geschichte: "" # kurzer Absatz zur Firmengeschichte, 2-4 Sätze -- erscheint auf
+  # der Startseite als Teaser UND ausführlicher auf der Über-uns-Seite
+
+kontakt:
+  telefon: "" # z. B. "05161 12345"
+  adresse: "" # z. B. "Musterstraße 1, 29664 Walsrode"
+  oeffnungszeiten: "" # optional, sonst Zeile ganz weglassen
+
+bilder: # Hero-Bild zuerst, [1] wird als Porträt auf der Über-uns-Seite genutzt
+  - src: "" # z. B. "/demo/images/demos/<slug>/hero.webp" -- leer lassen für Platzhalter
+    alt: ""
+  - src: ""
+    alt: ""
+
+galerie: # mind. 3 Fotos fertiger Arbeiten -- eigener Bereich + Startseiten-Teaser
+  - src: ""
+    alt: ""
+  - src: ""
+    alt: ""
+  - src: ""
+    alt: ""
+
+# Optional: nur setzen, wenn eine bestehende, schlechte Website als
+# Vergleich gezeigt werden soll (aktiviert die Vorher/Nachher-Sektion).
+# altesScreenshot:
+#   src: "/demo/images/demos/<slug>/alte-website.webp"
+#   alt: "Screenshot der bisherigen Website"
+
+# Intern, wird nirgends auf der Seite angezeigt -- nur zur Nachvollziehbarkeit.
+quelle: "" # z. B. "Google-Unternehmensprofil + Facebook-Seite, Stand TT.MM.JJJJ"

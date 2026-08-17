@@ -1,0 +1,68 @@
+# Internes Test-/Anschauungsbeispiel (keine echte Firma) -- zeigt, wie das
+# "schwarzgold"-Preset mit einer individuellen Akzentfarbe wirkt, inkl.
+# Vorher/Nachher-Sektion. Zum Duplizieren für echte Kunden: _vorlage.example.yaml
+# im Projekt-Root verwenden, nicht diese Datei.
+#
+# Fotos sind lizenzfreie Unsplash-Platzhalter, nur damit die Demo nicht leer
+# wirkt -- keine echten Fotos eines echten Betriebs (gibt es nicht, ist fiktiv).
+
+firmenname: "Malerbetrieb Beispiel"
+branche: "Malerbetrieb"
+ort: "Walsrode"
+gruendungsjahr: "2009"
+
+tagline: "Saubere Malerarbeiten innen und außen, termintreu und ohne böse Überraschungen bei der Abrechnung."
+
+style: schwarzgold
+akzentfarbe: "#D4AF37"
+
+leistungen:
+  - titel: "Innenanstriche"
+    text: "Wände, Decken und Holzarbeiten fachgerecht vorbereitet und gestrichen, staubarm gearbeitet."
+    bilder:
+      - src: "/demo/images/demos/beispiel-malerbetrieb/leistung-innen-1.webp"
+        alt: "Frisch gestrichenes Wohnzimmer (Platzhalterfoto)"
+      - src: "/demo/images/demos/beispiel-malerbetrieb/leistung-innen-2.webp"
+        alt: "Wandanstrich in Arbeit (Platzhalterfoto)"
+  - titel: "Fassaden"
+    text: "Witterungsbeständige Fassadenanstriche inklusive Untergrundprüfung und Ausbesserung."
+    bilder:
+      - src: "/demo/images/demos/beispiel-malerbetrieb/leistung-fassade-1.webp"
+        alt: "Gerüst an einer Fassade (Platzhalterfoto)"
+      - src: "/demo/images/demos/beispiel-malerbetrieb/leistung-fassade-2.webp"
+        alt: "Arbeiten auf dem Gerüst (Platzhalterfoto)"
+      - src: "/demo/images/demos/beispiel-malerbetrieb/leistung-fassade-3.webp"
+        alt: "Fassadenarbeiten mit Gerüst (Platzhalterfoto)"
+  - titel: "Tapezierarbeiten"
+    text: "Von der Beratung bis zum fertigen Raum, inklusive Untergrundvorbereitung."
+  - titel: "Renovierungen"
+    text: "Kompletträume aus einer Hand, abgestimmt mit Elektriker und Bodenleger falls nötig."
+
+geschichte: "Seit 2009 in Walsrode und Umgebung im Einsatz. Familienbetrieb mit festem Team, keine wechselnden Subunternehmer -- wer den Auftrag bespricht, führt ihn auch aus."
+
+kontakt:
+  telefon: "05161 000000"
+  adresse: "Musterweg 4, 29664 Walsrode"
+  oeffnungszeiten: "Mo-Fr 7:30-16:00 Uhr"
+
+bilder:
+  - src: "/demo/images/demos/beispiel-malerbetrieb/hero.webp"
+    alt: "Malerteam bei der Arbeit (Platzhalterfoto)"
+  - src: "/demo/images/demos/beispiel-malerbetrieb/portrait.webp"
+    alt: "Handwerker-Porträt (Platzhalterfoto)"
+
+galerie:
+  - src: "/demo/images/demos/beispiel-malerbetrieb/galerie-1.webp"
+    alt: "Frisch gestrichene Wand (Platzhalterfoto)"
+  - src: "/demo/images/demos/beispiel-malerbetrieb/galerie-2.webp"
+    alt: "Gerüstarbeiten an einer Fassade (Platzhalterfoto)"
+  - src: "/demo/images/demos/beispiel-malerbetrieb/galerie-3.webp"
+    alt: "Gestrichene Wand im Detail (Platzhalterfoto)"
+  - src: "/demo/images/demos/beispiel-malerbetrieb/galerie-4.webp"
+    alt: "Strukturierte Wandoberfläche (Platzhalterfoto)"
+
+altesScreenshot:
+  src: ""
+  alt: "Bisherige Website: veraltetes Layout, nicht mobil-optimiert"
+
+quelle: "Fiktives Anschauungsbeispiel, keine echte Firma -- nur zum Testen von Preset und Layout"

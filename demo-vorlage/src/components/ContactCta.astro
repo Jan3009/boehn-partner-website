@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+---
+
+<section id="kontakt" class="px-6 py-24 sm:py-28" style="background:var(--dark); color:var(--dark-ink);">
+  <div class="reveal max-w-3xl mx-auto text-center">
+    <h2 class="font-heading text-3xl sm:text-4xl mb-4" style="color:var(--dark-ink);">{demo.firmenname} erreichen</h2>
+    <p class="mb-2" style="color:var(--dark-ink-soft);">{demo.kontakt.adresse}</p>
+    {demo.kontakt.oeffnungszeiten && <p class="mb-8" style="color:var(--dark-ink-soft);">{demo.kontakt.oeffnungszeiten}</p>}
+    <a
+      href={`tel:${demo.kontakt.telefon.replace(/\s+/g, '')}`}
+      class="btn"
+      style="background:var(--accent); color:var(--dark); border-color:var(--accent);"
+    >
+      {demo.kontakt.telefon}
+    </a>
+    {demo.kontakt.email && (
+      <p class="mt-4">
+        <a href={`mailto:${demo.kontakt.email}`} style="color:var(--dark-ink-soft);" class="hover:opacity-80">
+          {demo.kontakt.email}
+        </a>
+      </p>
+    )}
+    <p class="text-xs mt-6 max-w-md mx-auto" style="color:var(--dark-ink-soft);">
+      Dies ist ein unverbindlicher Design-Entwurf von Böhn &amp; Partner, kein
+      Kontaktformular dieser Website. Interesse an einer echten Website? Böhn
+      &amp; Partner meldet sich bei {demo.firmenname}.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { presets } from '../presets';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+const preset = presets[demo.style];
+const endpoint = demo.formspreeEndpoint ?? '';
+---
+
+<div
+  class="rounded-[var(--radius-card)] border p-6 sm:p-10"
+  style="border-color:var(--line); background:var(--surface);"
+>
+  <form class="js-contact-form grid gap-5 max-w-xl" data-endpoint={endpoint}>
+    <div class="grid gap-1.5">
+      <label for="cf-name" class="text-sm font-semibold" style="color:var(--ink);">Name *</label>
+      <input id="cf-name" name="name" type="text" required class="form-input" />
+    </div>
+    <div class="grid gap-1.5">
+      <label for="cf-email" class="text-sm font-semibold" style="color:var(--ink);">E-Mail *</label>
+      <input id="cf-email" name="email" type="email" required class="form-input" />
+    </div>
+    <div class="grid gap-1.5">
+      <label for="cf-message" class="text-sm font-semibold" style="color:var(--ink);">Nachricht *</label>
+      <textarea id="cf-message" name="message" rows="5" required class="form-input"></textarea>
+    </div>
+    {/* Formspree-Honeypot: von Formspree selbst ausgewertet, unsichtbar für Menschen */}
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden-field" aria-hidden="true" />
+
+    <button type="submit" class={`btn btn-${preset.buttonStyle} w-fit`}>Nachricht senden</button>
+    <p class="js-contact-status text-sm" style="color:var(--ink-soft);" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.js-contact-form').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const status = form.querySelector<HTMLParagraphElement>('.js-contact-status');
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const endpoint = form.dataset.endpoint;
+      if (!status || !button) return;
+
+      if (!endpoint) {
+        status.textContent =
+          'Dieses Formular ist Teil des Entwurfs und noch nicht angeschlossen. Für eine echte Anfrage bitte telefonisch oder per E-Mail melden.';
+        return;
+      }
+
+      button.disabled = true;
+      status.textContent = '';
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (response.ok) {
+          status.textContent = 'Danke, deine Nachricht ist angekommen.';
+          form.reset();
+        } else {
+          status.textContent = 'Senden hat nicht geklappt -- bitte später erneut versuchen.';
+        }
+      } catch {
+        status.textContent = 'Senden hat nicht geklappt -- bitte später erneut versuchen.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>

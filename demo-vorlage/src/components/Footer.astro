@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  slug: string;
+}
+
+const { demo, slug } = Astro.props;
+const base = `/demo/${slug}`;
+---
+
+<footer class="px-6 py-16" style="background:var(--dark); color:var(--dark-ink-soft);">
+  <div class="max-w-[1320px] mx-auto grid gap-10 sm:grid-cols-4">
+    <div class="sm:col-span-2">
+      <p class="font-heading text-lg mb-2" style="color:var(--dark-ink);">{demo.firmenname}</p>
+      <p class="text-sm">{demo.branche} · {demo.ort}</p>
+    </div>
+    <div class="text-sm space-y-2">
+      <a href={`${base}/leistungen/`} class="block hover:opacity-80">Leistungen</a>
+      <a href={`${base}/galerie/`} class="block hover:opacity-80">Arbeiten</a>
+      <a href={`${base}/ueber-uns/`} class="block hover:opacity-80">Über uns</a>
+      <a href={`${base}/kontakt/`} class="block hover:opacity-80">Kontakt</a>
+    </div>
+    <div class="text-sm space-y-1">
+      <p>{demo.kontakt.adresse}</p>
+      <p><a href={`tel:${demo.kontakt.telefon.replace(/\s+/g, '')}`} class="hover:opacity-80">{demo.kontakt.telefon}</a></p>
+      {demo.kontakt.email && <p><a href={`mailto:${demo.kontakt.email}`} class="hover:opacity-80">{demo.kontakt.email}</a></p>}
+      {demo.kontakt.oeffnungszeiten && <p>{demo.kontakt.oeffnungszeiten}</p>}
+    </div>
+  </div>
+  <div class="max-w-[1320px] mx-auto mt-10 pt-6 border-t text-xs" style="border-color:var(--dark-ink-soft);">
+    Erstellt von <a href="https://böhnpartner.de" class="underline hover:no-underline">Böhn &amp; Partner</a> ·
+    Unverbindlicher Entwurf, nicht öffentlich gelistet ·
+    <a href="/impressum.html" class="underline hover:no-underline">Impressum</a>
+  </div>
+</footer>
