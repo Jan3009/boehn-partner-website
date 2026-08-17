@@ -15,14 +15,22 @@ const base = `/demo/${slug}`;
   class="sticky top-0 z-40 backdrop-blur border-b"
   style="background:color-mix(in srgb, var(--bg) 90%, transparent); border-color:var(--line);"
 >
-  <div class="max-w-[1320px] mx-auto px-6 h-[76px] flex items-center justify-between">
-    <a href={`${base}/`} class="font-heading text-lg" style="color:var(--ink);">{demo.firmenname}</a>
-    <nav class="hidden sm:flex items-center gap-8 text-sm font-medium" style="color:var(--ink-soft);">
+  <div class="max-w-[1320px] mx-auto px-4 sm:px-6 h-[76px] flex items-center justify-between gap-3">
+    <a
+      href={`${base}/`}
+      class="font-heading text-base sm:text-lg whitespace-nowrap overflow-hidden text-ellipsis shrink"
+      style="color:var(--ink);"
+    >
+      {demo.firmenname}
+    </a>
+    <nav class="hidden sm:flex items-center gap-8 text-sm font-medium shrink-0" style="color:var(--ink-soft);">
       <a href={`${base}/leistungen/`} class="hover:opacity-70 transition">Leistungen</a>
       <a href={`${base}/galerie/`} class="hover:opacity-70 transition">Arbeiten</a>
       <a href={`${base}/ueber-uns/`} class="hover:opacity-70 transition">Über uns</a>
       <a href={`${base}/kontakt/`} class="hover:opacity-70 transition">Kontakt</a>
     </nav>
-    <Button demo={demo} href={`${base}/kontakt/`}>Jetzt anfragen</Button>
+    <div class="shrink-0">
+      <Button demo={demo} href={`${base}/kontakt/`} compact>Jetzt anfragen</Button>
+    </div>
   </div>
 </header>
