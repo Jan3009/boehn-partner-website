@@ -196,6 +196,17 @@ h3,
   color: var(--dark-ink);
 }
 
+/* Mobile-Menü-Button (Header.astro): 3 Striche -> X beim Öffnen.
+   Der offene/geschlossene Zustand wird direkt per Inline-Style aus dem
+   Script in Header.astro gesetzt (zuverlässiger als eine reine CSS-Regel
+   über :nth-child, siehe Kommentar dort). */
+.menu-line {
+  display: block;
+  height: 2px;
+  background: var(--ink);
+  transition: transform 0.2s ease, opacity 0.2s ease, width 0.2s ease;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);

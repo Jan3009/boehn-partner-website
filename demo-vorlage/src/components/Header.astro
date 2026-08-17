@@ -9,6 +9,12 @@ interface Props {
 
 const { demo, slug } = Astro.props;
 const base = `/demo/${slug}`;
+const navLinks = [
+  { href: `${base}/leistungen/`, label: 'Leistungen' },
+  { href: `${base}/galerie/`, label: 'Arbeiten' },
+  { href: `${base}/ueber-uns/`, label: 'Über uns' },
+  { href: `${base}/kontakt/`, label: 'Kontakt' },
+];
 ---
 
 <header
@@ -24,13 +30,75 @@ const base = `/demo/${slug}`;
       {demo.firmenname}
     </a>
     <nav class="hidden sm:flex items-center gap-8 text-sm font-medium shrink-0" style="color:var(--ink-soft);">
-      <a href={`${base}/leistungen/`} class="hover:opacity-70 transition">Leistungen</a>
-      <a href={`${base}/galerie/`} class="hover:opacity-70 transition">Arbeiten</a>
-      <a href={`${base}/ueber-uns/`} class="hover:opacity-70 transition">Über uns</a>
-      <a href={`${base}/kontakt/`} class="hover:opacity-70 transition">Kontakt</a>
+      {navLinks.map((link) => (
+        <a href={link.href} class="hover:opacity-70 transition">{link.label}</a>
+      ))}
     </nav>
-    <div class="shrink-0">
+    <div class="hidden sm:block shrink-0">
       <Button demo={demo} href={`${base}/kontakt/`} compact>Jetzt anfragen</Button>
     </div>
+    <button
+      type="button"
+      class="js-menu-toggle sm:hidden flex flex-col justify-center items-end gap-1.5 w-10 h-10 shrink-0"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="menu-line line-1" style="width:22px;"></span>
+      <span class="menu-line line-2" style="width:22px;"></span>
+      <span class="menu-line line-3" style="width:14px;"></span>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="js-mobile-menu hidden sm:hidden fixed inset-x-0 bottom-0"
+    style={`top:76px; background:var(--bg);`}
+  >
+    <nav class="flex flex-col px-6 pt-2" style="color:var(--ink);">
+      {navLinks.map((link) => (
+        <a href={link.href} class="py-4 text-lg font-medium border-b" style="border-color:var(--line);">
+          {link.label}
+        </a>
+      ))}
+      <div class="pt-8">
+        <Button demo={demo} href={`${base}/kontakt/`}>Jetzt anfragen</Button>
+      </div>
+    </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.js-menu-toggle');
+  const menu = document.querySelector<HTMLElement>('.js-mobile-menu');
+  const line1 = toggle?.querySelector<HTMLElement>('.line-1');
+  const line2 = toggle?.querySelector<HTMLElement>('.line-2');
+  const line3 = toggle?.querySelector<HTMLElement>('.line-3');
+
+  function setOpen(open: boolean) {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (line1 && line2 && line3) {
+      line1.style.transform = open ? 'translateY(8px) rotate(45deg)' : '';
+      line2.style.opacity = open ? '0' : '1';
+      line3.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
+      line3.style.width = open ? '22px' : '14px';
+    }
+  }
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+      }
+    });
+  }
+</script>
