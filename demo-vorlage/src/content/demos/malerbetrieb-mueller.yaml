@@ -81,11 +81,10 @@ galerie:
   - src: "/demo/images/demos/malerbetrieb-mueller/galerie-3.webp"
     alt: "Strukturierte Wandoberfläche (Platzhalterfoto)"
 
-# Kein echter Screenshot der alten Seite eingebunden (Browser-Screenshot in
-# dieser Session technisch nicht möglich) -- Platzhalter mit ehrlicher
-# Beschreibung, kann später per echtem Screenshot ersetzt werden.
+# Echter Screenshot der bisherigen Website (vom Nutzer bereitgestellt,
+# 17.08.2026), zugeschnitten auf den Seiteninhalt ohne Browser-Chrome.
 altesScreenshot:
-  src: ""
-  alt: "Bisherige Website: einfache Baukasten-Seite (homepage-baukasten.de), Referenzen-Seite noch ohne Fotos"
+  src: "/demo/images/demos/malerbetrieb-mueller/altes-website-screenshot.webp"
+  alt: "Bisherige Website: einfache Baukasten-Seite (homepage-baukasten.de) von 2026"
 
 quelle: "malerbetriebmueller.de.tl (Startseite, Über uns, Services, Kontakt, Impressum), Stand 17.08.2026"

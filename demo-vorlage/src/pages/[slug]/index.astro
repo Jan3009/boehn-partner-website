@@ -5,7 +5,6 @@ import Hero from '../../components/Hero.astro';
 import Services from '../../components/Services.astro';
 import Geschichte from '../../components/Geschichte.astro';
 import Gallery from '../../components/Gallery.astro';
-import Comparison from '../../components/Comparison.astro';
 import BeforeAfter from '../../components/BeforeAfter.astro';
 import ContactCta from '../../components/ContactCta.astro';
 
@@ -27,6 +26,5 @@ const { slug } = Astro.params;
   <Geschichte demo={demo} slug={slug} mode="teaser" />
   <Gallery demo={demo} slug={slug} mode="teaser" />
   <BeforeAfter demo={demo} />
-  <Comparison />
   <ContactCta demo={demo} />
 </PageLayout>
