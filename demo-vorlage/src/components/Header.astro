@@ -49,24 +49,24 @@ const navLinks = [
       <span class="menu-line line-3" style="width:14px;"></span>
     </button>
   </div>
-
-  <div
-    id="mobile-menu"
-    class="js-mobile-menu hidden sm:hidden fixed inset-x-0 bottom-0"
-    style={`top:76px; background:var(--bg);`}
-  >
-    <nav class="flex flex-col px-6 pt-2" style="color:var(--ink);">
-      {navLinks.map((link) => (
-        <a href={link.href} class="py-4 text-lg font-medium border-b" style="border-color:var(--line);">
-          {link.label}
-        </a>
-      ))}
-      <div class="pt-8">
-        <Button demo={demo} href={`${base}/kontakt/`}>Jetzt anfragen</Button>
-      </div>
-    </nav>
-  </div>
 </header>
+
+<div
+  id="mobile-menu"
+  class="js-mobile-menu hidden sm:hidden fixed inset-x-0 bottom-0 z-30 overflow-y-auto"
+  style={`top:76px; background:var(--bg);`}
+>
+  <nav class="flex flex-col px-6 pt-2" style="color:var(--ink);">
+    {navLinks.map((link) => (
+      <a href={link.href} class="py-4 text-lg font-medium border-b" style="border-color:var(--line);">
+        {link.label}
+      </a>
+    ))}
+    <div class="pt-8">
+      <Button demo={demo} href={`${base}/kontakt/`}>Jetzt anfragen</Button>
+    </div>
+  </nav>
+</div>
 
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.js-menu-toggle');
