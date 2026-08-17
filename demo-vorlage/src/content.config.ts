@@ -63,6 +63,14 @@ const demos = defineCollection({
         alt: z.string(),
       })
       .optional(),
+    // Optional: eigener Screenshot der fertigen Entwurfsseite fürs
+    // "Nachher" -- fällt sonst automatisch auf bilder[0] (Hero-Bild) zurück.
+    neuerScreenshot: z
+      .object({
+        src: z.string().optional(),
+        alt: z.string(),
+      })
+      .optional(),
     // Formspree-Endpoint fürs Kontaktformular (https://formspree.io/f/<id>).
     // Nicht gesetzt = Formular zeigt Felder + Validierung, aber sendet nicht
     // (ehrlicher Hinweis statt stillem Fehlschlag) -- erst setzen, wenn aus

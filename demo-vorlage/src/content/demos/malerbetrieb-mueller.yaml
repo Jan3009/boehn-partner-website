@@ -87,4 +87,9 @@ altesScreenshot:
   src: "/demo/images/demos/malerbetrieb-mueller/altes-website-screenshot.webp"
   alt: "Bisherige Website: einfache Baukasten-Seite (homepage-baukasten.de) von 2026"
 
+# Echter Screenshot der fertigen Entwurfsseite fürs "Nachher".
+neuerScreenshot:
+  src: "/demo/images/demos/malerbetrieb-mueller/neue-website-screenshot.webp"
+  alt: "Dieser Entwurf: neue Startseite von Malerbetrieb Müller"
+
 quelle: "malerbetriebmueller.de.tl (Startseite, Über uns, Services, Kontakt, Impressum), Stand 17.08.2026"

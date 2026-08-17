@@ -7,7 +7,7 @@ interface Props {
 
 const { demo } = Astro.props;
 const altesScreenshot = demo.altesScreenshot;
-const heroImage = demo.bilder[0];
+const neuesBild = demo.neuerScreenshot ?? demo.bilder[0];
 ---
 
 {altesScreenshot && (
@@ -19,23 +19,23 @@ const heroImage = demo.bilder[0];
         <div>
           <p class="text-xs font-semibold mb-2 uppercase tracking-wide" style="color:var(--ink-soft);">Bisherige Website</p>
           <div
-            class="overflow-hidden aspect-[4/3] flex items-center justify-center border border-dashed"
+            class="overflow-hidden aspect-[3/2] flex items-center justify-center border border-dashed"
             style="border-radius:var(--radius-card); border-color:var(--line); background:var(--bg);"
           >
             {altesScreenshot.src
-              ? <img src={altesScreenshot.src} alt={altesScreenshot.alt} class="w-full h-full object-cover grayscale" />
+              ? <img src={altesScreenshot.src} alt={altesScreenshot.alt} class="w-full h-full object-cover object-top grayscale" />
               : <p class="text-sm text-center px-6" style="color:var(--ink-soft);">Bild-Platzhalter: {altesScreenshot.alt}</p>}
           </div>
         </div>
         <div>
           <p class="text-xs font-semibold mb-2 uppercase tracking-wide" style="color:var(--accent);">Dieser Entwurf</p>
           <div
-            class="overflow-hidden aspect-[4/3] flex items-center justify-center border border-dashed"
+            class="overflow-hidden aspect-[3/2] flex items-center justify-center border border-dashed"
             style="border-radius:var(--radius-card); border-color:var(--line); background:var(--bg);"
           >
-            {heroImage.src
-              ? <img src={heroImage.src} alt={heroImage.alt} class="w-full h-full object-cover" />
-              : <p class="text-sm text-center px-6" style="color:var(--ink-soft);">Bild-Platzhalter: {heroImage.alt}</p>}
+            {neuesBild.src
+              ? <img src={neuesBild.src} alt={neuesBild.alt} class="w-full h-full object-cover object-left" />
+              : <p class="text-sm text-center px-6" style="color:var(--ink-soft);">Bild-Platzhalter: {neuesBild.alt}</p>}
           </div>
         </div>
       </div>
