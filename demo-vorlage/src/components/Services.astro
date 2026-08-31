@@ -18,7 +18,7 @@ const rest = mode === 'full' ? [] : demo.leistungen.slice(4);
     <div class="px-6 sm:px-12 max-w-[1320px] mx-auto mb-16 text-center">
       <h2
         class="text-5xl sm:text-6xl"
-        style={`font-family:'Alex Brush', cursive; color:var(--accent); line-height:1.15;`}
+        style={`font-family:'Alex Brush', cursive; color:${demo.hintergrund?.dark ?? 'var(--accent)'}; line-height:1.15;`}
       >
         {demo.leistungenLabel?.titel ?? `Was ${demo.firmenname} für dich übernimmt`}
       </h2>

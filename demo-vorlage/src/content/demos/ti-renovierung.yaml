@@ -22,6 +22,10 @@ leistungenOhneNummern: true
 # Startseite 1:1 dupliziert. Nav/Footer verlinken jetzt auf #leistungen auf
 # der Startseite. Foto-Unterseiten je Leistung bleiben bestehen.
 leistungenSeiteAusblenden: true
+# Nutzer-Wunsch: "Fertige Arbeiten"-Galerie-Teaser auf der Startseite weg
+# (nur Platzhalter-Karten ohne echte Fotos, Startseite zu lang). Die
+# eigenständige /galerie/-Seite bleibt bestehen.
+galerieTeaserAusblenden: true
 
 # Nutzer-Wunsch: Hero-Foto hat eigenen eingebrannten Text ("WIR RENOVIEREN."
 # + Tagline) -- Seiten-eigene Kicker/Headline/Tagline im Hero ausgeblendet,

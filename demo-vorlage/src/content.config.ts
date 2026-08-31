@@ -28,6 +28,10 @@ const demos = defineCollection({
     // einzelnen Foto-Unterseiten je Leistung (/leistungen/<name>/) bleiben
     // davon unberührt, weil sie NICHT auf der Startseite dupliziert sind.
     leistungenSeiteAusblenden: z.boolean().optional(),
+    // Optional: blendet den Galerie-Teaser ("Fertige Arbeiten") auf der
+    // Startseite aus. Die eigenständige /galerie/-Seite (samt Nav-Link)
+    // bleibt davon unberührt.
+    galerieTeaserAusblenden: z.boolean().optional(),
     // Optional: zeigt zwei dekorative Farbklecks-Grafiken (Akzentfarbe) hinter
     // der "Unsere Geschichte"-Sektion, angelehnt an verspielte Referenzseiten
     // mit Farbspritzer-Motiv (z. B. Malerbetriebe). Reine Deko, kein Foto.

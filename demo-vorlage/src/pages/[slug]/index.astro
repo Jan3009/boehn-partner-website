@@ -2,9 +2,14 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
 import Hero from '../../components/Hero.astro';
+import CinematicHero from '../../components/CinematicHero.astro';
 import Services from '../../components/Services.astro';
+import DoenerMenuTeaser from '../../components/DoenerMenuTeaser.astro';
 import Geschichte from '../../components/Geschichte.astro';
+import DoenerTeam from '../../components/DoenerTeam.astro';
 import Gallery from '../../components/Gallery.astro';
+import DoenerInfoStrip from '../../components/DoenerInfoStrip.astro';
+import Testimonials from '../../components/Testimonials.astro';
 import BeforeAfter from '../../components/BeforeAfter.astro';
 import ContactCta from '../../components/ContactCta.astro';
 
@@ -18,13 +23,22 @@ export async function getStaticPaths() {
 
 const { demo } = Astro.props;
 const { slug } = Astro.params;
+// Bespoke Sektionen (Doener*) nur fuer Kunden mit kinoKapitel -- aktuell nur
+// Walsroder Döner. Alle anderen Demo-Kunden bleiben unveraendert beim
+// generischen Komponenten-Set.
+const bespoke = !!demo.kinoKapitel;
 ---
 
 <PageLayout demo={demo} slug={slug}>
-  <Hero demo={demo} slug={slug} />
-  <Services demo={demo} slug={slug} mode="teaser" />
-  <Geschichte demo={demo} slug={slug} mode="teaser" />
-  <Gallery demo={demo} slug={slug} mode="teaser" />
+  {bespoke ? <CinematicHero demo={demo} slug={slug} /> : <Hero demo={demo} slug={slug} />}
+  {bespoke ? <DoenerMenuTeaser demo={demo} slug={slug} /> : <Services demo={demo} slug={slug} mode="teaser" />}
+  {bespoke ? <DoenerTeam demo={demo} slug={slug} mode="teaser" /> : <Geschichte demo={demo} slug={slug} mode="teaser" />}
+  {bespoke ? (
+    <DoenerInfoStrip demo={demo} />
+  ) : (
+    !demo.galerieTeaserAusblenden && <Gallery demo={demo} slug={slug} mode="teaser" />
+  )}
+  <Testimonials demo={demo} mode="teaser" />
   <BeforeAfter demo={demo} />
   <ContactCta demo={demo} />
 </PageLayout>
