@@ -10,25 +10,25 @@ interface Props {
 }
 
 const { demo, slug, mode = 'full' } = Astro.props;
-const shown = mode === 'teaser' ? demo.leistungen.slice(0, 3) : demo.leistungen;
-const rest = mode === 'full' ? [] : demo.leistungen.slice(3);
+const shown = mode === 'teaser' ? demo.leistungen.slice(0, 4) : demo.leistungen;
+const rest = mode === 'full' ? [] : demo.leistungen.slice(4);
 ---
 
-<section id="leistungen" class="px-6 sm:px-12 py-24 sm:py-32">
+<section id="leistungen" class="px-6 sm:px-12 py-16 sm:py-24">
   <div class="max-w-[1320px] mx-auto">
     {mode === 'teaser' && (
       <div class="flex flex-wrap items-end justify-between gap-6 mb-16">
         <div>
-          <p class="kicker mb-4">Leistungen</p>
+          <p class="kicker mb-4">{demo.leistungenLabel?.kicker ?? 'Leistungen'}</p>
           <h2 class="font-heading text-4xl sm:text-5xl max-w-xl" style="color:var(--ink);">
-            Was {demo.firmenname} für dich übernimmt
+            {demo.leistungenLabel?.titel ?? `Was ${demo.firmenname} für dich übernimmt`}
           </h2>
         </div>
-        <Button demo={demo} href={`/demo/${slug}/leistungen/`}>Alle Leistungen ansehen</Button>
+        <Button demo={demo} href={`/demo/${slug}/leistungen/`}>{demo.leistungenLabel?.nav ?? 'Leistungen'} ansehen</Button>
       </div>
     )}
 
-    <div class="space-y-20 sm:space-y-28">
+    <div class="space-y-14 sm:space-y-20">
       {shown.map((leistung, i) => {
         const hatOrdner = !!leistung.bilder && leistung.bilder.length > 0;
         const ordnerHref = hatOrdner ? `/demo/${slug}/leistungen/${slugify(leistung.titel)}/` : null;
@@ -55,7 +55,7 @@ const rest = mode === 'full' ? [] : demo.leistungen.slice(3);
             <div class={flip ? 'sm:order-1' : ''}>
               <a
                 href={ordnerHref ?? undefined}
-                class={`block overflow-hidden aspect-[4/3] relative border border-dashed ${hatOrdner ? 'group' : ''}`}
+                class={`block overflow-hidden aspect-[4/3] relative ${cover?.src ? '' : 'border border-dashed'} ${hatOrdner ? 'group' : ''}`}
                 style="border-radius:var(--radius-lg); border-color:var(--line); background:var(--surface);"
               >
                 {cover?.src
