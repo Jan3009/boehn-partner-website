@@ -26,15 +26,30 @@ tagline: "Saubere Malerarbeiten innen und außen -- termingerecht und ordentlich
 style: editorial
 akzentfarbe: "#2E4C66"
 
+# Bilder je Leistung: aus einer vom Nutzer bereitgestellten 4er-Bildercollage
+# (KI-generiert, nicht vom echten Betrieb) zugeschnitten -- je 384x1024 aus
+# der 1536x1024-Vorlage, ein Ausschnitt pro Leistung in Reihenfolge.
 leistungen:
   - titel: "Innenanstriche"
     text: "Wände, Decken und Holzarbeiten fachgerecht vorbereitet und gestrichen."
+    bilder:
+      - src: "/demo/images/demos/ti-renovierung/leistung-innenanstriche.png"
+        alt: "Malerarbeiten an einer Innenwand (Referenzfoto)"
   - titel: "Fassadenanstriche"
     text: "Witterungsbeständige Fassadenanstriche inklusive Untergrundprüfung."
+    bilder:
+      - src: "/demo/images/demos/ti-renovierung/leistung-fassadenanstriche.png"
+        alt: "Fassadenanstrich auf dem Gerüst (Referenzfoto)"
   - titel: "Tapezierarbeiten"
     text: "Von der Beratung bis zum fertigen Raum, inklusive Untergrundvorbereitung."
+    bilder:
+      - src: "/demo/images/demos/ti-renovierung/leistung-tapezierarbeiten.png"
+        alt: "Tapete wird angebracht (Referenzfoto)"
   - titel: "Renovierungen"
     text: "Kompletträume aus einer Hand, sauber und termingerecht umgesetzt."
+    bilder:
+      - src: "/demo/images/demos/ti-renovierung/leistung-renovierungen.png"
+        alt: "Raum in Renovierung, vorbereitet für Malerarbeiten (Referenzfoto)"
 
 geschichte: "Malerarbeiten aus einer Hand in Haldensleben und Umgebung -- von der ersten Absprache bis zum fertigen Raum, mit einem festen Ansprechpartner für das gesamte Projekt."
 
