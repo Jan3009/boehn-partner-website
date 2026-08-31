@@ -9,9 +9,11 @@ interface Props {
 
 const { demo, slug } = Astro.props;
 const base = `/demo/${slug}`;
+const bespoke = !!demo.kinoKapitel;
+const dark = !!demo.headerDunkel;
 const navLinks = [
-  { href: `${base}/leistungen/`, label: 'Leistungen' },
-  { href: `${base}/galerie/`, label: 'Arbeiten' },
+  { href: `${base}/leistungen/`, label: demo.leistungenLabel?.nav ?? 'Leistungen' },
+  { href: `${base}/galerie/`, label: demo.galerieLabel?.nav ?? 'Arbeiten' },
   { href: `${base}/ueber-uns/`, label: 'Über uns' },
   { href: `${base}/kontakt/`, label: 'Kontakt' },
 ];
@@ -19,54 +21,163 @@ const navLinks = [
 
 <header
   class="sticky top-0 z-40 backdrop-blur border-b"
-  style="background:color-mix(in srgb, var(--bg) 90%, transparent); border-color:var(--line);"
+  style={`background:${bespoke ? 'var(--gloss), ' : dark ? 'color-mix(in srgb, var(--dark) 92%, transparent)' : 'color-mix(in srgb, var(--bg) 90%, transparent)'}; border-color:${dark ? 'color-mix(in srgb, var(--dark-ink) 16%, transparent)' : 'var(--line)'};`}
 >
-  <div class="max-w-[1320px] mx-auto px-4 sm:px-6 h-[76px] flex items-center justify-between gap-3">
-    <a
-      href={`${base}/`}
-      class="font-heading text-base sm:text-lg whitespace-nowrap overflow-hidden text-ellipsis shrink"
-      style="color:var(--ink);"
-    >
-      {demo.firmenname}
-    </a>
-    <nav class="hidden sm:flex items-center gap-8 text-sm font-medium shrink-0" style="color:var(--ink-soft);">
-      {navLinks.map((link) => (
-        <a href={link.href} class="hover:opacity-70 transition">{link.label}</a>
-      ))}
-    </nav>
-    <div class="hidden sm:block shrink-0">
-      <Button demo={demo} href={`${base}/kontakt/`} compact>Jetzt anfragen</Button>
+  <div class={`${bespoke ? 'relative max-w-none' : 'max-w-[1320px] mx-auto'} px-6 lg:px-12 h-[76px] flex items-center justify-between gap-3`}>
+    {bespoke ? (
+      <a href={`${base}/`} class="shrink-0 flex items-center" aria-label={demo.firmenname}>
+        <img
+          src="/demo/images/demos/walsroder-doener/logo.webp"
+          alt={`${demo.firmenname} Logo`}
+          class="h-10 sm:h-12 w-auto"
+        />
+      </a>
+    ) : (
+      <a
+        href={`${base}/`}
+        class="font-heading text-base sm:text-lg whitespace-nowrap overflow-hidden text-ellipsis shrink"
+        style={`color:${dark ? 'var(--dark-ink)' : 'var(--ink)'};`}
+      >
+        {demo.firmenname}
+      </a>
+    )}
+
+    {bespoke ? (
+      <a
+        href={`${base}/`}
+        class="doener-wordmark absolute left-1/2 -translate-x-1/2 font-heading font-bold whitespace-nowrap"
+      >
+        {demo.firmenname}
+      </a>
+    ) : (
+      <nav class="hidden sm:flex items-center gap-8 text-sm font-medium shrink-0" style={`color:${dark ? 'var(--dark-ink-soft)' : 'var(--ink-soft)'};`}>
+        {navLinks.map((link) => (
+          <a href={link.href} class="hover:opacity-70 transition">{link.label}</a>
+        ))}
+      </nav>
+    )}
+
+    <div class="flex items-center gap-3 shrink-0">
+      {bespoke ? (
+        <a href={`tel:${demo.kontakt.telefon.replace(/\s+/g, '')}`} class="doener-call-btn hidden sm:inline-flex">
+          Jetzt anrufen
+        </a>
+      ) : (
+        <div class="hidden sm:block">
+          <Button demo={demo} href={`${base}/kontakt/`} compact onDark={dark}>Jetzt anfragen</Button>
+        </div>
+      )}
+      <button
+        type="button"
+        class={`js-menu-toggle flex flex-col justify-center items-end gap-1.5 w-10 h-10 shrink-0 ${bespoke ? '' : 'sm:hidden'}`}
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="menu-line line-1" style={`width:22px; ${dark ? 'background:var(--dark-ink);' : ''}`}></span>
+        <span class="menu-line line-2" style={`width:22px; ${dark ? 'background:var(--dark-ink);' : ''}`}></span>
+        <span class="menu-line line-3" style={`width:22px; ${dark ? 'background:var(--dark-ink);' : ''}`}></span>
+      </button>
     </div>
-    <button
-      type="button"
-      class="js-menu-toggle sm:hidden flex flex-col justify-center items-end gap-1.5 w-10 h-10 shrink-0"
-      aria-label="Menü öffnen"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span class="menu-line line-1" style="width:22px;"></span>
-      <span class="menu-line line-2" style="width:22px;"></span>
-      <span class="menu-line line-3" style="width:14px;"></span>
-    </button>
   </div>
 </header>
 
 <div
   id="mobile-menu"
-  class="js-mobile-menu hidden sm:hidden fixed inset-x-0 bottom-0 z-30 overflow-y-auto"
-  style={`top:76px; background:var(--bg);`}
+  class={`js-mobile-menu hidden ${bespoke ? '' : 'sm:hidden'} fixed inset-x-0 bottom-0 z-30 overflow-y-auto`}
+  style={`top:var(--header-bottom, 76px); background:var(--bg);`}
 >
-  <nav class="flex flex-col px-6 pt-2" style="color:var(--ink);">
+  <nav class="js-mobile-menu-nav flex flex-col px-6 pt-2" style="color:var(--ink);">
     {navLinks.map((link) => (
       <a href={link.href} class="py-4 text-lg font-medium border-b" style="border-color:var(--line);">
         {link.label}
       </a>
     ))}
     <div class="pt-8">
-      <Button demo={demo} href={`${base}/kontakt/`}>Jetzt anfragen</Button>
+      <Button
+        demo={demo}
+        href={bespoke ? `tel:${demo.kontakt.telefon.replace(/\s+/g, '')}` : `${base}/kontakt/`}
+      >
+        {bespoke ? 'Jetzt anrufen' : 'Jetzt anfragen'}
+      </Button>
     </div>
   </nav>
 </div>
+
+{bespoke && (
+  <style>
+    /* Bewusst das echte, vom Sign abfotografierte Gold (siehe logo-icon.webp)
+       statt der Akzentfarbe -- Nutzer-Feedback: hier explizit "geiles Gold"
+       gewuenscht, nicht der gedaempfte Terrakotta-Akzent des restlichen
+       Auftritts. */
+    .doener-wordmark {
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      color: #f5de5c;
+      letter-spacing: 0.01em;
+    }
+    .doener-call-btn {
+      /* display bewusst NICHT hier setzen -- die Tailwind-Klassen
+         "hidden sm:inline-flex" am Element muessten sonst gegen die hoehere
+         Spezifitaet dieser gescopten Astro-Regel ankaempfen und wuerden
+         verlieren (gleiches Problem wie frueher bei "color", siehe
+         PROJEKT-KONTEXT). */
+      align-items: center;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-sm);
+      background: #f5de5c;
+      color: #15110d;
+      white-space: nowrap;
+      transition: filter 0.15s ease;
+    }
+    .doener-call-btn:hover {
+      filter: brightness(1.08);
+    }
+
+    /* Das Fluemenue (js-mobile-menu) ist jetzt auf allen Breiten die einzige
+       Navigation (nicht mehr nur Handy) -- auf breiten Bildschirmen sonst
+       eine schmale, linksbuendige Liste mit riesigem leeren Rest daneben.
+       Ab 640px deshalb zentriert mit groesserer Schrift. */
+    @media (min-width: 640px) {
+      .js-mobile-menu-nav {
+        max-width: 28rem;
+        margin: 0 auto;
+        padding-top: 2.5rem;
+        text-align: center;
+      }
+      .js-mobile-menu-nav a {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+)}
+
+<script is:inline>
+  // Misst die tatsaechliche Unterkante des Headers (inkl. EntwurfBar
+  // darueber, die den Header im normalen Fluss nach unten schiebt) und
+  // setzt --header-bottom -- das Fluemenue haengt sonst mit einem
+  // hartkodierten top:76px teilweise HINTER dem Header/der EntwurfBar,
+  // weil deren Hoehe variieren kann (z.B. Zeilenumbruch auf schmalen
+  // Screens). Gleiches Messprinzip wie --cine-offset in CinematicHero.astro,
+  // aber unabhaengig davon nutzbar (Header existiert auf jeder Seite,
+  // CinematicHero nur auf der Startseite).
+  (function () {
+    function applyHeaderBottom() {
+      if (window.scrollY > 4) return;
+      var header = document.querySelector('header');
+      var bottom = header ? header.getBoundingClientRect().bottom : 76;
+      if (bottom > 0) {
+        document.documentElement.style.setProperty('--header-bottom', bottom + 'px');
+      }
+    }
+    applyHeaderBottom();
+    window.addEventListener('resize', applyHeaderBottom);
+    window.addEventListener('orientationchange', applyHeaderBottom);
+  })();
+</script>
 
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.js-menu-toggle');
@@ -84,7 +195,6 @@ const navLinks = [
       line1.style.transform = open ? 'translateY(8px) rotate(45deg)' : '';
       line2.style.opacity = open ? '0' : '1';
       line3.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
-      line3.style.width = open ? '22px' : '14px';
     }
   }
 

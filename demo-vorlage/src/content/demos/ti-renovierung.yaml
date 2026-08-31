@@ -14,6 +14,11 @@ firmenname: "Ti-Renovierung"
 branche: "Malerbetrieb"
 ort: "Haldensleben"
 
+# Nutzer-Wunsch: Header-Leiste (Logo/Nav/Button) schwarz mit weißer Schrift,
+# wie die Entwurf-Leiste darüber.
+headerDunkel: true
+leistungenOhneNummern: true
+
 # Nutzer-Wunsch: Hero-Foto hat eigenen eingebrannten Text ("WIR RENOVIEREN."
 # + Tagline) -- Seiten-eigene Kicker/Headline/Tagline im Hero ausgeblendet,
 # damit sich das nicht mehr überlappt. Nur noch der "Jetzt anfragen"-Button

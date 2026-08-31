@@ -14,6 +14,13 @@ const demos = defineCollection({
     // selbst schon Text/Slogan enthält und die normale Seiten-Headline sich
     // sonst optisch damit überlappen würde.
     heroTextAusblenden: z.boolean().optional(),
+    // Optional: Header-Leiste (Logo/Nav/Button) in dunkler Fläche mit hellem
+    // Text statt der normalen hellen Fläche -- eigene Farblogik, unabhängig
+    // vom "hintergrund"-Override, weil der Header sonst dieselbe Fläche wie
+    // die Seite selbst nutzt.
+    headerDunkel: z.boolean().optional(),
+    // Optional: blendet die großen "01/02/03"-Nummern vor jeder Leistung aus.
+    leistungenOhneNummern: z.boolean().optional(),
     // Optional: zeigt zwei dekorative Farbklecks-Grafiken (Akzentfarbe) hinter
     // der "Unsere Geschichte"-Sektion, angelehnt an verspielte Referenzseiten
     // mit Farbspritzer-Motiv (z. B. Malerbetriebe). Reine Deko, kein Foto.

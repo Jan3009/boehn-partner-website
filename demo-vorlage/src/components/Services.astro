@@ -36,12 +36,14 @@ const rest = mode === 'full' ? [] : demo.leistungen.slice(4);
           <div
             class={`flex flex-col justify-center px-6 sm:px-12 py-10 sm:py-16 ${flip ? 'sm:order-2 sm:pl-12 lg:pl-24 sm:pr-6' : 'sm:pr-12 lg:pr-24'}`}
           >
-            <span
-              class="font-heading text-6xl block mb-4"
-              style="color:color-mix(in srgb, var(--accent) 30%, var(--bg));"
-            >
-              {String(i + 1).padStart(2, '0')}
-            </span>
+            {!demo.leistungenOhneNummern && (
+              <span
+                class="font-heading text-6xl block mb-4"
+                style="color:color-mix(in srgb, var(--accent) 30%, var(--bg));"
+              >
+                {String(i + 1).padStart(2, '0')}
+              </span>
+            )}
             <h3 class="font-heading text-2xl sm:text-3xl mb-4" style="color:var(--ink);">{leistung.titel}</h3>
             <p style="color:var(--ink-soft);" class="max-w-xl mb-4 text-lg">{leistung.text}</p>
             {hatOrdner && (
