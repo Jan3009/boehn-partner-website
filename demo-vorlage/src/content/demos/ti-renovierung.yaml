@@ -42,22 +42,22 @@ akzentfarbe: "#2E4C66"
 # der 1536x1024-Vorlage, ein Ausschnitt pro Leistung in Reihenfolge.
 leistungen:
   - titel: "Innenanstriche"
-    text: "Wände, Decken und Holzarbeiten fachgerecht vorbereitet und gestrichen."
+    text: "Frische Farbe, klare Kanten, kein Tropfen daneben -- deine Wände wie neu, ohne dass du selbst zur Rolle greifen musst."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-innenanstriche.png"
         alt: "Malerarbeiten an einer Innenwand (Referenzfoto)"
   - titel: "Fassadenanstriche"
-    text: "Witterungsbeständige Fassadenanstriche inklusive Untergrundprüfung."
+    text: "Dein Haus zeigt Kante: wetterfeste Fassadenfarbe, die Wind, Regen und Sonne über Jahre trotzt -- von der Grundierung bis zum letzten Anstrich."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-fassadenanstriche.png"
         alt: "Fassadenanstrich auf dem Gerüst (Referenzfoto)"
   - titel: "Tapezierarbeiten"
-    text: "Von der Beratung bis zum fertigen Raum, inklusive Untergrundvorbereitung."
+    text: "Vom Muster-Katalog bis zur letzten Naht: wir tapezieren so sauber, dass man den Übergang nicht mehr findet."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-tapezierarbeiten.png"
         alt: "Tapete wird angebracht (Referenzfoto)"
   - titel: "Renovierungen"
-    text: "Kompletträume aus einer Hand, sauber und termingerecht umgesetzt."
+    text: "Ein Anruf, ein fertiger Raum: Komplettrenovierungen aus einer Hand, sauber und termingerecht, ohne Stress für dich."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-renovierungen.png"
         alt: "Raum in Renovierung, vorbereitet für Malerarbeiten (Referenzfoto)"

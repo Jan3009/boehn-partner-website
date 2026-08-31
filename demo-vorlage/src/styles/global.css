@@ -51,6 +51,13 @@
   font-display: swap;
   src: url('../fonts/inter-700.woff2') format('woff2');
 }
+@font-face {
+  font-family: 'Alex Brush';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/alex-brush-400.woff2') format('woff2');
+}
 
 /* Shadow/Transition-Konventionen aus style.css der Hauptseite übernommen --
    Farben/Radius/Fonts kommen jetzt per Preset (siehe presets.ts), werden auf
@@ -80,6 +87,15 @@
   --radius-card: 6px;
   --radius-lg: 10px;
   --radius-pill: 999px;
+
+  /* Hochglanz-Effekt fuer schwarze/dunkle Flaechen (aktuell nur Walsroder
+     Döner) -- simuliert Deckenlicht (radiale Aufhellung oben) + einen
+     diagonalen Glanzstreifen, wie auf lackiertem/glaenzendem Schwarz.
+     Wird per `background: var(--gloss), var(--dark)` als zusaetzliche
+     Bild-Ebene VOR der eigentlichen Flaechenfarbe eingehaengt, nicht
+     anstelle davon. */
+  --gloss: radial-gradient(55% 35% at 18% -8%, rgba(255, 255, 255, 0.07) 0%, transparent 65%),
+    linear-gradient(115deg, transparent 44%, rgba(255, 255, 255, 0.035) 50%, transparent 56%);
 }
 
 html {

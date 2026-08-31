@@ -12,7 +12,7 @@ const { demo, slug, mode = 'full' } = Astro.props;
 const image = demo.bilder[1] ?? demo.bilder[0];
 ---
 
-<section id="ueber-uns" class="relative px-6 sm:px-12 py-16 sm:py-24 overflow-hidden" style="background:var(--surface);">
+<section id="ueber-uns" class="relative overflow-hidden" style="background:var(--surface);">
   {demo.farbkleckse && (
     <>
       <svg aria-hidden="true" class="absolute pointer-events-none" style="top:-9%; right:-7%; width:34vw; max-width:420px; opacity:0.9;" viewBox="0 0 400 380" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,11 +28,11 @@ const image = demo.bilder[1] ?? demo.bilder[0];
       </svg>
     </>
   )}
-  <div class="reveal relative max-w-[1320px] mx-auto grid gap-12 sm:grid-cols-[0.85fr_1.15fr] items-center">
-    <div class="relative">
+  <div class="reveal relative grid sm:grid-cols-2 items-stretch py-16 sm:py-0">
+    <div class="relative min-h-[360px] sm:min-h-[560px]">
       <div
-        class={`overflow-hidden aspect-[3/4] flex items-center justify-center ${image.src ? '' : 'border border-dashed'}`}
-        style="border-radius:var(--radius-lg); border-color:var(--line); background:var(--bg);"
+        class={`h-full flex items-center justify-center ${image.src ? '' : 'border border-dashed'}`}
+        style="border-color:var(--line); background:var(--bg);"
       >
         {image.src
           ? <img src={image.src} alt={image.alt} class="w-full h-full object-cover" />
@@ -40,7 +40,7 @@ const image = demo.bilder[1] ?? demo.bilder[0];
       </div>
       {demo.gruendungsjahr && (
         <div
-          class="absolute -bottom-5 -right-5 px-5 py-4 text-center"
+          class="absolute bottom-5 right-5 px-5 py-4 text-center"
           style="background:var(--dark); border-radius:var(--radius-card);"
         >
           <p class="font-heading text-2xl" style="color:var(--dark-ink);">{demo.gruendungsjahr}</p>
@@ -48,7 +48,7 @@ const image = demo.bilder[1] ?? demo.bilder[0];
         </div>
       )}
     </div>
-    <div>
+    <div class="flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-10 sm:py-16">
       <p class="kicker mb-4">Unsere Geschichte</p>
       <h2 class="font-heading text-3xl sm:text-4xl mb-5" style="color:var(--ink);">
         Warum <span style="color:var(--accent);">{demo.firmenname}</span>
