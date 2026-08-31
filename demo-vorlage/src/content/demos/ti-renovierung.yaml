@@ -42,22 +42,22 @@ akzentfarbe: "#2E4C66"
 # der 1536x1024-Vorlage, ein Ausschnitt pro Leistung in Reihenfolge.
 leistungen:
   - titel: "Innenanstriche"
-    text: "Frische Farbe, klare Kanten, kein Tropfen daneben -- deine Wände wie neu, ohne dass du selbst zur Rolle greifen musst."
+    text: "Ein Innenanstrich ist mehr als frische Farbe an der Wand -- er sorgt für dein perfektes Wohlbefinden zuhause. Sauber ausgeführt und exakt auf deine Wünsche abgestimmt, damit sich jeder Raum wieder wie neu anfühlt."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-innenanstriche.png"
         alt: "Malerarbeiten an einer Innenwand (Referenzfoto)"
   - titel: "Fassadenanstriche"
-    text: "Dein Haus zeigt Kante: wetterfeste Fassadenfarbe, die Wind, Regen und Sonne über Jahre trotzt -- von der Grundierung bis zum letzten Anstrich."
+    text: "Eine Fassade ist mehr als eine Wand mit Farbe -- sie ist das Gesicht deines Zuhauses, der erste Eindruck, den jeder sofort sieht. Wetterfest und langlebig, exakt auf dein Haus abgestimmt, damit du dich bei jedem Heimkommen daran freust."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-fassadenanstriche.png"
         alt: "Fassadenanstrich auf dem Gerüst (Referenzfoto)"
   - titel: "Tapezierarbeiten"
-    text: "Vom Muster-Katalog bis zur letzten Naht: wir tapezieren so sauber, dass man den Übergang nicht mehr findet."
+    text: "Eine Tapete ist mehr als ein Muster an der Wand -- sie gibt deinem Zuhause Charakter und eine Atmosphäre, in der du dich wirklich wohlfühlst. Sauber verarbeitet, Naht für Naht, ganz nach deinem Geschmack."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-tapezierarbeiten.png"
         alt: "Tapete wird angebracht (Referenzfoto)"
   - titel: "Renovierungen"
-    text: "Ein Anruf, ein fertiger Raum: Komplettrenovierungen aus einer Hand, sauber und termingerecht, ohne Stress für dich."
+    text: "Eine Renovierung ist mehr als neue Farbe und frischer Glanz -- es ist der Moment, in dem ein Raum wieder wirklich zu deinem wird. Von der ersten Idee bis zum letzten Handgriff aus einer Hand, damit du dich nur noch wohlfühlen musst."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-renovierungen.png"
         alt: "Raum in Renovierung, vorbereitet für Malerarbeiten (Referenzfoto)"
