@@ -21,6 +21,9 @@ const demos = defineCollection({
     headerDunkel: z.boolean().optional(),
     // Optional: blendet die großen "01/02/03"-Nummern vor jeder Leistung aus.
     leistungenOhneNummern: z.boolean().optional(),
+    // Optional: blendet den kleinen Strich vor Kicker-Labels aus
+    // ("— Leistungen" -> "Leistungen"), sitewide für diesen Kunden.
+    kickerOhneLinie: z.boolean().optional(),
     // Optional: erzeugt keine eigenständige /leistungen/-Seite -- für Fälle,
     // in denen die Startseite die Leistungen bereits 1:1 vollständig zeigt
     // und eine separate Seite nur eine Dopplung wäre. Nav/Footer verlinken

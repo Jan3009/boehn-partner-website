@@ -18,6 +18,7 @@ ort: "Haldensleben"
 # wie die Entwurf-Leiste darüber.
 headerDunkel: true
 leistungenOhneNummern: true
+kickerOhneLinie: true
 # Nutzer-Wunsch: eigenständige /leistungen/-Seite entfernt, weil sie die
 # Startseite 1:1 dupliziert. Nav/Footer verlinken jetzt auf #leistungen auf
 # der Startseite. Foto-Unterseiten je Leistung bleiben bestehen.

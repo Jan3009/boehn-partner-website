@@ -60,7 +60,7 @@ const themeStyle = [
       </>
     )}
   </head>
-  <body class={bespoke ? 'doener-theme' : ''}>
+  <body class={`${bespoke ? 'doener-theme' : ''} ${demo.kickerOhneLinie ? 'no-kicker-line' : ''}`.trim()}>
     <EntwurfBar />
     <Header demo={demo} slug={slug} />
     {bespoke && <DoenerPromoBar demo={demo} />}
@@ -94,6 +94,12 @@ const themeStyle = [
      "— AUS UNSERER KÜCHE" usw.) soll bei Walsroder Döner weg -- nur fuer
      Bespoke-Kunden, andere Demo-Kunden behalten die Linie. */
   body.doener-theme .kicker::before {
+    display: none;
+  }
+  /* Gleicher Mechanismus, aber per "kickerOhneLinie"-Flag für beliebige
+     Kunden nutzbar (nicht nur Bespoke) -- Nutzer-Feedback: die Striche vor
+     "UNSERE GESCHICHTE" usw. sollen bei Ti-Renovierung weg. */
+  body.no-kicker-line .kicker::before {
     display: none;
   }
 </style>
