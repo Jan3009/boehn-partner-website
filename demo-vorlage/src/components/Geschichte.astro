@@ -28,10 +28,10 @@ const image = demo.bilder[1] ?? demo.bilder[0];
       </svg>
     </>
   )}
-  <div class="reveal relative grid sm:grid-cols-2 items-center py-16 sm:py-0">
-    <div class="relative max-w-md mr-auto">
+  <div class="reveal relative grid sm:grid-cols-2 items-center py-16 sm:py-0 max-w-[1800px] mx-auto">
+    <div class="relative">
       <div
-        class={`aspect-[4/3] flex items-center justify-center ${image.src ? '' : 'border border-dashed'}`}
+        class={`w-full aspect-[16/9] max-h-[440px] flex items-center justify-center ${image.src ? '' : 'border border-dashed'}`}
         style="border-color:var(--line); background:var(--bg);"
       >
         {image.src
@@ -53,7 +53,7 @@ const image = demo.bilder[1] ?? demo.bilder[0];
       <h2 class="font-heading text-3xl sm:text-4xl mb-5" style="color:var(--ink);">
         Warum <span style="color:var(--accent);">{demo.firmenname}</span>
       </h2>
-      <p class="text-lg max-w-md mb-8" style="color:var(--ink-soft);">{demo.geschichte}</p>
+      <p class="text-lg max-w-xl mb-8" style="color:var(--ink-soft);">{demo.geschichte}</p>
       {mode === 'teaser' && (
         <Button demo={demo} href={`/demo/${slug}/ueber-uns/`}>Mehr über uns</Button>
       )}
