@@ -13,9 +13,9 @@ const shown = mode === 'teaser' ? demo.leistungen.slice(0, 4) : demo.leistungen;
 const rest = mode === 'full' ? [] : demo.leistungen.slice(4);
 ---
 
-<section id="leistungen" class="py-8 sm:py-24">
+<section id="leistungen" class="py-6 sm:py-24">
   {mode === 'teaser' && (
-    <div class="px-6 sm:px-12 max-w-[1320px] mx-auto mb-8 sm:mb-16 text-center">
+    <div class="px-6 sm:px-12 max-w-[1320px] mx-auto mb-0 sm:mb-16 text-center">
       <h2
         class="text-4xl sm:text-6xl"
         style={`font-family:'Alex Brush', cursive; color:${demo.hintergrund?.dark ?? 'var(--accent)'}; line-height:1.15;`}
