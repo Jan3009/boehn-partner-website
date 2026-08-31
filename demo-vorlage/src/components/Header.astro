@@ -203,7 +203,19 @@ const navLinks = [
 
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
-      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      const opening = toggle.getAttribute('aria-expanded') !== 'true';
+      if (opening) {
+        // Direkt vorm Oeffnen frisch messen (unabhaengig vom scrollY-Guard
+        // in PageLayout.astro) -- sonst haengt das Fluemenue nach Scrollen
+        // an der beim Seitenladen gemessenen (dann veralteten) Position und
+        // laesst oben eine Luecke, durch die die Seite dahinter durchscheint.
+        const header = document.querySelector('header');
+        const bottom = header?.getBoundingClientRect().bottom;
+        if (bottom && bottom > 0) {
+          document.documentElement.style.setProperty('--header-bottom', bottom + 'px');
+        }
+      }
+      setOpen(opening);
     });
     menu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => setOpen(false));
