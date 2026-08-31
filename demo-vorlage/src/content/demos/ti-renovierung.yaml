@@ -16,11 +16,13 @@ ort: "Haldensleben"
 
 tagline: "Saubere Malerarbeiten innen und außen -- termingerecht und ordentlich."
 
-# "kontrast" beibehalten, Akzent von Baustellen-Orange auf ein frisches
-# Streich-Blau gewechselt -- passt besser zu einem Malerbetrieb als das
-# vorherige Bau-Orange, und unterscheidet sich vom Rot bei Malerbetrieb Müller.
-style: kontrast
-akzentfarbe: "#2F8FD1"
+# Nutzer-Feedback: "kontrast" (fast schwarzer Hintergrund) wirkt eher wie eine
+# Baufirma, nicht wie ein Maler -- auf "editorial" gewechselt (heller, warmer
+# Hintergrund, ruhige Serifen-Headline), laut System-Empfehlung ohnehin die
+# passende Wahl für Handwerk. Akzent bleibt ein klares Streich-Blau, das auf
+# dem hellen Creme-Hintergrund frisch statt kalt wirkt.
+style: editorial
+akzentfarbe: "#2A6FA8"
 
 leistungen:
   - titel: "Innenanstriche"
