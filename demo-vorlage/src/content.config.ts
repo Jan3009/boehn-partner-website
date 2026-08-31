@@ -18,6 +18,18 @@ const demos = defineCollection({
     // der "Unsere Geschichte"-Sektion, angelehnt an verspielte Referenzseiten
     // mit Farbspritzer-Motiv (z. B. Malerbetriebe). Reine Deko, kein Foto.
     farbkleckse: z.boolean().optional(),
+    // Optional: überschreibt bg/surface/dark des gewählten Presets (z. B.
+    // reines Weiß statt des warmen Cremes im "editorial"-Preset, oder reines
+    // Schwarz statt des warmbraunen "dark"-Tons), ohne das ganze Preset
+    // (Fonts/Radius/Buttonstil) zu wechseln. bg+surface zusammen setzen,
+    // sonst wirkt eine der beiden Flächen inkonsistent zur anderen.
+    hintergrund: z
+      .object({
+        bg: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+        surface: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+        dark: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+      })
+      .optional(),
     style: z.enum(['editorial', 'schwarzgold', 'kontrast']),
     akzentfarbe: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Muss ein Hex-Farbcode sein, z. B. #C7A252'),
     leistungen: z

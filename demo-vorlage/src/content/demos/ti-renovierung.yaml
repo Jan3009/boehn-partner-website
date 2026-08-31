@@ -37,6 +37,16 @@ tagline: "Saubere Malerarbeiten innen und außen -- termingerecht und ordentlich
 style: editorial
 akzentfarbe: "#2E4C66"
 
+# Nutzer-Feedback: der warme Creme-Ton des "editorial"-Presets passte nicht --
+# auf reines Weiß umgestellt, Kartenflächen auf neutrales Kühlgrau (statt
+# warmem Beige). Dunkle Flächen (Kontaktbereich, Footer, Entwurf-Leiste)
+# ebenfalls auf echtes Schwarz statt des warmbraunen Presets-Tons, damit
+# Entwurf-Leiste oben und Kontaktbereich unten farblich zusammenpassen.
+hintergrund:
+  bg: "#FFFFFF"
+  surface: "#F3F4F6"
+  dark: "#0A0A0A"
+
 # Bilder je Leistung: aus einer vom Nutzer bereitgestellten 4er-Bildercollage
 # (KI-generiert, nicht vom echten Betrieb) zugeschnitten -- je 384x1024 aus
 # der 1536x1024-Vorlage, ein Ausschnitt pro Leistung in Reihenfolge.

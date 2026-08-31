@@ -4,6 +4,7 @@ import { presets } from '../presets';
 import EntwurfBar from '../components/EntwurfBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import DoenerPromoBar from '../components/DoenerPromoBar.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 
 const { demo, slug, pageTitle } = Astro.props;
 const preset = presets[demo.style];
+const bespoke = !!demo.kinoKapitel;
 const title = pageTitle ? `${pageTitle} — ${demo.firmenname}` : `${demo.firmenname} — Website-Entwurf`;
 const description = demo.tagline;
 
@@ -28,12 +30,12 @@ const themeStyle = [
   `--font-body:${preset.bodyFont}`,
   `--hero-scale:${preset.heroScale}`,
   `--accent:${demo.akzentfarbe}`,
-  `--bg:${preset.bg}`,
-  `--surface:${preset.surface}`,
+  `--bg:${demo.hintergrund?.bg ?? preset.bg}`,
+  `--surface:${demo.hintergrund?.surface ?? preset.surface}`,
   `--ink:${preset.ink}`,
   `--ink-soft:${preset.inkSoft}`,
   `--line:${preset.line}`,
-  `--dark:${preset.dark}`,
+  `--dark:${demo.hintergrund?.dark ?? preset.dark}`,
   `--dark-ink:${preset.darkInk}`,
   `--dark-ink-soft:${preset.darkInkSoft}`,
   `--radius-sm:${preset.radiusSm}`,
@@ -50,10 +52,18 @@ const themeStyle = [
     <meta name="robots" content="noindex, nofollow" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {bespoke && (
+      <>
+        <link rel="icon" type="image/png" sizes="32x32" href="/demo/images/demos/walsroder-doener/favicon-32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/demo/images/demos/walsroder-doener/favicon-16.png" />
+        <link rel="apple-touch-icon" href="/demo/images/demos/walsroder-doener/apple-touch-icon.png" />
+      </>
+    )}
   </head>
-  <body>
+  <body class={bespoke ? 'doener-theme' : ''}>
     <EntwurfBar />
     <Header demo={demo} slug={slug} />
+    {bespoke && <DoenerPromoBar demo={demo} />}
     <slot />
     <Footer demo={demo} slug={slug} />
     <script>
@@ -78,3 +88,12 @@ const themeStyle = [
     </script>
   </body>
 </html>
+
+<style is:global>
+  /* Nutzer-Feedback: die kleine Linie vor Kicker-Labels ("— SPEISEKARTE",
+     "— AUS UNSERER KÜCHE" usw.) soll bei Walsroder Döner weg -- nur fuer
+     Bespoke-Kunden, andere Demo-Kunden behalten die Linie. */
+  body.doener-theme .kicker::before {
+    display: none;
+  }
+</style>
