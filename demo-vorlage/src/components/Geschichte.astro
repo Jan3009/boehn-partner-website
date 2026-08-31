@@ -28,10 +28,10 @@ const image = demo.bilder[1] ?? demo.bilder[0];
       </svg>
     </>
   )}
-  <div class="reveal relative grid sm:grid-cols-2 items-stretch py-16 sm:py-0">
-    <div class="relative min-h-[220px] sm:min-h-[320px]">
+  <div class="reveal relative grid sm:grid-cols-2 items-center py-16 sm:py-0">
+    <div class="relative max-w-md mr-auto">
       <div
-        class={`h-full flex items-center justify-center ${image.src ? '' : 'border border-dashed'}`}
+        class={`aspect-[4/3] flex items-center justify-center ${image.src ? '' : 'border border-dashed'}`}
         style="border-color:var(--line); background:var(--bg);"
       >
         {image.src
