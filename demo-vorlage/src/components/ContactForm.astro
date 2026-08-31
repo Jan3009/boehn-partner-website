@@ -63,10 +63,10 @@ const endpoint = demo.formspreeEndpoint ?? '';
           status.textContent = 'Danke, deine Nachricht ist angekommen.';
           form.reset();
         } else {
-          status.textContent = 'Senden hat nicht geklappt -- bitte später erneut versuchen.';
+          status.textContent = 'Senden hat nicht geklappt, bitte später erneut versuchen.';
         }
       } catch {
-        status.textContent = 'Senden hat nicht geklappt -- bitte später erneut versuchen.';
+        status.textContent = 'Senden hat nicht geklappt, bitte später erneut versuchen.';
       } finally {
         button.disabled = false;
       }

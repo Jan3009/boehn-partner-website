@@ -38,7 +38,7 @@ heroTextAusblenden: true
 # (Nutzer-Feedback). Akzentfarbe im Firmennamen der Überschrift bleibt.
 farbkleckse: false
 
-tagline: "Saubere Malerarbeiten innen und außen -- termingerecht und ordentlich."
+tagline: "Saubere Malerarbeiten innen und außen, termingerecht und ordentlich."
 
 # Nutzer-Feedback: "kontrast" (fast schwarzer Hintergrund) wirkt eher wie eine
 # Baufirma, nicht wie ein Maler -- auf "editorial" gewechselt (heller, warmer
@@ -65,27 +65,27 @@ hintergrund:
 # der 1536x1024-Vorlage, ein Ausschnitt pro Leistung in Reihenfolge.
 leistungen:
   - titel: "Innenanstriche"
-    text: "Ein Innenanstrich ist mehr als frische Farbe an der Wand -- er sorgt für dein perfektes Wohlbefinden zuhause. Sauber ausgeführt und exakt auf deine Wünsche abgestimmt, damit sich jeder Raum wieder wie neu anfühlt."
+    text: "Ein Innenanstrich ist mehr als frische Farbe an der Wand: Er sorgt für dein perfektes Wohlbefinden zuhause. Sauber ausgeführt und exakt auf deine Wünsche abgestimmt, damit sich jeder Raum wieder wie neu anfühlt."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-innenanstriche.png"
         alt: "Malerarbeiten an einer Innenwand (Referenzfoto)"
   - titel: "Fassadenanstriche"
-    text: "Eine Fassade ist mehr als eine Wand mit Farbe -- sie ist das Gesicht deines Zuhauses, der erste Eindruck, den jeder sofort sieht. Wetterfest und langlebig, exakt auf dein Haus abgestimmt, damit du dich bei jedem Heimkommen daran freust."
+    text: "Eine Fassade ist mehr als eine Wand mit Farbe: Sie ist das Gesicht deines Zuhauses, der erste Eindruck, den jeder sofort sieht. Wetterfest und langlebig, exakt auf dein Haus abgestimmt, damit du dich bei jedem Heimkommen daran freust."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-fassadenanstriche.png"
         alt: "Fassadenanstrich auf dem Gerüst (Referenzfoto)"
   - titel: "Tapezierarbeiten"
-    text: "Eine Tapete ist mehr als ein Muster an der Wand -- sie gibt deinem Zuhause Charakter und eine Atmosphäre, in der du dich wirklich wohlfühlst. Sauber verarbeitet, Naht für Naht, ganz nach deinem Geschmack."
+    text: "Eine Tapete ist mehr als ein Muster an der Wand: Sie gibt deinem Zuhause Charakter und eine Atmosphäre, in der du dich wirklich wohlfühlst. Sauber verarbeitet, Naht für Naht, ganz nach deinem Geschmack."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-tapezierarbeiten.png"
         alt: "Tapete wird angebracht (Referenzfoto)"
   - titel: "Renovierungen"
-    text: "Eine Renovierung ist mehr als neue Farbe und frischer Glanz -- es ist der Moment, in dem ein Raum wieder wirklich zu deinem wird. Von der ersten Idee bis zum letzten Handgriff aus einer Hand, damit du dich nur noch wohlfühlen musst."
+    text: "Eine Renovierung ist mehr als neue Farbe und frischer Glanz: Es ist der Moment, in dem ein Raum wieder wirklich zu deinem wird. Von der ersten Idee bis zum letzten Handgriff aus einer Hand, damit du dich nur noch wohlfühlen musst."
     bilder:
       - src: "/demo/images/demos/ti-renovierung/leistung-renovierungen.png"
         alt: "Raum in Renovierung, vorbereitet für Malerarbeiten (Referenzfoto)"
 
-geschichte: "Malerarbeiten aus einer Hand in Haldensleben und Umgebung -- von der ersten Absprache bis zum fertigen Raum, mit einem festen Ansprechpartner für das gesamte Projekt."
+geschichte: "Malerarbeiten aus einer Hand in Haldensleben und Umgebung, von der ersten Absprache bis zum fertigen Raum, mit einem festen Ansprechpartner für das gesamte Projekt."
 
 kontakt:
   telefon: "01525 7388897"
