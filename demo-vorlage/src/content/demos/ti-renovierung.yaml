@@ -43,8 +43,13 @@ kontakt:
   adresse: "Bülstringer Str. 80A, 39340 Haldensleben"
 
 bilder:
-  - src: ""
-    alt: "Ti-Renovierung bei Malerarbeiten (Foto folgt)"
+  # Vom Nutzer bereitgestelltes Referenzfoto (Vorher/Nachher-Renovierung,
+  # generisch/nicht vom echten Betrieb). Volle Version MIT eingebranntem Text
+  # ("WIR RENOVIEREN." + Tagline) auf ausdrücklichen Nutzerwunsch -- überlappt
+  # sich mit der Seiten-eigenen Überschrift, Nutzer wollte den Text trotzdem
+  # behalten.
+  - src: "/demo/images/demos/ti-renovierung/hero.png"
+    alt: "Vorher/Nachher-Ansicht einer Raumrenovierung mit Slogan (Referenzfoto)"
   - src: ""
     alt: "Inhaber von Ti-Renovierung (Foto folgt)"
 
