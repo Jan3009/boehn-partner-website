@@ -17,9 +17,9 @@ const rest = mode === 'full' ? [] : demo.leistungen.slice(4);
 <section id="leistungen" class="px-6 sm:px-12 py-16 sm:py-24">
   <div class="max-w-[1320px] mx-auto">
     {mode === 'teaser' && (
-      <div class="flex flex-wrap items-end justify-between gap-6 mb-16">
-        <div>
-          <p class="kicker mb-4">{demo.leistungenLabel?.kicker ?? 'Leistungen'}</p>
+      <div class="flex flex-wrap items-center justify-between gap-6 mb-16">
+        <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+          <p class="kicker">{demo.leistungenLabel?.kicker ?? 'Leistungen'}</p>
           <h2 class="font-heading text-4xl sm:text-5xl max-w-xl" style="color:var(--ink);">
             {demo.leistungenLabel?.titel ?? `Was ${demo.firmenname} für dich übernimmt`}
           </h2>
