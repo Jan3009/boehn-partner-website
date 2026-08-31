@@ -16,8 +16,14 @@ const initial = demo.firmenname.trim().charAt(0).toUpperCase();
   demo.heroTextAusblenden ? (
     // Foto hat eigenen Text -- keine Verlaufs-Abdunklung und keine
     // zusätzliche Seiten-Headline/Button obendrauf, nur das Bild selbst.
-    <section class="relative min-h-[92vh] overflow-hidden" style="background:var(--dark);">
-      <img src={heroImage.src} alt={heroImage.alt} class="absolute inset-0 w-full h-full object-cover" />
+    // Nutzer-Feedback: auf schmalen Mobile-Viewports skalierte object-cover
+    // das breite Foto extrem hoch (min-h-92vh vs. sehr schmaler Container),
+    // wodurch der eingebrannte Text links/rechts fast komplett abgeschnitten
+    // wurde. Mobile nutzt deshalb die tatsächliche Bild-Proportion +
+    // object-contain (ganzes Bild sichtbar, kein Crop) statt der erzwungenen
+    // Viewport-Höhe -- ab sm: wieder wie gehabt (volle Höhe, object-cover).
+    <section class="relative overflow-hidden aspect-[1717/616] sm:aspect-auto sm:min-h-[92vh]" style="background:var(--dark);">
+      <img src={heroImage.src} alt={heroImage.alt} class="absolute inset-0 w-full h-full object-contain sm:object-cover" />
     </section>
   ) : (
     <section class="relative min-h-[92vh] flex items-end overflow-hidden" style="background:var(--dark);">
