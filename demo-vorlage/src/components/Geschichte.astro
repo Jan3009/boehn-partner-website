@@ -12,11 +12,26 @@ const { demo, slug, mode = 'full' } = Astro.props;
 const image = demo.bilder[1] ?? demo.bilder[0];
 ---
 
-<section id="ueber-uns" class="px-6 sm:px-12 py-24 sm:py-32" style="background:var(--surface);">
-  <div class="reveal max-w-[1320px] mx-auto grid gap-12 sm:grid-cols-[0.85fr_1.15fr] items-center">
+<section id="ueber-uns" class="relative px-6 sm:px-12 py-16 sm:py-24 overflow-hidden" style="background:var(--surface);">
+  {demo.farbkleckse && (
+    <>
+      <svg aria-hidden="true" class="absolute pointer-events-none" style="top:-9%; right:-7%; width:34vw; max-width:420px; opacity:0.9;" viewBox="0 0 400 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150 20 C210 5 270 20 290 60 C330 75 360 130 350 170 C365 210 340 260 300 280 C330 310 320 350 280 355 L200 340 C175 365 130 380 105 355 C90 385 55 382 52 348 C18 338 8 288 50 250 C15 220 10 160 70 110 C55 75 92 35 150 20 Z" fill="var(--accent)" />
+        <circle cx="55" cy="60" r="11" fill="var(--accent)" />
+        <circle cx="30" cy="95" r="6" fill="var(--accent)" />
+        <circle cx="378" cy="205" r="8" fill="var(--accent)" />
+      </svg>
+      <svg aria-hidden="true" class="absolute pointer-events-none" style="bottom:-10%; left:-8%; width:26vw; max-width:320px; opacity:0.6;" viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M110 15 C155 2 200 15 212 45 C245 55 265 95 245 125 C270 145 260 185 225 195 C240 220 215 250 180 245 L130 250 C110 270 75 265 68 235 C35 232 20 195 45 165 C15 155 12 115 45 95 C40 60 70 25 110 15 Z" fill="var(--accent)" />
+        <circle cx="255" cy="55" r="9" fill="var(--accent)" />
+        <circle cx="25" cy="115" r="6" fill="var(--accent)" />
+      </svg>
+    </>
+  )}
+  <div class="reveal relative max-w-[1320px] mx-auto grid gap-12 sm:grid-cols-[0.85fr_1.15fr] items-center">
     <div class="relative">
       <div
-        class="overflow-hidden aspect-[3/4] flex items-center justify-center border border-dashed"
+        class={`overflow-hidden aspect-[3/4] flex items-center justify-center ${image.src ? '' : 'border border-dashed'}`}
         style="border-radius:var(--radius-lg); border-color:var(--line); background:var(--bg);"
       >
         {image.src
@@ -35,7 +50,9 @@ const image = demo.bilder[1] ?? demo.bilder[0];
     </div>
     <div>
       <p class="kicker mb-4">Unsere Geschichte</p>
-      <h2 class="font-heading text-3xl sm:text-4xl mb-5" style="color:var(--ink);">Warum {demo.firmenname}</h2>
+      <h2 class="font-heading text-3xl sm:text-4xl mb-5" style="color:var(--ink);">
+        Warum <span style="color:var(--accent);">{demo.firmenname}</span>
+      </h2>
       <p class="text-lg max-w-md mb-8" style="color:var(--ink-soft);">{demo.geschichte}</p>
       {mode === 'teaser' && (
         <Button demo={demo} href={`/demo/${slug}/ueber-uns/`}>Mehr über uns</Button>

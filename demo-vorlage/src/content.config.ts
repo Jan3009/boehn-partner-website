@@ -14,6 +14,10 @@ const demos = defineCollection({
     // selbst schon Text/Slogan enthält und die normale Seiten-Headline sich
     // sonst optisch damit überlappen würde.
     heroTextAusblenden: z.boolean().optional(),
+    // Optional: zeigt zwei dekorative Farbklecks-Grafiken (Akzentfarbe) hinter
+    // der "Unsere Geschichte"-Sektion, angelehnt an verspielte Referenzseiten
+    // mit Farbspritzer-Motiv (z. B. Malerbetriebe). Reine Deko, kein Foto.
+    farbkleckse: z.boolean().optional(),
     style: z.enum(['editorial', 'schwarzgold', 'kontrast']),
     akzentfarbe: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Muss ein Hex-Farbcode sein, z. B. #C7A252'),
     leistungen: z

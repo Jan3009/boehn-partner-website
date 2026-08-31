@@ -20,6 +20,11 @@ ort: "Haldensleben"
 # bleibt zusätzlich zum Foto-Text sichtbar.
 heroTextAusblenden: true
 
+# Nutzer-Wunsch (Referenz: picassocolor.de): etwas verspielter/farbiger als
+# Standard-editorial -- Akzent-Farbklecks-Grafiken hinter "Unsere Geschichte"
+# und der Firmenname in Akzentfarbe in der Überschrift.
+farbkleckse: true
+
 tagline: "Saubere Malerarbeiten innen und außen -- termingerecht und ordentlich."
 
 # Nutzer-Feedback: "kontrast" (fast schwarzer Hintergrund) wirkt eher wie eine
