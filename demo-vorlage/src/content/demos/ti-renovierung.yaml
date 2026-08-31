@@ -18,6 +18,10 @@ ort: "Haldensleben"
 # wie die Entwurf-Leiste darüber.
 headerDunkel: true
 leistungenOhneNummern: true
+# Nutzer-Wunsch: eigenständige /leistungen/-Seite entfernt, weil sie die
+# Startseite 1:1 dupliziert. Nav/Footer verlinken jetzt auf #leistungen auf
+# der Startseite. Foto-Unterseiten je Leistung bleiben bestehen.
+leistungenSeiteAusblenden: true
 
 # Nutzer-Wunsch: Hero-Foto hat eigenen eingebrannten Text ("WIR RENOVIEREN."
 # + Tagline) -- Seiten-eigene Kicker/Headline/Tagline im Hero ausgeblendet,

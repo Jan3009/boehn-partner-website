@@ -12,7 +12,10 @@ const base = `/demo/${slug}`;
 const bespoke = !!demo.kinoKapitel;
 const dark = !!demo.headerDunkel;
 const navLinks = [
-  { href: `${base}/leistungen/`, label: demo.leistungenLabel?.nav ?? 'Leistungen' },
+  {
+    href: demo.leistungenSeiteAusblenden ? `${base}/#leistungen` : `${base}/leistungen/`,
+    label: demo.leistungenLabel?.nav ?? 'Leistungen',
+  },
   { href: `${base}/galerie/`, label: demo.galerieLabel?.nav ?? 'Arbeiten' },
   { href: `${base}/ueber-uns/`, label: 'Über uns' },
   { href: `${base}/kontakt/`, label: 'Kontakt' },

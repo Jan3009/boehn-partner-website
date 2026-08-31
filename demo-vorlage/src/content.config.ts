@@ -21,6 +21,13 @@ const demos = defineCollection({
     headerDunkel: z.boolean().optional(),
     // Optional: blendet die großen "01/02/03"-Nummern vor jeder Leistung aus.
     leistungenOhneNummern: z.boolean().optional(),
+    // Optional: erzeugt keine eigenständige /leistungen/-Seite -- für Fälle,
+    // in denen die Startseite die Leistungen bereits 1:1 vollständig zeigt
+    // und eine separate Seite nur eine Dopplung wäre. Nav/Footer verlinken
+    // dann stattdessen auf den #leistungen-Anker der Startseite. Die
+    // einzelnen Foto-Unterseiten je Leistung (/leistungen/<name>/) bleiben
+    // davon unberührt, weil sie NICHT auf der Startseite dupliziert sind.
+    leistungenSeiteAusblenden: z.boolean().optional(),
     // Optional: zeigt zwei dekorative Farbklecks-Grafiken (Akzentfarbe) hinter
     // der "Unsere Geschichte"-Sektion, angelehnt an verspielte Referenzseiten
     // mit Farbspritzer-Motiv (z. B. Malerbetriebe). Reine Deko, kein Foto.

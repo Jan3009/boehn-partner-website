@@ -3,22 +3,32 @@ import { getCollection } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Services from '../../components/Services.astro';
+import DoenerMenuBook from '../../components/DoenerMenuBook.astro';
 import ContactCta from '../../components/ContactCta.astro';
 
 export async function getStaticPaths() {
   const demos = await getCollection('demos');
-  return demos.map((entry) => ({
-    params: { slug: entry.id },
-    props: { demo: entry.data },
-  }));
+  return demos
+    .filter((entry) => !entry.data.leistungenSeiteAusblenden)
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { demo: entry.data },
+    }));
 }
 
 const { demo } = Astro.props;
 const { slug } = Astro.params;
+const bespoke = !!demo.kinoKapitel;
 ---
 
-<PageLayout demo={demo} slug={slug} pageTitle="Leistungen">
-  <PageHeader kicker="Leistungen" title={`Was ${demo.firmenname} für dich übernimmt`} lede={demo.tagline} />
-  <Services demo={demo} slug={slug} mode="full" />
+<PageLayout demo={demo} slug={slug} pageTitle={demo.leistungenLabel?.nav ?? 'Leistungen'}>
+  {!bespoke && (
+    <PageHeader
+      kicker={demo.leistungenLabel?.kicker ?? 'Leistungen'}
+      title={demo.leistungenLabel?.titel ?? `Was ${demo.firmenname} für dich übernimmt`}
+      lede={demo.tagline}
+    />
+  )}
+  {bespoke ? <DoenerMenuBook demo={demo} /> : <Services demo={demo} slug={slug} mode="full" />}
   <ContactCta demo={demo} />
 </PageLayout>
