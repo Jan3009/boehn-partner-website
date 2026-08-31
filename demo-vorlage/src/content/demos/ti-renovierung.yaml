@@ -1,0 +1,55 @@
+# Echter Kaltakquise-Entwurf für Ti-Renovierung, Haldensleben -- ein Malerbetrieb
+# (laut Telefonat 31.08.2026 korrigiert, urspruenglich als allgemeine
+# "Renovierung" angelegt). Kunde hat KEINEN bestehenden Webauftritt (Websuche,
+# Branchenbücher, Social Media, Telefonnummer-Rückwärtssuche: alle ohne
+# Treffer, deckt sich mit CRM-Notiz "keine seite"). Leistungen sind noch nicht
+# im Detail vom Kunden bestätigt -- branchenübliche Malerbetrieb-Leistungen
+# als Platzhalter, vor Livegang mit Kunde abgleichen.
+#
+# KEINE Fotos hinterlegt (Nutzer-Vorgabe: erstmal nur echte, selbst erstellte
+# Fotos verwenden, keine Stockbilder) -- alle "bilder"/"galerie"-Einträge ohne
+# src, werden automatisch als beschriftete Platzhalter-Fläche gerendert.
+
+firmenname: "Ti-Renovierung"
+branche: "Malerbetrieb"
+ort: "Haldensleben"
+
+tagline: "Saubere Malerarbeiten innen und außen -- termingerecht und ordentlich."
+
+# "kontrast" beibehalten, Akzent von Baustellen-Orange auf ein frisches
+# Streich-Blau gewechselt -- passt besser zu einem Malerbetrieb als das
+# vorherige Bau-Orange, und unterscheidet sich vom Rot bei Malerbetrieb Müller.
+style: kontrast
+akzentfarbe: "#2F8FD1"
+
+leistungen:
+  - titel: "Innenanstriche"
+    text: "Wände, Decken und Holzarbeiten fachgerecht vorbereitet und gestrichen."
+  - titel: "Fassadenanstriche"
+    text: "Witterungsbeständige Fassadenanstriche inklusive Untergrundprüfung."
+  - titel: "Tapezierarbeiten"
+    text: "Von der Beratung bis zum fertigen Raum, inklusive Untergrundvorbereitung."
+  - titel: "Renovierungen"
+    text: "Kompletträume aus einer Hand, sauber und termingerecht umgesetzt."
+
+geschichte: "Malerarbeiten aus einer Hand in Haldensleben und Umgebung -- von der ersten Absprache bis zum fertigen Raum, mit einem festen Ansprechpartner für das gesamte Projekt."
+
+kontakt:
+  telefon: "01525 7388897"
+  adresse: "Bülstringer Str. 80A, 39340 Haldensleben"
+
+bilder:
+  - src: ""
+    alt: "Ti-Renovierung bei Malerarbeiten (Foto folgt)"
+  - src: ""
+    alt: "Inhaber von Ti-Renovierung (Foto folgt)"
+
+galerie:
+  - src: ""
+    alt: "Abgeschlossene Malerarbeit (Foto folgt)"
+  - src: ""
+    alt: "Abgeschlossene Malerarbeit (Foto folgt)"
+  - src: ""
+    alt: "Abgeschlossene Malerarbeit (Foto folgt)"
+
+quelle: "Telefonat mit dem Kunden am 31.08.2026, CRM-Lead 'Ti-Renovierung' (Close.com) -- Betrieb ist laut Kunde ein Malerbetrieb (Korrektur gegenüber erster Annahme). Kein bestehender Webauftritt auffindbar (Websuche, Branchenbücher, Social Media, Rückwärtssuche Telefonnummer -- alle ohne Treffer). Leistungen als branchenübliche Malerbetrieb-Platzhalter angenommen, noch nicht im Detail vom Kunden bestätigt -- vor Fertigstellung abgleichen."
