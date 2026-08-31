@@ -21,11 +21,15 @@ const initial = demo.firmenname.trim().charAt(0).toUpperCase();
     >
     </div>
     <div class="relative px-6 sm:px-12 pb-16 sm:pb-24 max-w-2xl">
-      <p class="kicker mb-6" style="color:var(--accent);">{demo.branche} · {demo.ort}</p>
-      <h1 class="font-heading mb-6" style={`font-size:var(--hero-scale); color:var(--dark-ink);`}>
-        {demo.firmenname}
-      </h1>
-      <p class="text-lg mb-10 max-w-md" style="color:var(--dark-ink-soft);">{demo.tagline}</p>
+      {!demo.heroTextAusblenden && (
+        <>
+          <p class="kicker mb-6" style="color:var(--accent);">{demo.branche} · {demo.ort}</p>
+          <h1 class="font-heading mb-6" style={`font-size:var(--hero-scale); color:var(--dark-ink);`}>
+            {demo.firmenname}
+          </h1>
+          <p class="text-lg mb-10 max-w-md" style="color:var(--dark-ink-soft);">{demo.tagline}</p>
+        </>
+      )}
       <Button demo={demo} href={`/demo/${slug}/kontakt/`} onDark>Jetzt anfragen</Button>
     </div>
   </section>

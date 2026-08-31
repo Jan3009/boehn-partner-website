@@ -14,6 +14,12 @@ firmenname: "Ti-Renovierung"
 branche: "Malerbetrieb"
 ort: "Haldensleben"
 
+# Nutzer-Wunsch: Hero-Foto hat eigenen eingebrannten Text ("WIR RENOVIEREN."
+# + Tagline) -- Seiten-eigene Kicker/Headline/Tagline im Hero ausgeblendet,
+# damit sich das nicht mehr überlappt. Nur noch der "Jetzt anfragen"-Button
+# bleibt zusätzlich zum Foto-Text sichtbar.
+heroTextAusblenden: true
+
 tagline: "Saubere Malerarbeiten innen und außen -- termingerecht und ordentlich."
 
 # Nutzer-Feedback: "kontrast" (fast schwarzer Hintergrund) wirkt eher wie eine
