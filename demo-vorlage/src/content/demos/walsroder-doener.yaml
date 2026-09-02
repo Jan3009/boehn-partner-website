@@ -30,6 +30,14 @@
 # (Badges/Linien/Buttons) statt Glow-Effekten. Preset "kontrast" ist genau
 # dafuer gebaut (Weiss/Schwarz, Space Grotesk, 0px-Radius, solide Buttons).
 #
+# NACHTRAG (02.09.2026): Der Umstieg auf Weiss wurde nie erfolgreich gebaut
+# (fehlende Komponenten-Dateien im Repo, siehe Git-Historie), die Seite lief
+# live also weiterhin auf der alten dunklen Palette -- und genau die soll
+# laut Nutzer-Feedback auch bleiben ("das ist auch deren Branding, nichts
+# weiss machen"). "style" ist deshalb wieder auf eine dunkle Palette gesetzt
+# (jetzt "kontrast-dunkel" statt der inzwischen weissen "kontrast"), Rest des
+# Textes oben ist nur noch als Verlauf/Kontext stehen gelassen.
+#
 # VIDEO Kapitel 1 (doener-header-real.mp4) ist ECHT -- vom Nutzer selbst
 # per KI-Tool erzeugtes/bearbeitetes Produkt-Video (kein Stockmaterial mehr,
 # 30.08.2026 hochgeladen), zeigt Essen/Produkt, keine echten Personen.
@@ -50,7 +58,13 @@ ort: "Walsrode"
 
 tagline: "Frisch vom Spieß, mit großzügigen Portionen: wir sind seit Jahren Walsrodes Nummer für Döner. Komm vorbei, lass dir liefern oder setz dich zu uns auf die Terrasse."
 
-style: kontrast
+# kontrast-dunkel statt kontrast: Nutzer-Feedback (02.09.2026) -- die Seite
+# soll dunkel bleiben, das ist bewusstes Branding, kein Umstieg auf Weiß.
+# "kontrast" wurde inzwischen (fuer andere Kunden) auf eine weisse Palette
+# umgestellt -- eigenes Preset "kontrast-dunkel" (presets.ts) haelt fuer
+# Walsroder Döner exakt die bisherige dunkle Palette, ohne "kontrast" fuer
+# andere Kunden (z. B. Malerbetrieb Müller) zu beeinflussen.
+style: kontrast-dunkel
 # Direkt aus den echten Kapitel-Fotos (Kohleglut im Grill) abgetastet
 # (per Skript, hoechste Saettigung im Orange/Rot-Bereich) statt frei
 # gewaehlt -- Nutzer-Feedback: Akzentfarbe wirkte nicht wie aus dem
@@ -564,6 +578,16 @@ galerie:
   - src: "/demo/images/demos/walsroder-doener/theke.webp"
     alt: "Theke von Walsroder Döner mit Menütafel und Getränkekühlschrank (echtes Foto)"
 
+# Nur noch EIN Kapitel (Nutzer-Feedback, 02.09.2026): die vorherigen 6
+# Kapitel liefen als gepinnte GSAP-Scroll-Story -- beim Scrollen ploppten
+# ploetzlich Team-/Kuechen-/Terrassen-Fotos im Kopfbereich auf, statt dass
+# die Seite normal weiterscrollt. Gewuenscht ist stattdessen: EIN Header-
+# Video, danach ganz normales Scrollen zum Rest der Seite. Mit nur einem
+# Kapitel ueberspringt CinematicHero.astro (setupCineHero, `layers.length <
+# 2`) die Pin/Crossfade-Logik automatisch -- die Section verhaelt sich dann
+# wie ein normaler, nicht gepinnter Abschnitt. Die entfernten Fotos (Team,
+# Kueche, Terrasse, Logo) gehen nicht verloren, sie stehen unveraendert in
+# `galerie`/`bilder` oben.
 kinoKapitel:
   - nummer: "01"
     titel: "Frisch vom Spieß"
@@ -579,36 +603,5 @@ kinoKapitel:
     bild:
       src: "/demo/images/demos/walsroder-doener/doener-header-real-poster-v3.webp"
       alt: "Döner-Spieß über glühender Holzkohle"
-  - nummer: "02"
-    titel: "Frisch geschnitten"
-    text: "Dünn, gleichmäßig, direkt vom Messer auf dein Brot."
-    video: "/demo/images/demos/walsroder-doener/doener-schneiden-hero.mp4"
-    bild:
-      src: "/demo/images/demos/walsroder-doener/doener-schneiden-poster.webp"
-      alt: "Frisch vom Spieß geschnittenes Döner-Fleisch (Platzhalter-Stockvideo)"
-  - nummer: "03"
-    titel: "Unser Team"
-    text: "Zwei Spieße, ein eingespieltes Team, jeden Tag frisch zubereitet."
-    bild:
-      src: "/demo/images/demos/walsroder-doener/fb-1.webp"
-      alt: "Das Team von Walsroder Döner an den beiden Döner-Spießen in der Küche (echtes Foto von Walsroder Döner)"
-  - nummer: "04"
-    titel: "Direkt aus der Küche"
-    text: "Beide Spieße, frisches Gemüse, alles griffbereit: so wird dein Döner gemacht."
-    bild:
-      src: "/demo/images/demos/walsroder-doener/kuche.webp"
-      alt: "Beide Döner-Spieße in der Küche von Walsroder Döner (echtes Foto)"
-  - nummer: "05"
-    titel: "Draußen sitzen, genießen"
-    text: "Die Terrasse mitten in Walsrode, für alle, die es sich gemütlich machen wollen."
-    bild:
-      src: "/demo/images/demos/walsroder-doener/insta-1.webp"
-      alt: "Sonnige Außenterrasse mit Sitzplätzen von Walsroder Döner"
-  - nummer: "06"
-    titel: "Euer Walsroder Döner"
-    text: "4,6 Sterne bei Google, 98 % Weiterempfehlung bei Facebook, seit Jahren die Nummer in Walsrode."
-    bild:
-      src: "/demo/images/demos/walsroder-doener/insta-3.webp"
-      alt: "Nahaufnahme des Walsroder Döner Logos in Gold auf Schwarz"
 
 quelle: "Instagram @walsroderdoner (Fotos + Bio), Facebook-Seite Walsroder Döner (Fotos + komplette Speisekarte mit Preisen, vom Nutzer als Screenshots geschickt, Fotos datiert 23.02.2023 und 05.04.2024), restaurantguru.com/Walsroder-Doner-Walsrode, swipein.restaurant, Google-Bewertungen, Stand 29.08.2026"

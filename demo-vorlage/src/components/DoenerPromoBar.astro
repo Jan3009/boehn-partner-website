@@ -1,0 +1,35 @@
+---
+// Schmale Promo-Leiste ueber dem Seiteninhalt (unter dem Header) fuer den
+// wichtigsten Speisekarten-Hinweis (z. B. "Montag ist Pizzatag"). Nimmt den
+// ersten "hinweis" aus speisekarteKategorien -- die Kategorien stehen in der
+// YAML bereits in der gewuenschten Prioritaet (Pizza vor Salate/Menüs).
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+const hinweis = demo.speisekarteKategorien?.find((k) => k.hinweis)?.hinweis;
+---
+
+{hinweis && (
+  <div class="doener-promo">
+    <p>{hinweis}</p>
+  </div>
+)}
+
+<style>
+  .doener-promo {
+    background: #f5de5c;
+    color: #15110d;
+    text-align: center;
+    padding: 0.6rem 1rem;
+  }
+
+  .doener-promo p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+</style>

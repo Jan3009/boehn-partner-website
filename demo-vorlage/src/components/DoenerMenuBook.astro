@@ -1,0 +1,433 @@
+---
+// Speisekarte als "Buch": eine Seite pro Kategorie, geblaettert per Pfeilen,
+// Punkten, Wischgeste (Touch) oder Pfeiltasten. Ersetzt die generische
+// Leistungen-Liste (Services.astro) auf der /leistungen/-Seite fuer Kunden
+// mit speisekarteKategorien (aktuell nur Walsroder Döner).
+import type { CollectionEntry } from 'astro:content';
+import { slugify } from '../lib/slugify';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+const kategorien = demo.speisekarteKategorien ?? [];
+---
+
+<section class="doener-book-section px-6 sm:px-12 py-16 sm:py-24" style="background:var(--gloss), var(--bg);">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-10 sm:mb-14 reveal">
+      <p class="kicker justify-center mb-4">Speisekarte</p>
+      <h2 class="font-heading text-3xl sm:text-5xl mb-3" style="color:var(--ink);">Was es bei uns gibt</h2>
+      <p class="text-sm" style="color:var(--ink-soft);">Durchblättern wie eine echte Karte: mit Pfeilen, Wischen oder den Pfeiltasten.</p>
+    </div>
+
+    <div class="doener-book" data-doener-book>
+      <div class="doener-book__stage">
+        {kategorien.map((k, i) => (
+          <article
+            class="doener-book__page"
+            id={slugify(k.kategorie)}
+            data-page={i}
+            data-slug={slugify(k.kategorie)}
+            aria-hidden={i === 0 ? 'false' : 'true'}
+            style={i === 0 ? '' : 'opacity:0; z-index:0;'}
+          >
+            <div class="doener-book__page-inner">
+              <div class="doener-book__page-head">
+                <span class="doener-book__page-num">{String(i + 1).padStart(2, '0')} / {kategorien.length}</span>
+                <h3 class="doener-book__page-title">{k.kategorie}</h3>
+                <span class="doener-book__page-rule" aria-hidden="true"></span>
+              </div>
+              <ul class="doener-book__list">
+                {k.gerichte.map((gericht) => (
+                  <li class="doener-book__item">
+                    <div class="doener-book__item-row">
+                      <span class="doener-book__item-name">
+                        {gericht.nummer && <span class="doener-book__item-nummer">{gericht.nummer}</span>}
+                        {gericht.name}
+                      </span>
+                      <span class="doener-book__item-leader" aria-hidden="true"></span>
+                      <span class="doener-book__item-preis">{gericht.preis}</span>
+                    </div>
+                    {gericht.beschreibung && <p class="doener-book__item-desc">{gericht.beschreibung}</p>}
+                  </li>
+                ))}
+              </ul>
+              {k.hinweis && <p class="doener-book__hinweis">{k.hinweis}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="doener-book__controls">
+        <button type="button" class="doener-book__arrow" data-book-prev aria-label="Vorherige Seite">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <div class="doener-book__dots" data-book-dots>
+          {kategorien.map((_, i) => (
+            <button type="button" class="doener-book__dot" data-book-dot={i} aria-label={`Seite ${i + 1}`}></button>
+          ))}
+        </div>
+        <button type="button" class="doener-book__arrow" data-book-next aria-label="Nächste Seite">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupBook(book: HTMLElement) {
+    const stage = book.querySelector<HTMLElement>('.doener-book__stage');
+    const pages = Array.from(book.querySelectorAll<HTMLElement>('.doener-book__page'));
+    const dots = Array.from(book.querySelectorAll<HTMLElement>('[data-book-dot]'));
+    const prevBtn = book.querySelector<HTMLElement>('[data-book-prev]');
+    const nextBtn = book.querySelector<HTMLElement>('[data-book-next]');
+    if (!stage || pages.length < 2) return;
+
+    let current = 0;
+    let animating = false;
+
+    function setPage(page: HTMLElement, opacity: number, zIndex: number, animate: boolean) {
+      if (!animate) page.classList.add('no-anim');
+      page.style.opacity = String(opacity);
+      page.style.zIndex = String(zIndex);
+      page.setAttribute('aria-hidden', opacity === 1 ? 'false' : 'true');
+      if (!animate) {
+        page.offsetWidth;
+        page.classList.remove('no-anim');
+      }
+    }
+
+    function updateDots() {
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
+    }
+
+    function goTo(index: number) {
+      if (animating || index === current || index < 0 || index >= pages.length) return;
+      const oldPage = pages[current];
+      animating = true;
+      pages.forEach((page, i) => {
+        if (i !== current && i !== index) setPage(page, 0, 0, false);
+      });
+      const newPage = pages[index];
+      setPage(newPage, 0, 1, false);
+      setPage(oldPage, 0, 1, true);
+      setPage(newPage, 1, 2, true);
+      current = index;
+      updateDots();
+      window.setTimeout(() => {
+        animating = false;
+      }, 550);
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(current - 1));
+    nextBtn?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    book.setAttribute('tabindex', '0');
+    book.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goTo(current + 1);
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+    });
+
+    let touchStartX = 0;
+    stage.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', (e) => {
+      const delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 40) goTo(current + (delta < 0 ? 1 : -1));
+    }, { passive: true });
+
+    if (location.hash) {
+      const targetSlug = location.hash.slice(1);
+      const targetIndex = pages.findIndex((p) => p.dataset.slug === targetSlug);
+      if (targetIndex > 0) {
+        pages.forEach((page, i) => setPage(page, i === targetIndex ? 1 : 0, i === targetIndex ? 2 : 0, false));
+        current = targetIndex;
+        const scrollToBook = () => {
+          const section = book.closest<HTMLElement>('.doener-book-section');
+          const header = document.querySelector('header');
+          if (section && header) {
+            const headerBottom = header.getBoundingClientRect().bottom;
+            const target = window.scrollY + section.getBoundingClientRect().top - headerBottom - 16;
+            window.scrollTo(0, Math.max(target, 0));
+          }
+        };
+        scrollToBook();
+        window.setTimeout(scrollToBook, 50);
+        window.setTimeout(scrollToBook, 300);
+        window.setTimeout(scrollToBook, 800);
+        window.addEventListener('load', scrollToBook);
+      }
+    }
+
+    updateDots();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-doener-book]').forEach(setupBook);
+</script>
+
+<style>
+  .doener-book-section {
+    scroll-margin-top: var(--header-bottom, 140px);
+  }
+
+  .doener-book {
+    user-select: none;
+  }
+
+  .doener-book__stage {
+    position: relative;
+    overflow: hidden;
+    height: 520px;
+    border-radius: var(--radius-lg);
+    background: var(--gloss), var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (min-width: 640px) {
+    .doener-book__stage {
+      height: 760px;
+    }
+  }
+
+  .doener-book__page {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transition: opacity 0.5s;
+  }
+
+  .doener-book__page.no-anim {
+    transition: none !important;
+  }
+
+  .doener-book__page::before,
+  .doener-book__page::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .doener-book__page::before {
+    inset: 12px;
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+
+  .doener-book__page::after {
+    inset: 17px;
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+
+  .doener-book__page-inner {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden auto;
+    padding: 2.5rem 2rem;
+    background: radial-gradient(120% 55% at 50% -10%, color-mix(in srgb, var(--accent) 20%, transparent) 0%, transparent 62%), var(--surface);
+  }
+
+  @media (min-width: 640px) {
+    .doener-book__page-inner {
+      padding: 2.75rem 3rem;
+    }
+  }
+
+  .doener-book__page-head {
+    flex-shrink: 0;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .doener-book__page-num {
+    display: block;
+    font-family: var(--font-body);
+    letter-spacing: 0.16em;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .doener-book__page-title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    color: var(--ink);
+    margin: 0 0 0.6rem;
+    font-size: clamp(1.5rem, 3.8vw, 2.1rem);
+  }
+
+  .doener-book__page-rule {
+    display: block;
+    width: 3rem;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .doener-book__list {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .doener-book__list {
+      columns: 2;
+      column-gap: 2.5rem;
+    }
+  }
+
+  .doener-book__item {
+    border-bottom: 1px solid var(--line);
+    break-inside: avoid;
+    margin: 0 -0.5rem;
+    padding: 0.6rem 0.5rem;
+    transition: background 0.15s;
+  }
+
+  @media (hover: hover) {
+    .doener-book__item:hover {
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+    }
+
+    .doener-book__item:hover .doener-book__item-preis {
+      color: var(--accent);
+    }
+  }
+
+  .doener-book__item:last-child {
+    border-bottom: none;
+  }
+
+  .doener-book__item-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .doener-book__item-name {
+    color: var(--ink);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 640px) {
+    .doener-book__item-name {
+      font-size: 1.15rem;
+    }
+
+    .doener-book__item-desc {
+      font-size: 0.9rem !important;
+    }
+
+    .doener-book__item {
+      padding: 0.75rem 0 !important;
+    }
+  }
+
+  .doener-book__item-nummer {
+    color: var(--ink-soft);
+    margin-right: 0.4rem;
+    font-size: 0.9em;
+    font-weight: 400;
+  }
+
+  .doener-book__item-leader {
+    flex: 1;
+    min-width: 0.75rem;
+    border-bottom: 1px dotted var(--line);
+    transform: translateY(-0.3rem);
+  }
+
+  .doener-book__item-preis {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: var(--font-heading-weight);
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .doener-book__item-desc {
+    color: var(--ink-soft);
+    margin: 0.15rem 0 0;
+    font-size: 0.82rem;
+  }
+
+  .doener-book__hinweis {
+    flex-shrink: 0;
+    margin-top: 1rem;
+    padding: 0.7rem 1rem;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--ink);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .doener-book__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .doener-book__arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .doener-book__arrow:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .doener-book__dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 220px;
+  }
+
+  .doener-book__dot {
+    flex-shrink: 0;
+    width: 0.45rem;
+    height: 0.45rem;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: var(--line);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .doener-book__dot[aria-current='true'] {
+    background: var(--accent);
+    transform: scale(1.4);
+  }
+</style>
