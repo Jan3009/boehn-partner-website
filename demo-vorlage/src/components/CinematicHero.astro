@@ -107,6 +107,21 @@ const kapitel = demo.kinoKapitel!;
     min-height: 420px;
   }
 
+  /* Unter 768px laeuft kein Scroll-Pin mehr (siehe Script unten), das Video
+     ist also ein normales, statisches Kopfzeilen-Video. Bei fast-voller
+     Viewport-Hoehe (siehe oben) zwingt object-fit:cover das breite Video
+     (2600x1132, ca. 2,3:1) in einen sehr schmal-hohen Container -- dadurch
+     wirkte es riesig herangezoomt, kaum als Foto erkennbar (Nutzer-Feedback
+     mit Screenshot vom echten Handy). Niedrigere, feste Hoehe statt fast
+     voller Viewport-Hoehe behebt den Extrem-Crop. */
+  @media (max-width: 767px) {
+    .cine-hero {
+      height: 60vh;
+      min-height: 380px;
+      max-height: 520px;
+    }
+  }
+
   .cine-hero__inner {
     position: relative;
     height: 100%;
