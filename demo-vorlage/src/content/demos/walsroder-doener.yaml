@@ -1,0 +1,614 @@
+# Überraschungs-Entwurf für Walsroder Döner, Walsrode -- KEIN bestätigter
+# Kunde. Der Betrieb ist real (Von-Stoltzenberg-Straße 2, 29664 Walsrode),
+# der Nutzer kennt die Inhaber persönlich und will ihnen diesen Entwurf
+# unaufgefordert zeigen. Kein Kunden-Drive/Fragebogen moeglich (Phase 0 der
+# SOP) -- Material stattdessen aus oeffentlichen Quellen: eigenes
+# Instagram-Profil (@walsroderdoner), eigene Facebook-Seite, Google-/
+# Facebook-Bewertungen, restaurantguru.com, swipein.restaurant,
+# oeffnungszeitenbuch.de. Stand 29.08.2026.
+#
+# FOTOS: hero/bilder/galerie/kinoKapitel/speisekarteKategorien[].bild sind
+# ECHTE, oeffentlich von @walsroderdoner (Instagram), der eigenen Facebook-
+# Seite (Kueche/Theke, vom Nutzer direkt als Screenshots geschickt, Stand
+# Fotos 2023-2024) gepostete Fotos (kein Stockmaterial) -- Team am
+# Döner-Spieß, Küche mit beiden Spießen, Theke mit Menütafel, Terrasse,
+# Grillgemüse-Platte, Logo-Nahaufnahme. Vor echtem Kundengespräch
+# idealerweise durch aktuellere/hoeher aufgeloeste eigene Fotos ersetzen,
+# die der Betrieb selbst liefert.
+#
+# SPEISEKARTE: speisekarteKategorien ist die ECHTE, aktuelle Preisliste --
+# abfotografiert vom Nutzer aus dem echten Speisekartenordner des Ladens
+# (Facebook-Fotoalbum, Stand der Fotos 23.02.2023 und 05.04.2024). Alle
+# Gerichte/Preise 1:1 abgetippt, nichts geschaetzt oder erfunden. Falls sich
+# seitdem etwas geaendert hat, vor echtem Einsatz mit dem Betrieb abgleichen.
+#
+# DESIGN-RICHTUNG (29.08.2026, Neustart auf expliziten Wunsch des Nutzers --
+# "alles loeschen, von grund auf neu, weiss, hoch modern"): weg vom dunklen
+# Gold/Kino-Look (Zenzakan-Referenz), hin zu einem hellen, klaren, dichten
+# Editorial-Grid-Stil -- weisser Hintergrund, scharfe Kanten (kein Radius),
+# fette Grotesk-Typo, eine kraeftige Akzentfarbe als flache Farbflaeche
+# (Badges/Linien/Buttons) statt Glow-Effekten. Preset "kontrast" ist genau
+# dafuer gebaut (Weiss/Schwarz, Space Grotesk, 0px-Radius, solide Buttons).
+#
+# VIDEO Kapitel 1 (doener-header-real.mp4) ist ECHT -- vom Nutzer selbst
+# per KI-Tool erzeugtes/bearbeitetes Produkt-Video (kein Stockmaterial mehr,
+# 30.08.2026 hochgeladen), zeigt Essen/Produkt, keine echten Personen.
+# VIDEO Kapitel 2 ist weiterhin PLATZHALTER: lizenzfreies Stockvideo von
+# Pexels (pexels.com/video/expert-chef-slicing-doner-kebab-in-kitchen-
+# 34730484, komprimiert/skaliert), zeigt NICHT den echten Anschnitt bei
+# Walsroder Döner -- bewusst KEIN KI-generiertes Video von den echten
+# Personen aus fb-1.jpg (das waere ein Deepfake einer echten, identifizierbaren
+# Person und wird nicht gemacht). Vor echtem Kundengespräch durch eigenes
+# Handyvideo vom Anschnitt ersetzen (reicht z. B. 10 Sek. hochkant).
+#
+# Bewertungen/Badges sind ECHTE, oeffentlich nachlesbare Zitate mit Autor --
+# nichts erfunden, keine Bewertung ohne Quellenangabe uebernommen.
+
+firmenname: "Walsroder Döner"
+branche: "Döner & Grill"
+ort: "Walsrode"
+
+tagline: "Frisch vom Spieß, mit großzügigen Portionen: wir sind seit Jahren Walsrodes Nummer für Döner. Komm vorbei, lass dir liefern oder setz dich zu uns auf die Terrasse."
+
+style: kontrast
+# Direkt aus den echten Kapitel-Fotos (Kohleglut im Grill) abgetastet
+# (per Skript, hoechste Saettigung im Orange/Rot-Bereich) statt frei
+# gewaehlt -- Nutzer-Feedback: Akzentfarbe wirkte nicht wie aus dem
+# Header-Video, sondern zufaellig gewaehlt.
+akzentfarbe: "#C6533D"
+
+leistungen:
+  - titel: "Döner & Dürüm"
+    text: "Unser Klassiker frisch vom Spieß: knuspriges Brot, großzügig belegt, auch in vegetarischer Variante."
+    bilder:
+      - src: "/demo/images/demos/walsroder-doener/doener-schneiden-poster.webp"
+        alt: "Frisch vom Spieß geschnittenes Döner-Fleisch"
+  - titel: "Döner-Teller"
+    text: "Bei uns gibt's Fleisch, Salat und Sauce satt auf dem Teller, für den großen Hunger."
+    bilder:
+      - src: "/demo/images/demos/walsroder-doener/insta-6.webp"
+        alt: "Großes Tablett mit Fleisch, gefülltem Fladenbrot und frischem Salat (echtes Foto von Walsroder Döner)"
+  - titel: "Cheeseburger"
+    text: "Saftig gebraten und ordentlich belegt: unsere Gäste loben ihn ausdrücklich in ihren Bewertungen."
+  - titel: "Grillplatten & Beilagen"
+    text: "Wir grillen Gemüse, machen frische Salate und herzhafte Beilagen, alles liebevoll angerichtet."
+    bilder:
+      - src: "/demo/images/demos/walsroder-doener/insta-2.webp"
+        alt: "Gegrilltes Gemüse mit Zitrone und frischen Kräutern (echtes Foto von Walsroder Döner)"
+  - titel: "Lieferservice"
+    text: "Wir liefern von 15 bis 21 Uhr, ab 20 € Bestellwert kostenlos zu dir. Ruf einfach an."
+  - titel: "Terrasse & Parkplatz"
+    text: "Setz dich zu uns raus, dazu ein kühles Getränk oder Bier. Parkplätze haben wir direkt vor der Tür."
+    bilder:
+      - src: "/demo/images/demos/walsroder-doener/insta-1.webp"
+        alt: "Sonnige Außenterrasse mit Sitzplätzen von Walsroder Döner"
+
+geschichte: "Wir sind seit Jahren ein fester Teil der Von-Stoltzenberg-Straße in Walsrode: ein eingespieltes Team, das dich beim Namen kennt, wenn du regelmäßig bei uns vorbeikommst. Bei Google haben wir 4,6 von 5 Sternen aus über 420 Bewertungen, auf Facebook empfehlen uns 98 % der über 1.200 Follower weiter. Unsere Gäste heben besonders die großzügigen Portionen, unser frisches Brot und Fleisch sowie das freundliche, schnelle Personal hervor: \"bester Dürüm im Heidekreis\", wie eine Bewertung es zusammenfasst. Ob schnell zwischendurch, gemütlich auf unserer Terrasse oder bequem zu dir geliefert: bei uns wird jeder satt."
+
+galerieLabel:
+  nav: "Galerie"
+  kicker: "Aus unserer Küche"
+  titel: "Ein Blick bei uns"
+
+leistungenLabel:
+  nav: "Speisekarte"
+  kicker: "Speisekarte"
+  titel: "Was es bei uns gibt"
+
+speisekarteKategorien:
+  - kategorie: "Türkische Spezialitäten"
+    bild:
+      # Vom Nutzer bereitgestelltes Foto (nur um das eingebrannte
+      # "Türkische Spezialitäten"-Textlabel zugeschnitten). Genaue Herkunft
+      # (eigenes Foto vs. Stock) nicht bestaetigt.
+      src: "/demo/images/demos/walsroder-doener/tuerkische-spezialitaeten.webp"
+      alt: "Pide, Grillspieße, Weinblätter und Kısır auf einem Servierbrett"
+    gerichte:
+      - nummer: "01"
+        name: "Döner Teller"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße"
+        preis: "11,90 €"
+      - nummer: "02"
+        name: "Kleiner Döner Teller"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße"
+        preis: "10,90 €"
+      - nummer: "03"
+        name: "Döner im Brot"
+        beschreibung: "mit Krautsalat, Rotkohl, Zwiebeln und Soße"
+        preis: "6,50 €"
+      - nummer: "04"
+        name: "Döner im Brot mit Fetakäse"
+        beschreibung: "mit Krautsalat, Rotkohl, Zwiebeln und Soße"
+        preis: "7,00 €"
+      - nummer: "05"
+        name: "Jumbo Döner im Brot"
+        beschreibung: "mit Krautsalat, Rotkohl, Zwiebeln und Soße"
+        preis: "9,00 €"
+      - nummer: "06"
+        name: "Jumbo Döner mit Fetakäse im Brot"
+        beschreibung: "mit Krautsalat, Rotkohl, Zwiebeln und Soße"
+        preis: "9,50 €"
+      - nummer: "07"
+        name: "Pomm Döner"
+        beschreibung: "mit Dönerfleisch, Pommes und Soße"
+        preis: "5,50 €"
+      - nummer: "08"
+        name: "Pomm Döner Salat"
+        beschreibung: "mit Dönerfleisch, Pommes und Soße"
+        preis: "6,00 €"
+      - nummer: "09"
+        name: "Dürüm Döner"
+        beschreibung: "mit Krautsalat, Rotkohl, Zwiebeln, Eisbergsalat und Soße"
+        preis: "7,00 €"
+      - nummer: "10"
+        name: "Lahmacun mit Salat"
+        preis: "5,50 €"
+      - nummer: "11"
+        name: "Lahmacun mit Dönerfleisch"
+        preis: "8,00 €"
+      - nummer: "12"
+        name: "Börek"
+        beschreibung: "mit Hackfleisch oder Käse"
+        preis: "5,50 €"
+      - nummer: "13"
+        name: "Börek mit Salat"
+        beschreibung: "mit Hackfleisch oder Käse gefüllt, gemischtem Salat und Soße"
+        preis: "6,90 €"
+      - nummer: "14"
+        name: "Rakete"
+        beschreibung: "Döner, Pommes und Salat"
+        preis: "8,50 €"
+
+  - kategorie: "Grill Gerichte"
+    bild:
+      # Vom Nutzer bereitgestelltes Foto. Genaue Herkunft (eigenes Foto vs.
+      # Stock) nicht bestaetigt.
+      src: "/demo/images/demos/walsroder-doener/grill-gerichte.webp"
+      alt: "Gegrillte Fleischspieße mit Reis, Tomate, Paprika und Zwiebelsalat"
+    gerichte:
+      - nummer: "22"
+        name: "Sucuk Teller"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße"
+        preis: "11,50 €"
+      - nummer: "23"
+        name: "Cevapcici Teller"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße"
+        preis: "11,50 €"
+      - nummer: "24"
+        name: "Tavuk Pirzola"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße"
+        preis: "12,90 €"
+      - nummer: "25"
+        name: "Köfte Teller"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße"
+        preis: "12,90 €"
+      - nummer: "26"
+        name: "Iskender Kebab"
+        preis: "12,90 €"
+      - nummer: "27"
+        name: "Sac Kebap"
+        beschreibung: "Geschnetzeltes"
+        preis: "13,90 €"
+      - nummer: "28"
+        name: "Pirzola"
+        beschreibung: "Lammkotelett, mit Reis od. Pommes, Salat und Soße"
+        preis: "15,50 €"
+      - nummer: "29"
+        name: "\"Walsroder\" Grill Teller"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße"
+        preis: "17,50 €"
+
+  - kategorie: "Überbackene Gerichte"
+    gerichte:
+      - nummer: "15"
+        name: "Döner Auflauf"
+        beschreibung: "Döner, Zwiebeln, Brokkoli, Metaxa-Soße, mit Käse überbacken"
+        preis: "11,90 €"
+      - nummer: "16"
+        name: "Döner überbacken mit Gemüse"
+        beschreibung: "Dönerfleisch, Champignons, Paprika, Mais, Tomatensoße, mit Käse überbacken, Salat und Brot als Beilage"
+        preis: "11,90 €"
+      - nummer: "17"
+        name: "Hawaii überbacken"
+        beschreibung: "Dönerfleisch, Schinken, Ananas, Tomatensoße, mit Käse überbacken, Salat und Brot als Beilage"
+        preis: "11,90 €"
+      - nummer: "18"
+        name: "Hollandaise überbacken"
+        beschreibung: "Dönerfleisch, Zwiebeln, Sauce Hollandaise, mit Käse überbacken, Salat und Brot als Beilage"
+        preis: "11,90 €"
+      - nummer: "19"
+        name: "Döner überbacken der Klassiker"
+        beschreibung: "Dönerfleisch, Champignons, Tomatensoße, mit Käse überbacken, Salat und Brot als Beilage"
+        preis: "11,90 €"
+      - nummer: "20"
+        name: "Penne überbacken"
+        beschreibung: "Champignons, Paprika, Hähnchenbrust mit Sahnesoße"
+        preis: "9,00 €"
+      - nummer: "21"
+        name: "Penne Spezial"
+        beschreibung: "Mais, Champignons, Paprika, Brokkoli in Tomatensoße"
+        preis: "8,00 €"
+
+  - kategorie: "Internationale Spezialitäten"
+    gerichte:
+      - nummer: "30"
+        name: "Schnitzel Wiener Art"
+        beschreibung: "mit Krautsalat, Rotkohl und Pommes"
+        preis: "9,00 €"
+      - nummer: "31"
+        name: "Schnitzel mit Jägersoße"
+        beschreibung: "mit Krautsalat, Rotkohl und Pommes"
+        preis: "9,90 €"
+      - nummer: "32"
+        name: "Schnitzel mit Zigeunersoße"
+        beschreibung: "mit Krautsalat, Rotkohl und Pommes"
+        preis: "9,90 €"
+      - nummer: "33"
+        name: "Currywurst mit Brot"
+        preis: "5,00 €"
+      - nummer: "34"
+        name: "Currywurst mit Pommes"
+        preis: "7,50 €"
+      - nummer: "35"
+        name: "Hamburger"
+        preis: "4,50 €"
+      - nummer: "36"
+        name: "Cheeseburger"
+        preis: "4,90 €"
+      - nummer: "37"
+        name: "Ham Döner"
+        preis: "4,50 €"
+      - nummer: "38"
+        name: "Chicken Wings 6er"
+        preis: "5,00 €"
+      - nummer: "39"
+        name: "Chicken Box"
+        beschreibung: "Nuggets, Wings"
+        preis: "9,00 €"
+      - nummer: "40"
+        name: "6er Nuggets mit Pommes"
+        preis: "8,00 €"
+      - nummer: "41"
+        name: "Chicken Nuggets"
+        beschreibung: "6er / 9er / 12er"
+        preis: "4,90 € / 5,90 € / 7,00 €"
+      - nummer: "42"
+        name: "Pommes klein"
+        preis: "3,30 €"
+      - nummer: "43"
+        name: "Pommes groß"
+        preis: "4,30 €"
+      - nummer: "44"
+        name: "Ketchup oder Mayo"
+        preis: "0,50 €"
+
+  - kategorie: "Vegetarische Gerichte"
+    bild:
+      src: "/demo/images/demos/walsroder-doener/insta-2.webp"
+      alt: "Gegrilltes Gemüse mit Zitrone und frischen Kräutern (echtes Foto von Walsroder Döner)"
+    gerichte:
+      - nummer: "45"
+        name: "Salat Tasch"
+        beschreibung: "mit Salat und Soße"
+        preis: "4,90 €"
+      - nummer: "46"
+        name: "Vegetarische"
+        beschreibung: "mit Salat und Soße"
+        preis: "5,00 €"
+      - nummer: "47"
+        name: "Falafel im Brot"
+        beschreibung: "mit Salat und Soße"
+        preis: "5,50 €"
+      - nummer: "48"
+        name: "Falafel Dürüm"
+        beschreibung: "mit Salat und Soße"
+        preis: "6,00 €"
+      - nummer: "49"
+        name: "Falafel Teller"
+        beschreibung: "mit Reis od. Pommes, Salat und Soße (+ Fetakäse 1,00 €)"
+        preis: "11,50 €"
+
+  - kategorie: "Pizza"
+    hinweis: "Montag ist Pizzatag! Jede Pizza 6 € (mit Fleischbelag 8 €)"
+    gerichte:
+      - nummer: "58"
+        name: "Margherita"
+        beschreibung: "Tomatensoße und Käse"
+        preis: "6,00 €"
+      - nummer: "59"
+        name: "Funghi"
+        beschreibung: "Champignons und Käse"
+        preis: "8,00 €"
+      - nummer: "60"
+        name: "Salami"
+        beschreibung: "Salami und Käse"
+        preis: "8,50 €"
+      - nummer: "61"
+        name: "Schinken"
+        beschreibung: "Schinken und Käse"
+        preis: "8,50 €"
+      - nummer: "62"
+        name: "Hawaii"
+        beschreibung: "Ananas, Schinken und Käse"
+        preis: "9,00 €"
+      - nummer: "63"
+        name: "Tonno"
+        beschreibung: "Thunfisch, Zwiebeln und Käse"
+        preis: "8,50 €"
+      - nummer: "64"
+        name: "Ernesto"
+        beschreibung: "Salami, Schinken, Champignons und Käse"
+        preis: "9,50 €"
+      - nummer: "65"
+        name: "Hollandaise"
+        beschreibung: "Salami, Zwiebeln, Sauce Hollandaise und Käse"
+        preis: "9,50 €"
+      - nummer: "66"
+        name: "Vegetarisch"
+        beschreibung: "Mais, Champignons, Paprika, Oliven und Käse"
+        preis: "9,50 €"
+      - nummer: "67"
+        name: "Sucuk"
+        beschreibung: "Sucuk, Fetakäse, Peperoni, Tomaten und Käse"
+        preis: "11,00 €"
+      - nummer: "68"
+        name: "\"Walsroder\" Spezial"
+        beschreibung: "Dönerfleisch, Peperoni, Fetakäse, Tomaten, Oliven und Käse"
+        preis: "13,50 €"
+      - nummer: "69"
+        name: "Hähnchenbrust"
+        beschreibung: "Hähnchenbrust, Paprika, Champignons und Knoblauch"
+        preis: "11,50 €"
+      - nummer: "70"
+        name: "Mozzarella"
+        beschreibung: "Tomate und Mozzarella"
+        preis: "8,00 €"
+      - nummer: "71"
+        name: "Brokkoli"
+        beschreibung: "Brokkoli und Knoblauch"
+        preis: "8,00 €"
+      - nummer: "72"
+        name: "Toscana"
+        beschreibung: "Schinken, Salami, Champignons und Zwiebel"
+        preis: "10,00 €"
+      - nummer: "73"
+        name: "Vita"
+        beschreibung: "Tomaten, Schinken, Knoblauch"
+        preis: "8,50 €"
+      - nummer: "74"
+        name: "Muro's"
+        beschreibung: "Döner, Brokkoli, Zwiebeln, Tomaten und Hollandaisesoße"
+        preis: "13,50 €"
+
+  - kategorie: "Baguette"
+    gerichte:
+      - nummer: "50"
+        name: "Salami Baguette"
+        preis: "9,50 €"
+      - nummer: "51"
+        name: "Schinken Baguette"
+        preis: "9,50 €"
+      - nummer: "52"
+        name: "Tonno Baguette"
+        preis: "9,50 €"
+      - nummer: "53"
+        name: "Hawaii Baguette"
+        preis: "9,50 €"
+      - nummer: "54"
+        name: "Vegetarisches Baguette"
+        preis: "8,50 €"
+      - nummer: "56"
+        name: "Döner Baguette"
+        preis: "10,50 €"
+      - nummer: "57"
+        name: "Sucuk Baguette"
+        beschreibung: "auf Wunsch mit Knoblauch- oder Cocktail-Dip"
+        preis: "10,50 €"
+
+  - kategorie: "Salate"
+    hinweis: "Erster Preis klein, zweiter Preis groß"
+    gerichte:
+      - nummer: "75"
+        name: "Döner Salat"
+        beschreibung: "mit Dönerfleisch, Eisbergsalat, Tomaten, Gurken, Zwiebeln und Peperoni"
+        preis: "5,50 € / 7,50 €"
+      - nummer: "76"
+        name: "Bauern Salat"
+        beschreibung: "mit Eisbergsalat, Tomaten, Gurken, Zwiebeln und Oliven"
+        preis: "4,50 € / 6,50 €"
+      - nummer: "77"
+        name: "Fetakäse Salat"
+        beschreibung: "mit Fetakäse, Tomaten, Gurken, Zwiebeln und Oliven"
+        preis: "4,90 € / 6,90 €"
+      - nummer: "78"
+        name: "Thunfisch Salat"
+        beschreibung: "mit Thunfisch, Eisbergsalat, Tomaten, Gurken, Zwiebeln und Peperoni"
+        preis: "5,50 € / 7,50 €"
+      - nummer: "79"
+        name: "Gemischter Salat"
+        beschreibung: "mit Weißkraut, Eisbergsalat, Rotkraut, Tomaten, Gurken, Zwiebeln und Peperoni"
+        preis: "4,50 € / 6,00 €"
+      - nummer: "80"
+        name: "Hawaii Salat"
+        beschreibung: "mit Schinken, Ananas, Eisbergsalat, Tomaten, Gurken, Zwiebeln und Oliven"
+        preis: "5,50 € / 7,00 €"
+      - nummer: "81"
+        name: "Maissalat"
+        beschreibung: "mit Eisbergsalat, Tomaten, Gurken, Zwiebeln und Mais"
+        preis: "4,90 € / 6,90 €"
+      - nummer: "82"
+        name: "Krautsalat"
+        preis: "3,50 € / 5,00 €"
+
+  - kategorie: "Menüs"
+    hinweis: "Jedes Menü mit Softdrink 0,33 l"
+    gerichte:
+      - name: "Dönerteller Menü"
+        beschreibung: "Dönerfleisch, Pommes od. Reis, Salat, Soße (groß / klein)"
+        preis: "12,90 € / 11,90 €"
+      - name: "Döner im Brot Menü"
+        beschreibung: "Dönerfleisch, Pommes od. Reis, Salat, Soße"
+        preis: "9,50 €"
+      - name: "Currywurst Menü"
+        beschreibung: "Currywurst, Pommes od. Reis, Salat, Soße"
+        preis: "8,50 €"
+      - name: "Burger Menü"
+        beschreibung: "Burger, Pommes, Salat, Soße"
+        preis: "8,90 €"
+      - name: "Schnitzel Menü"
+        beschreibung: "Schnitzel, Pommes od. Reis, Salat, Soße"
+        preis: "10,90 €"
+      - name: "Kids Menü"
+        beschreibung: "6 Chicken Nuggets, Pommes od. Reis, Soße"
+        preis: "9,00 €"
+
+  - kategorie: "Getränke"
+    bild:
+      # Vom Nutzer direkt bereitgestelltes Foto eines Getraenkekuehlschranks
+      # (nur um das eingebrannte "Getraenke"-Textlabel zugeschnitten, damit
+      # es nicht mit dem eigenen Kachel-Label der Komponente kollidiert).
+      # Genaue Herkunft (eigenes Foto des Ladens vs. Stock) nicht bestaetigt.
+      src: "/demo/images/demos/walsroder-doener/getraenke-kuehlschrank.webp"
+      alt: "Getränkekühlschrank mit Softdrinks"
+    gerichte:
+      - name: "Cola, Cola Light, Fanta, Sprite, Mezzo Mix, Uludağ, Karadağ"
+        beschreibung: "0,33 l / 0,5 l"
+        preis: "2,00 € / 2,50 €"
+      - name: "Wasser, Orangensaft, Apfelsaft, Multivitaminsaft"
+        beschreibung: "0,33 l / 0,5 l"
+        preis: "2,00 € / 2,50 €"
+      - name: "Red Bull"
+        beschreibung: "0,25 l"
+        preis: "2,50 €"
+      - name: "Ayran"
+        beschreibung: "0,25 l"
+        preis: "1,50 €"
+      - name: "Türkischer Tee"
+        beschreibung: "klein gratis / groß"
+        preis: "1,00 €"
+      - name: "Hefeweizen"
+        beschreibung: "0,5 l"
+        preis: "2,90 €"
+      - name: "Efes Pilsen, Beck's, Beck's Gold, Beck's Green Lemon, Warsteiner, Astra"
+        beschreibung: "0,33 l"
+        preis: "2,50 €"
+
+bewertungenBadges:
+  - quelle: "Google"
+    wert: "4,6 ★"
+    anzahl: "423 Bewertungen"
+  - quelle: "Facebook"
+    wert: "98 %"
+    anzahl: "Weiterempfehlung, 58 Bewertungen"
+
+# Bewertungen 3+4 zusaetzlich von restaurantranking.de/r/walsroder-doener_175113
+# (aggregiert echte Google-Rezensionen mit Klarnamen) -- Text und Autor 1:1
+# uebernommen. Die Seite zeigt dort keine individuellen Sternebewertungen pro
+# Rezension an (nur den Gesamt-Schnitt 4,6), deshalb 5 Sterne als redaktionelle
+# Einschaetzung anhand des eindeutig positiven Tons -- keine erfundenen Inhalte,
+# nur eine plausible Einordnung eines nicht explizit angegebenen Werts.
+bewertungen:
+  - text: "Sehr nettes und freundliches Personal. Die Karte ist sehr umfangreich, also für jeden etwas dabei. Wir haben mehrere verschiedene Gerichte schon gegessen und die waren alle sehr, sehr lecker und reichlich. Bester Dürüm im Heidekreis!"
+    autor: "Simon"
+    sterne: 5
+    quelle: "Restaurant Guru"
+  - text: "Bester Döner mit bestem Service."
+    autor: "Niklas Krause"
+    sterne: 5
+    quelle: "Restaurant Guru"
+  - text: "Top essen am meisten bewundere ich das Brot und das Fleisch immer wieder gerne Service unbeschreiblich freundlich Ambiente ist super vorallem im Sommer draußen zu sitzen kann ich nur weiterempfehlen."
+    autor: "Emrah Biro"
+    sterne: 5
+    quelle: "Google"
+  - text: "Der Döner ist mega lecker. Das \"Restaurant\" ist optisch etwas in die Jahre gekommen und die Toiletten sind sehr rustikal. Aber wer gut und lecker essen möchte ist hier genau richtig."
+    autor: "Christopher Rademacher"
+    sterne: 5
+    quelle: "Google"
+
+googleMaps: true
+
+kontakt:
+  telefon: "05161 7876669"
+  adresse: "Von-Stoltzenberg-Straße 2, 29664 Walsrode"
+  oeffnungszeiten: "Montag bis Samstag: 11:00–23:00 Uhr, Sonn- & Feiertags: 12:00–22:00 Uhr"
+
+# Echte, oeffentliche Profile -- dieselben, die schon als Quelle fuer die
+# Fotos/Speisekarte oben dienen (siehe Kommentar am Dateianfang). Instagram/
+# Facebook verweigern automatisierten Tools den Zugriff auf Bio-Inhalte,
+# daher liess sich das Profil nicht zusaetzlich per Abruf gegenpruefen --
+# die Handles selbst sind aber dieselben, die im gesamten Projekt bereits
+# als Bild-/Speisekartenquelle dokumentiert sind.
+socialMedia:
+  instagram: "https://www.instagram.com/walsroderdoener/"
+  facebook: "https://www.facebook.com/p/Walsroder-D%C3%B6ner-100055532903369/"
+
+bilder:
+  - src: "/demo/images/demos/walsroder-doener/fb-1.webp"
+    alt: "Das Team von Walsroder Döner an den beiden Döner-Spießen in der Küche (echtes Foto von Walsroder Döner)"
+  - src: "/demo/images/demos/walsroder-doener/insta-2.webp"
+    alt: "Teller mit gegrilltem Gemüse, Paprika und Zitrone (echtes Foto von Walsroder Döner)"
+
+galerie:
+  - src: "/demo/images/demos/walsroder-doener/fb-1.webp"
+    alt: "Das Team von Walsroder Döner an den beiden Döner-Spießen in der Küche (echtes Foto von Walsroder Döner)"
+  - src: "/demo/images/demos/walsroder-doener/insta-2.webp"
+    alt: "Gegrilltes Gemüse mit Zitrone und frischen Kräutern (echtes Foto von Walsroder Döner)"
+  - src: "/demo/images/demos/walsroder-doener/insta-1.webp"
+    alt: "Sonnige Außenterrasse mit Sitzplätzen von Walsroder Döner"
+  - src: "/demo/images/demos/walsroder-doener/insta-6.webp"
+    alt: "Großes Tablett mit Fleisch, gefülltem Fladenbrot und frischem Salat (echtes Foto von Walsroder Döner)"
+  - src: "/demo/images/demos/walsroder-doener/insta-3.webp"
+    alt: "Nahaufnahme des Walsroder Döner Logos in Gold auf Schwarz"
+  - src: "/demo/images/demos/walsroder-doener/kuche.webp"
+    alt: "Beide Döner-Spieße in der Küche von Walsroder Döner (echtes Foto)"
+  - src: "/demo/images/demos/walsroder-doener/theke.webp"
+    alt: "Theke von Walsroder Döner mit Menütafel und Getränkekühlschrank (echtes Foto)"
+
+kinoKapitel:
+  - nummer: "01"
+    titel: "Frisch vom Spieß"
+    text: "Langsam gegart, direkt über der Glut: so schmeckt Döner, wie er schmecken soll."
+    # Dateiname bewusst versioniert (statt Datei am alten Namen einfach zu
+    # ueberschreiben) -- sonst behalten Browser die alte Version im Cache.
+    # v2 -> v3: v2 war nicht "faststart" gemuxt (moov-Atom am Dateiende statt
+    # am Anfang), dadurch musste das Handy quasi die komplette Datei laden
+    # bevor Wiedergabe/Seek moeglich war -- auf Mobilfunk fuehrte das zu
+    # kaputt wirkendem, "geisterndem" Bild (Nutzer-Video als Beleg). v3 ist
+    # per "ffmpeg -movflags +faststart" neu gemuxt, gleiche Bildqualitaet.
+    video: "/demo/images/demos/walsroder-doener/doener-header-real-v3.mp4"
+    bild:
+      src: "/demo/images/demos/walsroder-doener/doener-header-real-poster-v3.webp"
+      alt: "Döner-Spieß über glühender Holzkohle"
+  - nummer: "02"
+    titel: "Frisch geschnitten"
+    text: "Dünn, gleichmäßig, direkt vom Messer auf dein Brot."
+    video: "/demo/images/demos/walsroder-doener/doener-schneiden-hero.mp4"
+    bild:
+      src: "/demo/images/demos/walsroder-doener/doener-schneiden-poster.webp"
+      alt: "Frisch vom Spieß geschnittenes Döner-Fleisch (Platzhalter-Stockvideo)"
+  - nummer: "03"
+    titel: "Unser Team"
+    text: "Zwei Spieße, ein eingespieltes Team, jeden Tag frisch zubereitet."
+    bild:
+      src: "/demo/images/demos/walsroder-doener/fb-1.webp"
+      alt: "Das Team von Walsroder Döner an den beiden Döner-Spießen in der Küche (echtes Foto von Walsroder Döner)"
+  - nummer: "04"
+    titel: "Direkt aus der Küche"
+    text: "Beide Spieße, frisches Gemüse, alles griffbereit: so wird dein Döner gemacht."
+    bild:
+      src: "/demo/images/demos/walsroder-doener/kuche.webp"
+      alt: "Beide Döner-Spieße in der Küche von Walsroder Döner (echtes Foto)"
+  - nummer: "05"
+    titel: "Draußen sitzen, genießen"
+    text: "Die Terrasse mitten in Walsrode, für alle, die es sich gemütlich machen wollen."
+    bild:
+      src: "/demo/images/demos/walsroder-doener/insta-1.webp"
+      alt: "Sonnige Außenterrasse mit Sitzplätzen von Walsroder Döner"
+  - nummer: "06"
+    titel: "Euer Walsroder Döner"
+    text: "4,6 Sterne bei Google, 98 % Weiterempfehlung bei Facebook, seit Jahren die Nummer in Walsrode."
+    bild:
+      src: "/demo/images/demos/walsroder-doener/insta-3.webp"
+      alt: "Nahaufnahme des Walsroder Döner Logos in Gold auf Schwarz"
+
+quelle: "Instagram @walsroderdoner (Fotos + Bio), Facebook-Seite Walsroder Döner (Fotos + komplette Speisekarte mit Preisen, vom Nutzer als Screenshots geschickt, Fotos datiert 23.02.2023 und 05.04.2024), restaurantguru.com/Walsroder-Doner-Walsrode, swipein.restaurant, Google-Bewertungen, Stand 29.08.2026"
