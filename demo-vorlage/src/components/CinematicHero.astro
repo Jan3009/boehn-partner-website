@@ -1,0 +1,291 @@
+---
+// Gepinnte GSAP-Scroll-Story: nummerierte Vollbild-Kapitel (Foto oder Video +
+// Zahl + Titel), die sich beim Scrollen ueberblenden statt als normaler Hero.
+// Nur fuer Kunden mit `kinoKapitel` in der YAML (siehe content.config.ts) --
+// alle anderen bekommen weiterhin den normalen Hero.astro.
+//
+// Bewusst mit GSAP `pin: true` statt CSS position:sticky gebaut -- sticky
+// geriet in Konflikt mit dem ebenfalls sticky positionierten Header
+// (Header.astro, z-40), was zu falsch berechneten Hoehen fuehrte.
+//
+// Bewusst OHNE Tagline/Fließtext ueber dem Video (Nutzer-Feedback, mehrfach)
+// -- nur ein einzelner, kompakter Anruf-Button unten bleibt, sonst wirkte
+// das Video komplett leer/funktionslos. Der Header hat zusaetzlich einen
+// dauerhaften Anruf-Button auf jeder Seite (Header.astro).
+//
+// WICHTIG: EntwurfBar + Header liegen ÜBER dieser Section im normalen
+// Dokumentfluss (sticky reserviert ihren Platz, bevor sie "kleben"). Ein
+// naives `height:100vh` fuehrt deshalb dazu, dass der untere Rand des Heros
+// unter den sichtbaren Bereich rutscht. Fix: Inline-Skript misst die
+// tatsaechliche Hoehe von EntwurfBar+Header und zieht sie von 100vh ab,
+// damit die Section exakt im sichtbaren Bereich endet.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  slug: string;
+}
+
+const { demo, slug } = Astro.props;
+const kapitel = demo.kinoKapitel!;
+---
+
+<section class="cine-hero" aria-label={`${demo.firmenname}: Eindrücke`}>
+  <div class="cine-hero__inner">
+    <h1 class="sr-only">{demo.firmenname}, {demo.branche} in {demo.ort}</h1>
+
+    {kapitel.map((k, i) => (
+      <div class="cine-hero__layer" data-index={i} aria-label={k.titel} style={i === 0 ? 'opacity:1' : ''}>
+        {k.video ? (
+          <video
+            class="cine-hero__img"
+            src={k.video}
+            poster={k.bild.src}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload={i === 0 ? 'auto' : 'none'}
+          />
+        ) : (
+          <img src={k.bild.src} alt={k.bild.alt} class="cine-hero__img" loading={i === 0 ? 'eager' : 'lazy'} />
+        )}
+        <div class="cine-hero__scrim" aria-hidden="true"></div>
+      </div>
+    ))}
+
+    <a href={`tel:${demo.kontakt.telefon.replace(/\s+/g, '')}`} class="cine-hero__call">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
+      {demo.kontakt.telefon}
+    </a>
+
+    {kapitel.length > 1 && (
+      <div class="cine-hero__scroll-hint" aria-hidden="true">
+        <span></span>
+      </div>
+    )}
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Blockierend (kein type="module"), damit es vor dem ersten Paint bzw.
+    // so frueh wie moeglich laeuft -- reduziert das kurze "Springen", bis die
+    // echte Chrome-Hoehe (EntwurfBar + Header + evtl. Promo-Zeile) bekannt
+    // ist. Siehe Kommentar am Komponentenkopf.
+    function applyOffset() {
+      // Nur bei Scroll-Position 0 messen -- sonst haengt am sticky Header
+      // (nach dem Scrollen) ein falscher, zu kleiner Wert (mobile
+      // Adressleisten-Ein-/Ausblenden loest z.B. auch "resize" aus).
+      if (window.scrollY > 4) return;
+      // Bewusst die Section selbst messen (.top), nicht mehr den Header --
+      // so bleibt das robust, egal was alles darueber liegt (EntwurfBar,
+      // Header, Promo-Zeile ...), ohne jedes Element einzeln aufzuzaehlen.
+      // Die eigene Hoehe der Section beeinflusst .top nicht (die haengt nur
+      // vom Inhalt DAVOR ab), daher kein Henne-Ei-Problem mit height:calc().
+      var section = document.querySelector('.cine-hero');
+      var offset = section ? section.getBoundingClientRect().top : 116;
+      if (offset > 0) {
+        document.documentElement.style.setProperty('--cine-offset', offset + 'px');
+      }
+    }
+    applyOffset();
+    window.addEventListener('resize', applyOffset);
+    window.addEventListener('orientationchange', applyOffset);
+  })();
+</script>
+
+<style>
+  .cine-hero {
+    position: relative;
+    width: 100%;
+    /* --cine-offset wird per Inline-Skript oben gesetzt (echte Hoehe von
+       EntwurfBar + Header); 116px greift nur, falls JS deaktiviert ist. */
+    height: calc(100vh - var(--cine-offset, 116px));
+    min-height: 420px;
+  }
+
+  .cine-hero__inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  .cine-hero__layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .cine-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Leicht warme, appetitliche Bildwirkung -- nicht die frühere schwere
+       Kerzenlicht-Faerbung, aber auch nicht klinisch-neutral (Nutzer-
+       Feedback: komplett neutral wirkte "kalt"). */
+    filter: contrast(1.08) saturate(1.18) sepia(0.08);
+  }
+
+  .cine-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 42%, rgba(0, 0, 0, 0.32) 100%),
+      radial-gradient(120% 90% at 50% 100%, transparent 45%, rgba(0, 0, 0, 0.4) 100%);
+  }
+
+  .cine-hero__call {
+    position: absolute;
+    left: 50%;
+    bottom: 2.5rem;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 1rem 2rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    white-space: nowrap;
+    /* Volltonfarbe statt Outline -- bleibt so unabhaengig vom Bildinhalt
+       darunter immer gut lesbar (Nutzer-Feedback: schwer lesbar/zu klein).
+       Dasselbe Gold wie Logo/Header-Anruf-Button. */
+    background: #f5de5c;
+    color: #15110d;
+    border: none;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
+    transition: filter 0.2s ease;
+  }
+
+  .cine-hero__call:hover {
+    filter: brightness(1.08);
+  }
+
+  .cine-hero__scroll-hint {
+    position: absolute;
+    bottom: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    z-index: 4;
+  }
+
+  .cine-hero__scroll-hint span {
+    width: 1px;
+    height: 2.25rem;
+    background: linear-gradient(180deg, var(--accent), transparent);
+    animation: cine-scroll-hint 1.8s ease-in-out infinite;
+  }
+
+  @keyframes cine-scroll-hint {
+    0% {
+      transform: scaleY(0.3);
+      transform-origin: top;
+      opacity: 0.4;
+    }
+    50% {
+      transform: scaleY(1);
+      transform-origin: top;
+      opacity: 1;
+    }
+    100% {
+      transform: scaleY(0.3);
+      transform-origin: bottom;
+      opacity: 0.4;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cine-hero__scroll-hint {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Video im sichtbaren Kapitel starten -- unabhaengig von reduced-motion
+  // und unabhaengig davon, ob ScrollTrigger/das Crossfade-Setup unten
+  // erfolgreich laeuft. Ein Kopfzeilen-Video, das nicht abspielt, ist
+  // schlimmer als eins ohne Scroll-Animation.
+  document.querySelectorAll<HTMLVideoElement>('.cine-hero__layer video').forEach((video) => {
+    const layer = video.closest<HTMLElement>('.cine-hero__layer');
+    if (layer && getComputedStyle(layer).opacity !== '0') {
+      video.play().catch(() => {});
+    }
+  });
+
+  function setupCineHero(section: HTMLElement) {
+    const layers = Array.from(section.querySelectorAll<HTMLElement>('.cine-hero__layer'));
+    const hint = section.querySelector<HTMLElement>('.cine-hero__scroll-hint');
+    if (layers.length < 2) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // GSAP ScrollTrigger `pin` verlaesst sich auf eine stabile Viewport-Hoehe
+    // waehrend des Scrollens. Auf Mobile-Safari aendert sich die Viewport-
+    // Hoehe aber laufend (Adressleiste blendet beim Scrollen ein/aus), was
+    // die Pin-Berechnung durcheinanderbringt -- Symptom: zwei Kapitel bleiben
+    // dauerhaft halbtransparent uebereinander stehen, darunter eine leere
+    // schwarze Flaeche (Nutzer-Video als Beleg). Deshalb nur ab Tablet-
+    // Breite aktivieren; auf dem Handy bleibt einfach das erste Kapitel
+    // (Video) stehen, ohne Scroll-Ueberblendung.
+    if (!window.matchMedia('(min-width: 768px)').matches) return;
+
+    const count = layers.length;
+
+    const applyProgress = (raw: number) => {
+      layers.forEach((layer, i) => {
+        const dist = Math.abs(raw - i);
+        const opacity = Math.max(0, 1 - dist);
+        layer.style.opacity = String(opacity);
+        if (opacity > 0.02) {
+          const video = layer.querySelector('video') as HTMLVideoElement | null;
+          if (video && video.paused) video.play().catch(() => {});
+        }
+      });
+    };
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: () => `+=${(count - 1) * Math.max(window.innerHeight, 560) * 1.1}`,
+      pin: true,
+      pinSpacing: true,
+      scrub: 0.4,
+      onUpdate: (self) => applyProgress(self.progress * (count - 1)),
+    });
+
+    if (hint) {
+      gsap.to(hint, {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: '+=200',
+          scrub: true,
+        },
+      });
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('.cine-hero').forEach((section) => {
+    try {
+      setupCineHero(section);
+    } catch (err) {
+      console.error('CinematicHero: Scroll-Story konnte nicht initialisiert werden', err);
+    }
+  });
+</script>
