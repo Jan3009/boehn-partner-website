@@ -184,6 +184,23 @@ const kapitel = demo.kinoKapitel!;
     filter: brightness(1.08);
   }
 
+  /* Feste Groesse wirkte auf schmalen Handy-Screens (jetzt zusaetzlich mit
+     der niedrigeren Hero-Hoehe von oben) unverhaeltnismaessig wuchtig
+     (Nutzer-Feedback). */
+  @media (max-width: 767px) {
+    .cine-hero__call {
+      bottom: 1.25rem;
+      gap: 0.5rem;
+      padding: 0.7rem 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .cine-hero__call svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
   .cine-hero__scroll-hint {
     position: absolute;
     bottom: 6rem;
