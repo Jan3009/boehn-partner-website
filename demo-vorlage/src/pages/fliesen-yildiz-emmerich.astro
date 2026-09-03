@@ -120,7 +120,7 @@ const arbeiten = [
         </nav>
 
         <div class="flex items-center gap-3 shrink-0">
-          <a href={phoneHref} class="btn btn-outline-accent btn-compact hidden sm:inline-flex">{phone}</a>
+          <a href={phoneHref} class="btn btn-outline-accent btn-compact fy-header-tel">{phone}</a>
           <button type="button" class="fy-menu-toggle lg:hidden flex flex-col justify-center items-end gap-1.5 w-10 h-10" aria-label="Menü öffnen" aria-expanded="false" aria-controls="fy-mobile-menu">
             <span class="menu-line fy-menu-line" style="width:22px;"></span>
             <span class="menu-line fy-menu-line" style="width:22px;"></span>
@@ -454,6 +454,23 @@ const arbeiten = [
   }
   .fy-nav-link:hover {
     color: var(--ink);
+  }
+
+  /* Telefonnummer-Button in der Kopfzeile: auf schmalen Screens raus, sonst
+     zu voll neben Logo + Menü-Button (Nutzer-Beleg mit Foto vom echten
+     Handy: Button war trotz Tailwind "hidden sm:inline-flex" sichtbar, weil
+     die .btn-Regel aus global.css im produktiven Bundle nach den Tailwind-
+     Utilities landet und "display:inline-flex" dadurch "display:none"
+     ueberschreibt -- im lokalen Dev-Server war die Reihenfolge zufaellig
+     anders, dort trat der Fehler nicht auf. !important erzwingt hier
+     zuverlaessig das Ausblenden, unabhaengig von der Bundle-Reihenfolge. */
+  .fy-header-tel {
+    display: none !important;
+  }
+  @media (min-width: 640px) {
+    .fy-header-tel {
+      display: inline-flex !important;
+    }
   }
 
   .fy-menu-line {
