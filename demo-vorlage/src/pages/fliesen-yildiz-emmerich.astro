@@ -1,0 +1,683 @@
+---
+// Bespoke Einzelseiten-Entwurf für Fliesen Yildiz Meisterbetrieb (Emmerich am
+// Rhein). Bewusst KEIN [slug]-Mehrseiter über PageLayout/Header/Footer/
+// presets.ts -- gleiche Technik wie fliesen-hoelscher.astro (eigenes
+// <html>-Dokument, nur EntwurfBar + global.css importiert), aber bewusst
+// ANDERER Aufbau statt einer 1:1-Kopie (Nutzer-Feedback: "muss auch
+// irgendwie ein bisschen was eigenes haben, keine 1-zu-1-Kopie"):
+// - Space Grotesk statt Playfair Display -- geometrische, praezise Schrift
+//   passend zum eigenen Logo (Rauten-Icon) und der Kernaussage "Präzision
+//   ist kein Zufall", statt der klassisch-seriösen Familienbetrieb-Anmutung
+//   von Hölscher (dort inhaltlich passend: 3. Generation seit 1933).
+// - Eigenes Rauten-Icon als echtes Logo-Zeichen im Header/Footer (aus dem
+//   echten Instagram-Profillogo abgeleitet), nicht nur ein Text-Wortmark.
+// - Leistungen als schlichte, nummerierte Liste statt Karten-Raster.
+// - Eigene Sektion "Eine echte Sanierung" (Wasserschaden-Story mit den 2
+//   echten Instagram-Fotos + Original-Bildunterschrift) -- gibt es bei
+//   Hölscher gar nicht, weil das der eigentliche Markenkern von Yildiz ist
+//   (junger, Instagram-aktiver Betrieb vs. Hölschers Generationen-Historie).
+// - "Über uns" auf dunklem statt hellem Hintergrund, inkl. ARDEXacademy-
+//   Zertifikatsfoto als Vertrauens-Beleg -- Hölscher hat keine Zertifikate/
+//   Social-Media-Praesenz, Yildiz schon (Instagram/Facebook verlinkt).
+// - Portfolio als gleichmäßiges Raster statt "1 großes + Rest klein".
+//
+// FARBEN: aus dem echten Firmenlogo (FLIESEN YILDIZ Meisterbetrieb, Rauten-
+// Icon + "YILDIZ"-Schriftzug, Instagram-Profilbild). Akzentfarbe #D2691E per
+// Pixel-Sample (ffmpeg crop+scale auf 1x1, mehrere Messpunkte, konsistent
+// RGB(210,104,37)) abgelesen, kein freier Griff.
+//
+// FOTOS: alle echt, eigene Aufnahmen des Betriebs -- 3 aus dem Google-
+// Unternehmensprofil (begehbare Dusche/Hero, Dachgeschoss-Bad, Glas-Detail)
+// + 2 aus einem Instagram-Beitrag zur Duschsanierung nach Wasserschaden
+// (beides Fotos NACH der Reparatur, aus verschiedenen Blickwinkeln -- es
+// gibt kein "Vorher"-Foto, deshalb hier bewusst nicht als "Vorher/Nachher"
+// beschriftet, um nichts vorzutäuschen) + 1 Porträtfoto des Inhabers + 1
+// Zertifikatsfoto (ARDEXacademy-Fortbildung). Bewertungen: echte Google-
+// Rezensionen (5,0 Sterne, 17 Bewertungen), Stand 03.09.2026.
+import '../styles/global.css';
+import EntwurfBar from '../components/EntwurfBar.astro';
+
+const phone = '01575 3302326';
+const phoneHref = `tel:${phone.replace(/\s+/g, '')}`;
+const email = 'info@fliesenyildiz.de';
+const address = 'Leipziger Str. 7, 46446 Emmerich am Rhein';
+const hours = 'Mo-Fr 7:00-16:30 Uhr';
+const instagram = 'https://www.instagram.com/fliesen_yildiz_meisterbetrieb/';
+const facebook = 'https://www.facebook.com/fliesenyildiz/';
+const IMG = '/demo/images/demos/fliesen-yildiz-emmerich';
+
+const nav = [
+  { href: '#leistungen', label: 'Leistungen' },
+  { href: '#arbeiten', label: 'Arbeiten' },
+  { href: '#sanierung', label: 'Sanierung' },
+  { href: '#ueber-uns', label: 'Über uns' },
+  { href: '#kontakt', label: 'Kontakt' },
+];
+
+const leistungen = [
+  {
+    titel: 'Großformat- & XXL-Fliesen',
+    text: 'Große Flächen ohne störende Fugen, für ein Bad, das ruhig wirkt und sich jedes Mal ein bisschen wie Urlaub anfühlt, wenn Sie die Tür aufmachen.',
+  },
+  {
+    titel: 'Bad- & Duschsanierung',
+    text: 'Ihr neues Bad, geplant wie ein kleiner Rückzugsort: von der ersten Idee bis zur letzten Fuge, ohne dass Sie sich um irgendetwas kümmern müssen.',
+  },
+  {
+    titel: 'Wasserschadensanierung',
+    text: 'Wenn Wasser dort war, wo es nicht hingehört, sorgen wir für eine Abdichtung, auf die Sie sich wirklich verlassen können, damit dieses mulmige Gefühl nicht zurückkommt.',
+  },
+  {
+    titel: 'Natursteinverlegung',
+    text: 'Naturstein, der eine eigene Geschichte erzählt: jede Ader ein Unikat, fachgerecht verlegt für ein Zuhause mit echtem Charakter.',
+  },
+  {
+    titel: 'Fußbodenheizung & Estrich',
+    text: 'Warme Füße, ruhiges Gewissen: der Unterbau, den später niemand sieht, auf den sich am Ende aber alles verlässt.',
+  },
+  {
+    titel: 'Terrassen',
+    text: 'Ihr Sommer beginnt auf der Terrasse, witterungsfest verlegt, damit Sie jahrelang barfuß rausgehen können.',
+  },
+];
+
+const arbeiten = [
+  { src: `${IMG}/hero.webp`, alt: 'Begehbare Dusche mit großformatigen Fliesen und freistehender Wanne' },
+  { src: `${IMG}/galerie-1.webp`, alt: 'Dachgeschoss-Bad mit Schräge, Marmoroptik-Fliesen und dunkler Wanne' },
+  { src: `${IMG}/galerie-2.webp`, alt: 'Detailaufnahme einer bodengleichen Duschabtrennung aus Glas' },
+  { src: `${IMG}/galerie-5.webp`, alt: 'Küche mit weißen Metrofliesen als Spritzschutz hinter dem Herd' },
+  { src: `${IMG}/galerie-6.webp`, alt: 'Metrofliesen-Spritzschutz hinter der Spüle im Detail' },
+];
+---
+
+<!doctype html>
+<html lang="de" style="--font-heading:'Space Grotesk', sans-serif; --font-heading-weight:700; --font-heading-tracking:-0.01em; --font-body:'Inter', sans-serif; --accent:#D2691E; --bg:#0D0C0B; --ink:#EDEDEB; --ink-soft:rgba(237,237,235,0.68); --line:rgba(237,237,235,0.14); --dark:#050504; --dark-ink:#EDEDEB; --dark-ink-soft:rgba(237,237,235,0.65); --radius-sm:2px; --radius-card:2px; --radius-lg:2px; --gloss:radial-gradient(60% 40% at 20% -10%, rgba(255,255,255,0.055) 0%, transparent 65%), linear-gradient(115deg, transparent 42%, rgba(255,255,255,0.03) 50%, transparent 58%);">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Fliesen Yildiz Meisterbetrieb · Fliesenleger in Emmerich am Rhein</title>
+    <meta name="description" content="Großformatfliesen, Bäder und Sanierungen aus Emmerich am Rhein. Fliesenlegermeisterbetrieb Halil Ibrahim Yildiz, 5,0 Sterne bei Google." />
+  </head>
+  <body class="fy-body">
+    <EntwurfBar />
+
+    <header class="fy-header sticky top-0 z-40">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12 h-[76px] flex items-center justify-between gap-4">
+        <a href="#top" class="fy-mark shrink-0">
+          <svg viewBox="0 0 48 24" width="34" height="17" fill="none" class="fy-mark-icon">
+            <path d="M12 2 L22 12 L12 22 L2 12 Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M24 2 L34 12 L24 22 L14 12 Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M36 2 L46 12 L36 22 L26 12 Z" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span class="font-heading text-lg sm:text-xl" style="color:var(--ink);">FLIESEN YILDIZ</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium" style="color:var(--ink-soft);">
+          {nav.map((item) => (
+            <a href={item.href} class="fy-nav-link">{item.label}</a>
+          ))}
+        </nav>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a href={phoneHref} class="btn btn-outline-accent btn-compact hidden sm:inline-flex">{phone}</a>
+          <button type="button" class="fy-menu-toggle lg:hidden flex flex-col justify-center items-end gap-1.5 w-10 h-10" aria-label="Menü öffnen" aria-expanded="false" aria-controls="fy-mobile-menu">
+            <span class="menu-line fy-menu-line" style="width:22px;"></span>
+            <span class="menu-line fy-menu-line" style="width:22px;"></span>
+            <span class="menu-line fy-menu-line" style="width:22px;"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div id="fy-mobile-menu" class="fy-mobile-menu hidden lg:hidden fixed inset-0 z-50">
+      <div class="flex flex-col h-full px-8 pt-24 pb-10">
+        <button type="button" class="fy-menu-close absolute top-6 right-6 w-10 h-10 flex items-center justify-center" aria-label="Menü schließen" style="color:var(--ink);">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <nav class="flex flex-col gap-2">
+          {nav.map((item) => (
+            <a href={item.href} class="fy-mobile-link">{item.label}</a>
+          ))}
+        </nav>
+        <a href={phoneHref} class="btn btn-solid-sharp mt-8 justify-center">{phone} anrufen</a>
+      </div>
+    </div>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="fy-hero relative">
+        <img src={`${IMG}/hero.webp`} alt="Begehbare Dusche mit großformatigen Fliesen und freistehender Wanne" class="fy-hero-img" />
+        <div class="fy-hero-overlay"></div>
+        <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 min-h-[84vh] flex flex-col justify-center py-28">
+          <p class="kicker mb-6" style="color:var(--accent);">Fliesenlegermeisterbetrieb · Emmerich am Rhein</p>
+          <h1 class="font-heading" style="color:var(--ink); font-size:clamp(2.6rem, 6vw, 5.2rem); max-width:16ch; line-height:1.04;">
+            Präzision ist kein Zufall.
+          </h1>
+          <p class="mt-7 max-w-[46ch] text-lg" style="color:var(--ink-soft);">
+            Ihr Bad soll sich anfühlen wie Ihr eigenes, nicht wie eine Baustelle. Großformatfliesen,
+            Bäder und Sanierungen aus Emmerich, verlegt von Handwerkern, denen Ihr Zuhause genauso
+            wichtig ist wie Ihnen.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center gap-5">
+            <a href={phoneHref} class="btn btn-solid-sharp">{phone} anrufen</a>
+            <a href="#arbeiten" class="btn btn-outline-ink btn-on-dark">Arbeiten ansehen</a>
+            <div class="fy-rating">
+              <span class="fy-rating-stars" aria-hidden="true">★★★★★</span>
+              <span>5,0 · 17 Google-Bewertungen</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEISTUNGEN (nummerierte Liste statt Karten-Raster) -->
+      <section id="leistungen" class="fy-section-gloss py-24 px-6 lg:px-12" style="background:var(--gloss), var(--dark);">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="max-w-[52ch] mb-16 reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Leistungen</p>
+            <h2 class="font-heading" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">Was wir übernehmen.</h2>
+          </div>
+          <div class="fy-list">
+            {leistungen.map((item) => (
+              <div class="fy-list-row reveal">
+                <svg viewBox="0 0 24 12" width="24" height="12" fill="none" class="fy-list-mark" aria-hidden="true">
+                  <path d="M6 1 L11 6 L6 11 L1 6 Z" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M12 1 L17 6 L12 11 L7 6 Z" stroke="currentColor" stroke-width="1.4"/>
+                </svg>
+                <h3 class="font-heading text-xl" style="color:var(--ink);">{item.titel}</h3>
+                <p class="text-[15px]" style="color:var(--ink-soft);">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ARBEITEN (gleichmäßiges Raster) -->
+      <section id="arbeiten" class="py-24 px-6 lg:px-12" style="background:var(--gloss), var(--bg);">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="max-w-[52ch] mb-16 reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Ausgewählte Arbeiten</p>
+            <h2 class="font-heading mb-4" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">Was zuletzt entstanden ist.</h2>
+            <p style="color:var(--ink-soft);">Jedes Bad hat seine eigene Geschichte. Hier sind ein paar davon.</p>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {arbeiten.map((img) => (
+              <div class="fy-ref-card reveal">
+                <img src={img.src} alt={img.alt} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- VERWANDLUNG: echtes Vorher/Nachher des Dachgeschoss-Bads -->
+      <section id="verwandlung" class="fy-section-gloss py-24 px-6 lg:px-12" style="background:var(--gloss), var(--dark);">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="max-w-[52ch] mb-16 reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Eine echte Verwandlung</p>
+            <h2 class="font-heading mb-4" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">Aus alt wird Zuhause.</h2>
+            <p style="color:var(--ink-soft);">
+              Dasselbe Dachgeschoss-Bad, einmal davor und einmal danach. Man sieht sofort, warum sich
+              eine gute Sanierung lohnt.
+            </p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5 reveal">
+            <div class="fy-vn-card">
+              <span class="fy-vn-badge">Vorher</span>
+              <img src={`${IMG}/vorher-dachbad.webp`} alt="Altes Dachgeschoss-Bad vor der Sanierung mit gelben Fliesen und Mosaikboden" loading="lazy" />
+            </div>
+            <div class="fy-vn-card">
+              <span class="fy-vn-badge fy-vn-badge--accent">Nachher</span>
+              <img src={`${IMG}/nachher-dachbad.webp`} alt="Dasselbe Dachgeschoss-Bad nach der Sanierung mit Marmoroptik-Fliesen und dunkler Wanne" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SANIERUNG: eigene Story-Sektion, gibt es bei Hölscher nicht -->
+      <section id="sanierung" class="fy-section-gloss py-24 px-6 lg:px-12" style="background:var(--gloss), var(--bg);">
+        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Eine echte Sanierung</p>
+            <h2 class="font-heading mb-6" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">
+              Wenn's drauf ankommt.
+            </h2>
+            <p class="mb-4" style="color:var(--ink-soft);">
+              Ein Wasserschaden ist mehr als nur nasse Fliesen. Es ist dieser Moment, in dem man sich
+              fragt, ob im eigenen Zuhause wirklich alles in Ordnung ist. Nach dem zweiten Schaden bei
+              diesem Kunden wurden wir empfohlen und haben die Dusche so erneuert, dass dieses Gefühl
+              nicht zurückkommt.
+            </p>
+            <p style="color:var(--ink-soft);">
+              Eine Abdichtung sieht man später nicht mehr, aber man merkt sofort, wenn sie fehlt.
+              Deshalb wählen wir Materialien genau nach der tatsächlichen Nutzung aus, nicht nach
+              Katalog. Bei Fragen dazu sind wir gerne für Sie da.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 reveal">
+            <img src={`${IMG}/galerie-3.webp`} alt="Neu verfliester Duschbereich nach einer Wasserschadensanierung" class="fy-sanierung-img" />
+            <img src={`${IMG}/galerie-4.webp`} alt="Detailansicht des neu verfliesten Duschbereichs" class="fy-sanierung-img mt-8" />
+          </div>
+        </div>
+      </section>
+
+      <!-- UEBER UNS (dunkel statt hell, mit Zertifikat) -->
+      <section id="ueber-uns" class="py-24 px-6 lg:px-12" style="background:var(--gloss), var(--dark);">
+        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal order-2 lg:order-1">
+            <p class="kicker mb-4" style="color:var(--accent);">Über uns</p>
+            <h2 class="font-heading mb-6" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">Das steckt dahinter.</h2>
+            <p class="mb-5" style="color:var(--ink-soft);">
+              Hinter Fliesen Yildiz Meisterbetrieb steht Halil Ibrahim Yildiz, in Emmerich am Rhein
+              vielen einfach als „Ibo" bekannt. Für ihn ist eine Fliese nie nur eine Fliese: „Wir bauen
+              Heimat, und das aus Leidenschaft." Diesen Anspruch merkt man in jedem Projekt, von der
+              ersten Beratung bis zur letzten Fuge.
+            </p>
+            <p class="mb-8" style="color:var(--ink-soft);">
+              Großformatfliesen, Bäder und Sanierungen entstehen mit viel Geduld für Details, die andere
+              übersehen, von der Untergrundprüfung bis zur Abdichtung. Regelmäßige Fortbildungen wie die
+              ARDEXacademy sorgen dafür, dass dieser Anspruch auch bei neuen Materialien hält, was er
+              verspricht. Am Ende zählt für uns nur eins: dass Sie sich in Ihren eigenen vier Wänden
+              wirklich wohlfühlen.
+            </p>
+            <blockquote class="fy-quote">
+              „Sehr zu empfehlen! Gute Kommunikation. Optimale Vorbereitung (Schutz der Gehwege),
+              ordentlich, immer aufgeräumt."
+              <footer>Karl-Heinz Proest · Google-Bewertung</footer>
+            </blockquote>
+            <div class="mt-8 flex items-center gap-4">
+              <a href={instagram} target="_blank" rel="noopener noreferrer" class="fy-social" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+              </a>
+              <a href={facebook} target="_blank" rel="noopener noreferrer" class="fy-social" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M14 13.5h2.5l.5-3H14V8.5c0-.87.243-1.5 1.5-1.5H17V4.14C16.73 4.1 15.8 4 14.7 4 12.4 4 11 5.35 11 7.8V10.5H8.5v3H11V21h3v-7.5z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="reveal order-1 lg:order-2 flex flex-col gap-5">
+            <img src={`${IMG}/portrait.webp`} alt="Halil Ibrahim Yildiz, Inhaber von Fliesen Yildiz Meisterbetrieb" class="w-full h-auto" style="border-radius:var(--radius-lg);" />
+            <div class="fy-cert">
+              <img src={`${IMG}/zertifikat.webp`} alt="ARDEXacademy-Fortbildungszertifikat" />
+              <div>
+                <p class="font-heading text-base" style="color:var(--ink);">ARDEXacademy</p>
+                <p class="text-sm" style="color:var(--ink-soft);">Fortbildung Großformatfliesen, 2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KONTAKT -->
+      <section id="kontakt" class="fy-kontakt py-24 px-6 lg:px-12">
+        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-16">
+          <div class="reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Kontakt</p>
+            <h2 class="font-heading mb-6" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">
+              Lassen Sie uns über Ihr Projekt sprechen.
+            </h2>
+            <p class="mb-10 max-w-[42ch]" style="color:var(--ink-soft);">
+              Ob kleine Reparatur oder das Bad Ihrer Träume: erzählen Sie uns, was Sie vorhaben. Sie
+              bekommen eine ehrliche Einschätzung, ein faires Angebot und einen Ansprechpartner, der
+              sich wirklich kümmert.
+            </p>
+            <dl class="space-y-6 text-[15px]">
+              <div>
+                <dt class="fy-kontakt-label">Telefon</dt>
+                <dd><a href={phoneHref} class="fy-kontakt-value">{phone}</a></dd>
+              </div>
+              <div>
+                <dt class="fy-kontakt-label">E-Mail</dt>
+                <dd><a href={`mailto:${email}`} class="fy-kontakt-value">{email}</a></dd>
+              </div>
+              <div>
+                <dt class="fy-kontakt-label">Adresse</dt>
+                <dd class="fy-kontakt-value">{address}</dd>
+              </div>
+              <div>
+                <dt class="fy-kontakt-label">Öffnungszeiten</dt>
+                <dd class="fy-kontakt-value">{hours}</dd>
+              </div>
+            </dl>
+            <a href={phoneHref} class="btn btn-solid-sharp mt-10">Jetzt anrufen</a>
+          </div>
+          <div class="reveal fy-map-wrap">
+            <iframe
+              src={`https://www.google.com/maps?q=${encodeURIComponent(`Fliesen Yildiz Meisterbetrieb, ${address}`)}&output=embed`}
+              width="100%"
+              height="100%"
+              style="border:0; display:block;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title={`Karte: Fliesen Yildiz Meisterbetrieb, ${address}`}
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="px-6 py-14" style="background:var(--dark); color:var(--dark-ink-soft);">
+      <div class="max-w-[1400px] mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div class="fy-mark">
+          <svg viewBox="0 0 48 24" width="28" height="14" fill="none" class="fy-mark-icon">
+            <path d="M12 2 L22 12 L12 22 L2 12 Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M24 2 L34 12 L24 22 L14 12 Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M36 2 L46 12 L36 22 L26 12 Z" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <div>
+            <p class="font-heading text-base" style="color:var(--dark-ink);">FLIESEN YILDIZ</p>
+            <p class="text-sm">Meisterbetrieb · Emmerich am Rhein</p>
+          </div>
+        </div>
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {nav.map((item) => (
+            <a href={item.href} class="hover:opacity-80">{item.label}</a>
+          ))}
+        </nav>
+      </div>
+      <div class="max-w-[1400px] mx-auto mt-10 pt-6 border-t text-xs" style="border-color:var(--dark-ink-soft);">
+        Erstellt von <a href="https://böhnpartner.de" class="underline hover:no-underline">Böhn &amp; Partner</a> ·
+        Unverbindlicher Entwurf, nicht öffentlich gelistet ·
+        <a href="/impressum.html" class="underline hover:no-underline">Impressum</a>
+      </div>
+    </footer>
+
+    <script>
+      const items = document.querySelectorAll('.reveal');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced && items.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12 }
+        );
+        items.forEach((item) => observer.observe(item));
+      } else {
+        items.forEach((item) => item.classList.add('is-visible'));
+      }
+
+      const toggle = document.querySelector<HTMLButtonElement>('.fy-menu-toggle');
+      const close = document.querySelector<HTMLButtonElement>('.fy-menu-close');
+      const menu = document.querySelector<HTMLElement>('.fy-mobile-menu');
+
+      function setOpen(open: boolean) {
+        if (!toggle || !menu) return;
+        toggle.setAttribute('aria-expanded', String(open));
+        menu.classList.toggle('hidden', !open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      toggle?.addEventListener('click', () => setOpen(true));
+      close?.addEventListener('click', () => setOpen(false));
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .fy-body {
+    font-family: var(--font-body);
+    background: var(--bg);
+  }
+
+  .kicker::before {
+    display: none;
+  }
+
+  .fy-header {
+    background: color-mix(in srgb, var(--dark) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fy-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+  }
+  .fy-mark-icon {
+    color: var(--accent);
+  }
+
+  .fy-nav-link {
+    position: relative;
+    transition: color 0.15s ease;
+  }
+  .fy-nav-link:hover {
+    color: var(--ink);
+  }
+
+  .fy-menu-line {
+    background: var(--ink);
+  }
+
+  .fy-mobile-menu {
+    background: var(--dark);
+  }
+  .fy-mobile-link {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--ink);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* HERO */
+  .fy-hero {
+    min-height: 84vh;
+    overflow: hidden;
+  }
+  .fy-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .fy-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0.7) 55%, rgba(10, 10, 10, 0.92) 100%),
+      linear-gradient(90deg, rgba(10, 10, 10, 0.6) 0%, transparent 55%);
+  }
+
+  .fy-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .fy-rating-stars {
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* LEISTUNGEN LISTE */
+  .fy-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .fy-list-row {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    column-gap: 1.5rem;
+    row-gap: 0.5rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--line);
+    transition: background 0.2s ease;
+  }
+  .fy-list-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .fy-list-row:hover {
+    background: color-mix(in srgb, var(--ink) 4%, transparent);
+  }
+  .fy-list-mark {
+    color: var(--accent);
+    margin-top: 0.4rem;
+  }
+  .fy-list-row p {
+    grid-column: 2;
+    max-width: 55ch;
+  }
+  @media (min-width: 700px) {
+    .fy-list-row {
+      grid-template-columns: 3.5rem 22ch 1fr;
+      align-items: baseline;
+    }
+    .fy-list-row h3 {
+      /* Lange, unteilbare Komposita wie "Wasserschadensanierung" sind breiter
+         als die 22ch-Spalte und liefen sonst ungebrochen in die Textspalte
+         daneben (Nutzer-Beleg mit Screenshot). Silbentrennung + Zeilenumbruch
+         erzwingen, damit das Wort innerhalb der eigenen Spalte umbricht. */
+      overflow-wrap: break-word;
+      hyphens: auto;
+      min-width: 0;
+    }
+    .fy-list-row p {
+      grid-column: 3;
+    }
+  }
+
+  /* ARBEITEN */
+  .fy-ref-card {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .fy-ref-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .fy-ref-card:hover img {
+    transform: scale(1.04);
+  }
+
+  /* SANIERUNG */
+  .fy-sanierung-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+
+  /* VERWANDLUNG (Vorher/Nachher) */
+  .fy-vn-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+  .fy-vn-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .fy-vn-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--dark) 80%, transparent);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+  .fy-vn-badge--accent {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+  }
+
+  /* QUOTE */
+  .fy-quote {
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--accent);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .fy-quote footer {
+    margin-top: 0.65rem;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .fy-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .fy-social:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .fy-cert {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .fy-cert img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+
+  /* KONTAKT */
+  .fy-kontakt {
+    background: var(--dark);
+  }
+  .fy-kontakt-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .fy-kontakt-value {
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+  a.fy-kontakt-value:hover {
+    color: var(--accent);
+  }
+  .fy-map-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    min-height: 320px;
+  }
+</style>
