@@ -1,0 +1,534 @@
+---
+// Bespoke Einzelseiten-Entwurf für Hölscher Fliesen Design (Nordhorn-Klausheide).
+// Bewusst KEIN [slug]-Mehrseiter über PageLayout/Header/Footer/presets.ts --
+// Kundenwunsch war explizit "komplett neues Design", kein weiteres Preset auf
+// der bestehenden Struktur. Eigenes, in sich geschlossenes Layout, eigene
+// Farbwelt (Schwarz/Anthrazit + das Signalrot aus dem echten Firmenlogo,
+// siehe Visitenkarte "Hölscher Fliesen Design"), eigene Fonts-Kombi
+// (Playfair Display für Headlines, bereits self-hosted verfügbar).
+// Fakten aus Recherche vom 2026-09-03: alte Domain fliesen-hoelscher.com ist
+// tot (DNS), Inhalte/Fotos über Wayback Machine (Stand Sept. 2024) gesichert,
+// zusätzlich 4 aktuelle, deutlich hochwertigere Fotos vom Google-Maps-Eintrag
+// des Inhabers übernommen (Wellnessbad, Regendusche, Schlafzimmer). Keine
+// eigene Bewertung/Kennzahl erfunden -- der Betrieb hat aktuell keine
+// Google-Bewertungen.
+import '../styles/global.css';
+import EntwurfBar from '../components/EntwurfBar.astro';
+
+const phone = '0172 1585858';
+const phoneHref = `tel:${phone.replace(/\s+/g, '')}`;
+const email = 'hoelscherfliesen@aol.com';
+
+const nav = [
+  { href: '#leistungen', label: 'Leistungen' },
+  { href: '#referenzen', label: 'Referenzen' },
+  { href: '#ueber-uns', label: 'Über uns' },
+  { href: '#ausstellung', label: 'Ausstellung' },
+  { href: '#kontakt', label: 'Kontakt' },
+];
+
+const leistungen = [
+  {
+    titel: 'Fliesenverlegung',
+    text: 'Klassische bis moderne Fliesen für Bad, Küche und Wohnraum, präzise verlegt nach Ihren Vorstellungen.',
+  },
+  {
+    titel: 'Natursteinverlegung',
+    text: 'Granit, Marmor und Schiefer für eine Optik mit Tiefe und Charakter, gebaut für ein ganzes Leben.',
+  },
+  {
+    titel: 'Großformatfliesen',
+    text: 'Fliesen und Platten bis 300 cm Kantenlänge. Ruhige Flächen, maximale Präzision in der Verlegung.',
+  },
+  {
+    titel: 'Badsanierung',
+    text: 'Vom ersten Entwurf bis zur letzten Fuge: Ihr neues Bad aus einer Hand, termingerecht umgesetzt.',
+  },
+  {
+    titel: 'Individuelle Gestaltung',
+    text: 'Mosaik, Glas, Metall und Lichttechnik für Räume mit eigenem Charakter und besonderer Note.',
+  },
+  {
+    titel: 'Fliesenreparatur',
+    text: 'Mit dem Fliesendoktor beheben wir Abplatzungen und Bohrlöcher schnell und mit wenig Staub.',
+  },
+];
+
+const referenzen = [
+  { src: '/demo/images/demos/fliesen-hoelscher/hero.webp', alt: 'Freistehende Badewanne vor gemauerter Naturstein-Wand mit Regendusche', gross: true },
+  { src: '/demo/images/demos/fliesen-hoelscher/referenz-1.webp', alt: 'Wellnessbad mit Natursteinriemchen, freistehender Wanne und indirekter Beleuchtung' },
+  { src: '/demo/images/demos/fliesen-hoelscher/referenz-2.webp', alt: 'Minimalistische Dusche mit großformatigen, hellen Fliesen und Sitzbank' },
+  { src: '/demo/images/demos/fliesen-hoelscher/referenz-3.webp', alt: 'Schlafzimmer mit dreidimensionalem Wandpaneel aus Fliesen hinter dem Bett' },
+  { src: '/demo/images/demos/fliesen-hoelscher/referenz-4.webp', alt: 'Wohnraum mit großformatiger Natursteinverlegung' },
+  { src: '/demo/images/demos/fliesen-hoelscher/referenz-6.webp', alt: 'Badsanierung mit modernen, großformatigen Fliesen' },
+];
+
+const ausstellung = [
+  { src: '/demo/images/demos/fliesen-hoelscher/ausstellung-1.webp', alt: 'Fliesenausstellung mit Musterwand aus großformatigen Fliesen' },
+  { src: '/demo/images/demos/fliesen-hoelscher/ausstellung-2.webp', alt: 'Ausstellungsraum Blumenstraße 13 mit großformatigen Fliesenmustern' },
+  { src: '/demo/images/demos/fliesen-hoelscher/ausstellung-3.webp', alt: 'Beratungsbereich der Fliesenausstellung' },
+];
+---
+
+<!doctype html>
+<html lang="de" style="--font-heading:'Playfair Display', serif; --font-heading-weight:800; --font-heading-tracking:-0.01em; --font-body:'Inter', sans-serif; --accent:#E2323E; --bg:#131313; --surface:#1B1B1B; --ink:#EDEDEB; --ink-soft:rgba(237,237,235,0.68); --line:rgba(237,237,235,0.14); --dark:#0A0A0A; --dark-ink:#EDEDEB; --dark-ink-soft:rgba(237,237,235,0.65); --radius-sm:3px; --radius-card:10px; --radius-lg:16px;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hölscher Fliesen Design · Fliesenleger Meisterbetrieb Nordhorn</title>
+    <meta name="description" content="Fliesen, Naturstein und Badgestaltung aus Meisterhand. Familienbetrieb seit 1933, 3. Generation, Fliesenlegermeister Thomas Hölscher in Nordhorn." />
+  </head>
+  <body class="hf-body">
+    <EntwurfBar />
+
+    <header class="hf-header sticky top-0 z-40">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12 h-[76px] flex items-center justify-between gap-4">
+        <a href="#top" class="shrink-0 leading-none">
+          <span class="block font-heading text-xl sm:text-2xl tracking-wide" style="color:var(--ink);">HÖLSCHER</span>
+          <span class="hf-wordmark-sub">Fliesen &amp; Naturstein</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-9 text-sm font-medium" style="color:var(--ink-soft);">
+          {nav.map((item) => (
+            <a href={item.href} class="hf-nav-link">{item.label}</a>
+          ))}
+        </nav>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a href={phoneHref} class="btn btn-outline-accent btn-compact hidden sm:inline-flex">{phone}</a>
+          <button type="button" class="hf-menu-toggle lg:hidden flex flex-col justify-center items-end gap-1.5 w-10 h-10" aria-label="Menü öffnen" aria-expanded="false" aria-controls="hf-mobile-menu">
+            <span class="menu-line hf-menu-line" style="width:22px;"></span>
+            <span class="menu-line hf-menu-line" style="width:22px;"></span>
+            <span class="menu-line hf-menu-line" style="width:22px;"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div id="hf-mobile-menu" class="hf-mobile-menu hidden lg:hidden fixed inset-0 z-50">
+      <div class="flex flex-col h-full px-8 pt-24 pb-10">
+        <button type="button" class="hf-menu-close absolute top-6 right-6 w-10 h-10 flex items-center justify-center" aria-label="Menü schließen" style="color:var(--ink);">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <nav class="flex flex-col gap-2">
+          {nav.map((item) => (
+            <a href={item.href} class="hf-mobile-link">{item.label}</a>
+          ))}
+        </nav>
+        <a href={phoneHref} class="btn btn-solid-sharp mt-8 justify-center">{phone} anrufen</a>
+      </div>
+    </div>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hf-hero relative">
+        <img src="/demo/images/demos/fliesen-hoelscher/hero.webp" alt="Freistehende Badewanne vor gemauerter Naturstein-Wand mit Regendusche" class="hf-hero-img" />
+        <div class="hf-hero-overlay"></div>
+        <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 min-h-[86vh] flex flex-col justify-center py-28">
+          <p class="kicker mb-6" style="color:var(--accent);">Meisterbetrieb seit 1933 · 3. Generation</p>
+          <h1 class="font-heading" style="color:var(--ink); font-size:clamp(2.6rem, 6vw, 5.2rem); max-width:16ch;">
+            Fliesen und Naturstein aus Meisterhand.
+          </h1>
+          <p class="mt-7 max-w-[46ch] text-lg" style="color:var(--ink-soft);">
+            Individuelle Bäder, großformatige Fliesen und exklusiver Naturstein: geplant und verlegt von
+            Fliesenlegermeister Thomas Hölscher in Nordhorn und der gesamten Grafschaft Bentheim.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center gap-4">
+            <a href={phoneHref} class="btn btn-solid-sharp">{phone} anrufen</a>
+            <a href="#referenzen" class="btn btn-outline-ink btn-on-dark">Referenzen ansehen</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS STRIP -->
+      <section class="hf-stats">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-14 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+          <div>
+            <p class="font-heading hf-stat-num">1933</p>
+            <p class="hf-stat-label">Gründungsjahr des Familienbetriebs</p>
+          </div>
+          <div>
+            <p class="font-heading hf-stat-num">3.</p>
+            <p class="hf-stat-label">Generation am Werk</p>
+          </div>
+          <div>
+            <p class="font-heading hf-stat-num">Meister</p>
+            <p class="hf-stat-label">Fliesenlegermeistertitel</p>
+          </div>
+          <div>
+            <p class="font-heading hf-stat-num">Bundesweit</p>
+            <p class="hf-stat-label">Einsatz auf Anfrage</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEISTUNGEN -->
+      <section id="leistungen" class="hf-section-light py-24 px-6 lg:px-12">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="max-w-[52ch] mb-16 reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Leistungen</p>
+            <h2 class="font-heading" style="color:#141414; font-size:clamp(2rem, 4vw, 3rem);">Umfassende Fliesenarbeiten auf höchstem Niveau.</h2>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px hf-leistungen-grid">
+            {leistungen.map((item) => (
+              <div class="hf-leistung-card reveal">
+                <h3 class="font-heading text-xl mb-3" style="color:#141414;">{item.titel}</h3>
+                <p class="text-[15px]" style="color:rgba(20,20,20,0.66);">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- REFERENZEN -->
+      <section id="referenzen" class="py-24 px-6 lg:px-12" style="background:var(--bg);">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="max-w-[52ch] mb-16 reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Ausgewählte Arbeiten</p>
+            <h2 class="font-heading" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">Räume, die überzeugen.</h2>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {referenzen.map((img) => (
+              <div class={`hf-ref-card reveal ${img.gross ? 'lg:col-span-2 lg:row-span-2' : ''}`}>
+                <img src={img.src} alt={img.alt} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- UEBER UNS -->
+      <section id="ueber-uns" class="hf-section-light py-24 px-6 lg:px-12">
+        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal order-2 lg:order-1">
+            <p class="kicker mb-4" style="color:var(--accent);">Seit 1933</p>
+            <h2 class="font-heading mb-6" style="color:#141414; font-size:clamp(2rem, 4vw, 3rem);">Fliesenlegen mit Tradition.</h2>
+            <p class="mb-5" style="color:rgba(20,20,20,0.74);">
+              Schon Großvater und Vater hatten das Fliesenlegen im Blut. 2003 gründete Thomas Hölscher
+              „Fliesen Hölscher" und erfüllte sich damit den Traum der Selbstständigkeit, mit einem
+              kleinen Team engagierter Mitarbeiter.
+            </p>
+            <p class="mb-10" style="color:rgba(20,20,20,0.74);">
+              Für Familie Hölscher stehen professionelle Wertarbeit, höchste Zuverlässigkeit und der
+              persönliche Kontakt zum Kunden seit jeher an oberster Stelle. Ob Gästetoilette, Bad oder ganze
+              Wellnesslandschaft: Stil, Design und Qualität haben in jedem Projekt oberste Priorität.
+            </p>
+            <div class="hf-timeline">
+              <div class="hf-timeline-item">
+                <p class="font-heading text-lg" style="color:var(--accent);">1933</p>
+                <p class="text-sm" style="color:rgba(20,20,20,0.66);">Familientradition im Fliesenhandwerk beginnt</p>
+              </div>
+              <div class="hf-timeline-item">
+                <p class="font-heading text-lg" style="color:var(--accent);">2003</p>
+                <p class="text-sm" style="color:rgba(20,20,20,0.66);">Thomas Hölscher macht sich selbstständig</p>
+              </div>
+              <div class="hf-timeline-item">
+                <p class="font-heading text-lg" style="color:var(--accent);">Heute</p>
+                <p class="text-sm" style="color:rgba(20,20,20,0.66);">3. Generation, Meisterbetrieb in der Grafschaft Bentheim</p>
+              </div>
+            </div>
+          </div>
+          <div class="reveal order-1 lg:order-2">
+            <img src="/demo/images/demos/fliesen-hoelscher/familie.webp" alt="Drei Generationen der Familie Hölscher" class="w-full h-auto" style="border-radius:var(--radius-lg);" />
+          </div>
+        </div>
+      </section>
+
+      <!-- AUSSTELLUNG -->
+      <section id="ausstellung" class="py-24 px-6 lg:px-12" style="background:var(--bg);">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-end mb-14">
+            <div class="reveal">
+              <p class="kicker mb-4" style="color:var(--accent);">Fliesenausstellung</p>
+              <h2 class="font-heading mb-6" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">Erleben Sie Fliesen und Naturstein live.</h2>
+              <p style="color:var(--ink-soft);">
+                In unserer Ausstellung in der Blumenstraße 13 in Nordhorn zeigen wir ausgewählte Fliesen,
+                Natursteine und Bruchsteine aus aller Welt. Der Besuch ist nach kurzer Terminabsprache möglich.
+              </p>
+            </div>
+            <div class="reveal lg:text-right">
+              <a href={phoneHref} class="btn btn-outline-ink btn-on-dark">Termin vereinbaren</a>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-5">
+            {ausstellung.map((img) => (
+              <div class="hf-ref-card reveal">
+                <img src={img.src} alt={img.alt} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- KONTAKT -->
+      <section id="kontakt" class="hf-kontakt py-24 px-6 lg:px-12">
+        <div class="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-16">
+          <div class="reveal">
+            <p class="kicker mb-4" style="color:var(--accent);">Kontakt</p>
+            <h2 class="font-heading mb-6" style="color:var(--ink); font-size:clamp(2rem, 4vw, 3rem);">
+              Lassen Sie uns über Ihr Projekt sprechen.
+            </h2>
+            <p class="mb-10 max-w-[42ch]" style="color:var(--ink-soft);">
+              Rufen Sie an oder schreiben Sie uns. Sie erhalten einen schnellen Beratungstermin sowie ein
+              unverbindliches, faires Komplettangebot.
+            </p>
+            <dl class="space-y-6 text-[15px]">
+              <div>
+                <dt class="hf-kontakt-label">Telefon</dt>
+                <dd><a href={phoneHref} class="hf-kontakt-value">{phone}</a></dd>
+              </div>
+              <div>
+                <dt class="hf-kontakt-label">E-Mail</dt>
+                <dd><a href={`mailto:${email}`} class="hf-kontakt-value">{email}</a></dd>
+              </div>
+              <div>
+                <dt class="hf-kontakt-label">Werkstatt</dt>
+                <dd class="hf-kontakt-value">Espenweg 1, 48531 Nordhorn-Klausheide</dd>
+              </div>
+              <div>
+                <dt class="hf-kontakt-label">Fliesenausstellung</dt>
+                <dd class="hf-kontakt-value">Blumenstraße 13, 48527 Nordhorn (nach Terminabsprache)</dd>
+              </div>
+            </dl>
+            <a href={phoneHref} class="btn btn-solid-sharp mt-10">Jetzt anrufen</a>
+          </div>
+          <div class="reveal hf-map-wrap">
+            <iframe
+              src={`https://www.google.com/maps?q=${encodeURIComponent('Hölscher Fliesen Design, Espenweg 1, 48531 Nordhorn')}&output=embed`}
+              width="100%"
+              height="100%"
+              style="border:0; display:block;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Karte: Hölscher Fliesen Design, Espenweg 1, Nordhorn"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="px-6 py-14" style="background:var(--dark); color:var(--dark-ink-soft);">
+      <div class="max-w-[1400px] mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <p class="font-heading text-lg" style="color:var(--dark-ink);">HÖLSCHER</p>
+          <p class="text-sm">Fliesen &amp; Naturstein · Nordhorn</p>
+        </div>
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {nav.map((item) => (
+            <a href={item.href} class="hover:opacity-80">{item.label}</a>
+          ))}
+        </nav>
+      </div>
+      <div class="max-w-[1400px] mx-auto mt-10 pt-6 border-t text-xs" style="border-color:var(--dark-ink-soft);">
+        Erstellt von <a href="https://böhnpartner.de" class="underline hover:no-underline">Böhn &amp; Partner</a> ·
+        Unverbindlicher Entwurf, nicht öffentlich gelistet ·
+        <a href="/impressum.html" class="underline hover:no-underline">Impressum</a>
+      </div>
+    </footer>
+
+    <script>
+      const items = document.querySelectorAll('.reveal');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced && items.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12 }
+        );
+        items.forEach((item) => observer.observe(item));
+      } else {
+        items.forEach((item) => item.classList.add('is-visible'));
+      }
+
+      const toggle = document.querySelector<HTMLButtonElement>('.hf-menu-toggle');
+      const close = document.querySelector<HTMLButtonElement>('.hf-menu-close');
+      const menu = document.querySelector<HTMLElement>('.hf-mobile-menu');
+
+      function setOpen(open: boolean) {
+        if (!toggle || !menu) return;
+        toggle.setAttribute('aria-expanded', String(open));
+        menu.classList.toggle('hidden', !open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      toggle?.addEventListener('click', () => setOpen(true));
+      close?.addEventListener('click', () => setOpen(false));
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .hf-body {
+    font-family: var(--font-body);
+    background: var(--bg);
+  }
+
+  /* Kundenwunsch: keine Striche/Bindestriche im sichtbaren Auftritt -- auch
+     nicht die dekorative Linie, die .kicker (global.css) sonst per ::before
+     vor jedes Label wie "LEISTUNGEN" setzt. */
+  .kicker::before {
+    display: none;
+  }
+
+  .hf-header {
+    background: color-mix(in srgb, var(--dark) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hf-wordmark-sub {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  .hf-nav-link {
+    position: relative;
+    transition: color 0.15s ease;
+  }
+  .hf-nav-link:hover {
+    color: var(--ink);
+  }
+
+  .hf-menu-line {
+    background: var(--ink);
+  }
+
+  .hf-mobile-menu {
+    background: var(--dark);
+  }
+  .hf-mobile-link {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--ink);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* HERO */
+  .hf-hero {
+    min-height: 86vh;
+    overflow: hidden;
+  }
+  .hf-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  .hf-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(11, 10, 8, 0.55) 0%, rgba(11, 10, 8, 0.72) 55%, rgba(11, 10, 8, 0.92) 100%),
+      linear-gradient(90deg, rgba(11, 10, 8, 0.55) 0%, transparent 55%);
+  }
+
+  /* STATS */
+  .hf-stats {
+    background: var(--dark);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .hf-stat-num {
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .hf-stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--dark-ink-soft);
+    max-width: 16ch;
+    margin: 0 auto;
+  }
+
+  /* LIGHT SECTIONS (Leistungen, Ueber uns) -- bewusste Kontrastflaeche zum
+     ansonsten dunklen Auftritt, wie eine helle Fliesenflaeche zwischen
+     dunklen Waenden. Neutrales Hellgrau statt warmem Creme, damit es zum
+     Schwarz/Rot/Silber des echten Firmenlogos passt. */
+  .hf-section-light {
+    background: #F1F0EE;
+  }
+
+  .hf-leistungen-grid {
+    background: rgba(20, 20, 20, 0.08);
+    border: 1px solid rgba(20, 20, 20, 0.08);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .hf-leistung-card {
+    background: #F1F0EE;
+    padding: 2.4rem 2rem;
+    transition: background 0.2s ease;
+  }
+  .hf-leistung-card:hover {
+    background: #E7E5E1;
+  }
+
+  /* REFERENZEN */
+  .hf-ref-card {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .hf-ref-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .hf-ref-card:hover img {
+    transform: scale(1.04);
+  }
+
+  /* TIMELINE */
+  .hf-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding-left: 1.4rem;
+    border-left: 2px solid var(--accent);
+  }
+
+  /* KONTAKT */
+  .hf-kontakt {
+    background: var(--dark);
+  }
+  .hf-kontakt-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .hf-kontakt-value {
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+  a.hf-kontakt-value:hover {
+    color: var(--accent);
+  }
+  .hf-map-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    min-height: 320px;
+  }
+</style>
