@@ -18,7 +18,10 @@ export async function getStaticPaths() {
 
 const { demo } = Astro.props;
 const { slug } = Astro.params;
-const bespoke = !!demo.kinoKapitel;
+// An die echte Speisekarte gekoppelt (nicht an kinoKapitel) -- das
+// Durchblätter-Buch (DoenerMenuBook) braucht speisekarteKategorien-Daten,
+// die ein Kino-Hero-Kunde ohne Speisekarte gar nicht hat.
+const bespoke = !!demo.speisekarteKategorien;
 ---
 
 <PageLayout demo={demo} slug={slug} pageTitle={demo.leistungenLabel?.nav ?? 'Leistungen'}>

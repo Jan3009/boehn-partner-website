@@ -1,36 +1,56 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+import GoogleMap from './GoogleMap.astro';
 
 interface Props {
   demo: CollectionEntry<'demos'>['data'];
 }
 
 const { demo } = Astro.props;
+const showMap = !!demo.googleMaps;
 ---
 
-<section id="kontakt" class="px-6 py-24 sm:py-28" style="background:var(--dark); color:var(--dark-ink);">
-  <div class="reveal max-w-3xl mx-auto text-center">
-    <h2 class="font-heading text-3xl sm:text-4xl mb-4" style="color:var(--dark-ink);">{demo.firmenname} erreichen</h2>
-    <p class="mb-2" style="color:var(--dark-ink-soft);">{demo.kontakt.adresse}</p>
-    {demo.kontakt.oeffnungszeiten && <p class="mb-8" style="color:var(--dark-ink-soft);">{demo.kontakt.oeffnungszeiten}</p>}
-    <a
-      href={`tel:${demo.kontakt.telefon.replace(/\s+/g, '')}`}
-      class="btn"
-      style="background:var(--accent); color:var(--dark); border-color:var(--accent);"
-    >
-      {demo.kontakt.telefon}
-    </a>
-    {demo.kontakt.email && (
-      <p class="mt-4">
-        <a href={`mailto:${demo.kontakt.email}`} style="color:var(--dark-ink-soft);" class="hover:opacity-80">
-          {demo.kontakt.email}
-        </a>
+<section id="kontakt" class="px-6 py-16 sm:py-20" style="background:var(--gloss), var(--dark); color:var(--dark-ink);">
+  <div class={`reveal max-w-6xl mx-auto ${showMap ? 'contact-cta-grid' : 'max-w-3xl text-center'}`}>
+    <div>
+      <h2 class="font-heading text-3xl sm:text-4xl mb-4" style="color:var(--dark-ink);">{demo.firmenname} erreichen</h2>
+      <p class="mb-2" style="color:var(--dark-ink-soft);">{demo.kontakt.adresse}</p>
+      {demo.kontakt.oeffnungszeiten && <p class="mb-8" style="color:var(--dark-ink-soft);">{demo.kontakt.oeffnungszeiten}</p>}
+      <Button demo={demo} href={`tel:${demo.kontakt.telefon.replace(/\s+/g, '')}`} onDark>
+        {demo.kontakt.telefon}
+      </Button>
+      {demo.kontakt.email && (
+        <p class="mt-4">
+          <a href={`mailto:${demo.kontakt.email}`} style="color:var(--dark-ink-soft);" class="hover:opacity-80">
+            {demo.kontakt.email}
+          </a>
+        </p>
+      )}
+      <p class="text-xs mt-6 max-w-md" style={`color:var(--dark-ink-soft); ${showMap ? '' : 'margin-inline:auto;'}`}>
+        Dies ist ein unverbindlicher Design-Entwurf von Böhn &amp; Partner, kein
+        Kontaktformular dieser Website. Interesse an einer echten Website? Böhn
+        &amp; Partner meldet sich bei {demo.firmenname}.
       </p>
-    )}
-    <p class="text-xs mt-6 max-w-md mx-auto" style="color:var(--dark-ink-soft);">
-      Dies ist ein unverbindlicher Design-Entwurf von Böhn &amp; Partner, kein
-      Kontaktformular dieser Website. Interesse an einer echten Website? Böhn
-      &amp; Partner meldet sich bei {demo.firmenname}.
-    </p>
+    </div>
+    {showMap && <GoogleMap demo={demo} />}
   </div>
 </section>
+
+{showMap && (
+  <style>
+    .contact-cta-grid {
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+      text-align: left;
+    }
+
+    @media (min-width: 900px) {
+      .contact-cta-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+    }
+  </style>
+)}

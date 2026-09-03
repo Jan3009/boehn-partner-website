@@ -11,7 +11,7 @@ const neuesBild = demo.neuerScreenshot ?? demo.bilder[0];
 ---
 
 {altesScreenshot && (
-  <section class="px-6 sm:px-12 py-24 sm:py-32" style="background:var(--surface);">
+  <section class="px-6 sm:px-12 py-16 sm:py-24" style="background:var(--surface);">
     <div class="reveal max-w-[1320px] mx-auto">
       <p class="kicker mb-4">Vorher / Nachher</p>
       <h2 class="font-heading text-3xl sm:text-4xl mb-14" style="color:var(--ink);">So war es — so könnte es sein</h2>
@@ -19,7 +19,7 @@ const neuesBild = demo.neuerScreenshot ?? demo.bilder[0];
         <div>
           <p class="text-xs font-semibold mb-2 uppercase tracking-wide" style="color:var(--ink-soft);">Bisherige Website</p>
           <div
-            class="overflow-hidden aspect-[3/2] flex items-center justify-center border border-dashed"
+            class={`overflow-hidden aspect-[3/2] flex items-center justify-center ${altesScreenshot.src ? '' : 'border border-dashed'}`}
             style="border-radius:var(--radius-card); border-color:var(--line); background:var(--bg);"
           >
             {altesScreenshot.src
@@ -30,7 +30,7 @@ const neuesBild = demo.neuerScreenshot ?? demo.bilder[0];
         <div>
           <p class="text-xs font-semibold mb-2 uppercase tracking-wide" style="color:var(--accent);">Dieser Entwurf</p>
           <div
-            class="overflow-hidden aspect-[3/2] flex items-center justify-center border border-dashed"
+            class={`overflow-hidden aspect-[3/2] flex items-center justify-center ${neuesBild.src ? '' : 'border border-dashed'}`}
             style="border-radius:var(--radius-card); border-color:var(--line); background:var(--bg);"
           >
             {neuesBild.src

@@ -77,17 +77,24 @@ export const presets: Record<PresetName, Preset> = {
     headingTracking: '-0.02em',
     bodyFont: "'Inter', sans-serif",
     heroScale: 'clamp(3.2rem, 8vw, 6rem)',
-    bg: '#FFFFFF',
-    surface: '#F2F2F0',
-    ink: '#0A0A0A',
-    inkSoft: '#5B5B57',
-    line: 'rgba(10, 10, 10, 0.12)',
-    dark: '#0A0A0A',
-    darkInk: '#FFFFFF',
-    darkInkSoft: 'rgba(255, 255, 255, 0.65)',
-    radiusSm: '0px',
-    radiusCard: '0px',
-    radiusLg: '0px',
+    // Dunkles Grundgeruest (Nutzer-Feedback: "Hintergruende wieder schwarz")
+    // -- warmes Kohle-Schwarz statt reinem #000, damit es nicht klinisch
+    // wirkt. Akzentfarbe/Typo/Radius bleiben wie zuvor abgestimmt, nur
+    // hell/dunkel ist getauscht.
+    // Neutraler gehalten (weniger Braun-/Olivstich) -- der Hochglanz-Layer
+    // hellt die Flaechen stellenweise auf, und ein warmer Braunton wurde
+    // dabei sichtbar "braun statt schwarz" (Nutzer-Feedback mit Foto-Beleg).
+    bg: '#141210',
+    surface: '#1C1917',
+    ink: '#F2EDE4',
+    inkSoft: 'rgba(242, 237, 228, 0.6)',
+    line: 'rgba(242, 237, 228, 0.14)',
+    dark: '#0A0908',
+    darkInk: '#F2EDE4',
+    darkInkSoft: 'rgba(242, 237, 228, 0.65)',
+    radiusSm: '3px',
+    radiusCard: '6px',
+    radiusLg: '10px',
     buttonStyle: 'solid-sharp',
   },
   // Dieselbe Space-Grotesk/"solid-sharp"-Struktur wie "kontrast", aber die

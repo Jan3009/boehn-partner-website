@@ -15,7 +15,10 @@ interface Props {
 
 const { demo, slug, pageTitle } = Astro.props;
 const preset = presets[demo.style];
-const bespoke = !!demo.kinoKapitel;
+// An die echte Speisekarte gekoppelt, nicht an kinoKapitel -- das
+// Döner-spezifische Favicon/Body-Theme soll nicht an jeden zukuenftigen
+// Kino-Hero-Kunden vererbt werden (siehe gleicher Kommentar in Header.astro).
+const bespoke = !!demo.speisekarteKategorien;
 const title = pageTitle ? `${pageTitle} — ${demo.firmenname}` : `${demo.firmenname} — Website-Entwurf`;
 const description = demo.tagline;
 

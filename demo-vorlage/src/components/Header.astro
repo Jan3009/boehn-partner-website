@@ -9,7 +9,13 @@ interface Props {
 
 const { demo, slug } = Astro.props;
 const base = `/demo/${slug}`;
-const bespoke = !!demo.kinoKapitel;
+// Das komplette Bespoke-Header-Chrome (eigenes Logo-Bild, Gold-Wortmarke,
+// Nur-Anruf-Button statt Nav) ist an die echte Speisekarte gekoppelt, nicht
+// an "hat einen Kino-Hero" -- sonst wuerde jeder zukuenftige Kunde mit
+// kinoKapitel (z. B. ein Handwerksbetrieb mit starken Fotos) faelschlich
+// Walsroder Döners Logo/Branding erben. Aktuell identisch zu vorher, weil nur
+// Walsroder Döner beide Felder gesetzt hat.
+const bespoke = !!demo.speisekarteKategorien;
 const dark = !!demo.headerDunkel;
 const navLinks = [
   {

@@ -4,6 +4,8 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import ContactCta from '../../components/ContactCta.astro';
+import GoogleMap from '../../components/GoogleMap.astro';
+import Testimonials from '../../components/Testimonials.astro';
 
 export async function getStaticPaths() {
   const demos = await getCollection('demos');
@@ -15,14 +17,58 @@ export async function getStaticPaths() {
 
 const { demo } = Astro.props;
 const { slug } = Astro.params;
+// Bei Betrieben mit echter Speisekarte (aktuell nur Walsroder Döner) macht
+// ein Kontaktformular keinen Sinn -- bei einem Dönerladen ruft man an, statt
+// eine Nachricht zu schreiben. Stattdessen: großer Anruf-Block + Karte. An
+// die Speisekarte gekoppelt statt an kinoKapitel, sonst würde jedem
+// zukünftigen Kino-Hero-Kunden (z. B. Handwerk mit starken Fotos) faelschlich
+// das Kontaktformular weggenommen -- das ist dort weiterhin der zentrale
+// Lead-Kanal.
+const bespoke = !!demo.speisekarteKategorien;
 ---
 
 <PageLayout demo={demo} slug={slug} pageTitle="Kontakt">
-  <PageHeader kicker="Kontakt" title="Sprich uns an" lede={demo.kontakt.oeffnungszeiten} />
+  <PageHeader kicker="Kontakt" title={bespoke ? 'Ruf einfach an' : 'Sprich uns an'} lede={demo.kontakt.oeffnungszeiten} />
   <section class="px-6 sm:px-12 pb-24 sm:pb-32">
-    <div class="reveal max-w-[1320px] mx-auto">
-      <ContactForm demo={demo} />
-    </div>
+    {bespoke ? (
+      <div class="reveal max-w-[1320px] mx-auto grid gap-10 sm:grid-cols-2 items-stretch">
+        <a
+          href={`tel:${demo.kontakt.telefon.replace(/\s+/g, '')}`}
+          class="doener-kontakt-tile flex flex-col items-center justify-center text-center gap-4 p-10 sm:p-14"
+          style="background:var(--gloss), var(--dark); border-radius:var(--radius-lg);"
+        >
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <p class="font-heading text-3xl sm:text-4xl" style="color:var(--dark-ink);">{demo.kontakt.telefon}</p>
+          <p style="color:var(--dark-ink-soft);">{demo.kontakt.oeffnungszeiten}</p>
+          <p class="text-sm" style="color:var(--dark-ink-soft);">{demo.kontakt.adresse}</p>
+        </a>
+        {demo.googleMaps && <GoogleMap demo={demo} />}
+      </div>
+    ) : (
+      <div class="reveal max-w-[1320px] mx-auto grid gap-10 sm:grid-cols-2 items-start">
+        <ContactForm demo={demo} />
+        {demo.googleMaps && <GoogleMap demo={demo} />}
+      </div>
+    )}
   </section>
+  <Testimonials demo={demo} mode="full" />
   <ContactCta demo={demo} />
 </PageLayout>
+
+{bespoke && (
+  <style>
+    /* Gleicher Lift-Effekt wie auf böhnpartner.de (.card:hover), auf allen
+       Kacheln/Karten der Seite einheitlich. */
+    .doener-kontakt-tile {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    @media (hover: hover) {
+      .doener-kontakt-tile:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 44px -10px color-mix(in srgb, var(--accent) 45%, transparent);
+      }
+    }
+  </style>
+)}

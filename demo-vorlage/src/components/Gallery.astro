@@ -12,24 +12,24 @@ const { demo, slug, mode = 'full' } = Astro.props;
 const items = mode === 'teaser' ? demo.galerie.slice(0, 6) : demo.galerie;
 ---
 
-<section id="arbeiten" class="px-6 sm:px-12 py-24 sm:py-32">
+<section id="arbeiten" class="px-6 sm:px-12 py-16 sm:py-24">
   <div class="max-w-[1320px] mx-auto">
     {mode === 'teaser' && (
       <div class="flex flex-wrap items-end justify-between gap-6 mb-14">
         <div>
-          <p class="kicker mb-4">Fertige Arbeiten</p>
+          <p class="kicker mb-4">{demo.galerieLabel?.kicker ?? 'Fertige Arbeiten'}</p>
           <h2 class="font-heading text-3xl sm:text-4xl max-w-lg" style="color:var(--ink);">
-            Was {demo.firmenname} zuletzt umgesetzt hat
+            {demo.galerieLabel?.titel ?? `Was ${demo.firmenname} zuletzt umgesetzt hat`}
           </h2>
         </div>
-        <Button demo={demo} href={`/demo/${slug}/galerie/`}>Alle Arbeiten ansehen</Button>
+        <Button demo={demo} href={`/demo/${slug}/galerie/`}>{demo.galerieLabel?.nav ?? 'Arbeiten'} ansehen</Button>
       </div>
     )}
 
     <div class="reveal grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
       {items.map((bild) => (
         <div
-          class="aspect-square overflow-hidden border border-dashed flex items-center justify-center"
+          class={`aspect-square overflow-hidden flex items-center justify-center ${bild.src ? '' : 'border border-dashed'}`}
           style="border-radius:var(--radius-card); border-color:var(--line); background:var(--surface);"
         >
           {bild.src

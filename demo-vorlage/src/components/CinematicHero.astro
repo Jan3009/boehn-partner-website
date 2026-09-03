@@ -171,9 +171,12 @@ const kapitel = demo.kinoKapitel!;
     white-space: nowrap;
     /* Volltonfarbe statt Outline -- bleibt so unabhaengig vom Bildinhalt
        darunter immer gut lesbar (Nutzer-Feedback: schwer lesbar/zu klein).
-       Dasselbe Gold wie Logo/Header-Anruf-Button. */
-    background: #f5de5c;
-    color: #15110d;
+       Die Akzentfarbe des jeweiligen Kunden (nicht mehr hartkodiertes
+       Döner-Gold) -- CinematicHero ist seit der Header/PageLayout-Entkopplung
+       kein Döner-exklusives Bauteil mehr. dark-ink/dark je nach Preset hell
+       oder dunkel genug fuer Kontrast auf der Akzentflaeche. */
+    background: var(--accent);
+    color: var(--dark);
     border: none;
     border-radius: var(--radius-sm);
     box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);

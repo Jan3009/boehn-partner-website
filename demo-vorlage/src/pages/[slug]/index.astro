@@ -23,17 +23,26 @@ export async function getStaticPaths() {
 
 const { demo } = Astro.props;
 const { slug } = Astro.params;
-// Bespoke Sektionen (Doener*) nur fuer Kunden mit kinoKapitel -- aktuell nur
-// Walsroder Döner. Alle anderen Demo-Kunden bleiben unveraendert beim
-// generischen Komponenten-Set.
-const bespoke = !!demo.kinoKapitel;
+// Zwei UNABHAENGIGE Schalter statt einem gemeinsamen "bespoke":
+// - cinematic: Kunde hat einen Kino-Hero (kinoKapitel) -- z. B. jeder
+//   Betrieb mit starken, eigenen Fotos, nicht nur Restaurants. Bekommt den
+//   filmischen Scroll-Hero + die generische, aber hochwertigere
+//   DoenerTeam-"Über uns"-Kachel (Foto + Zitat + Kennzahlen).
+// - speisekarte: Kunde hat eine echte Speisekarte (speisekarteKategorien) --
+//   aktuell nur Walsroder Döner. Nur DANN ergeben Menü-Teaser/Info-Kacheln
+//   ("Lieferservice", "Terrasse & Parkplatz") ueberhaupt Sinn.
+// (Ein voelliger Neuentwurf ohne dieses geteilte Komponenten-Set gehoert NICHT
+// hierher, sondern als eigenstaendige Seite unter src/pages/<slug>.astro --
+// siehe fliesen-hoelscher.astro / fliesen-yildiz-emmerich.astro als Vorlage.)
+const cinematic = !!demo.kinoKapitel;
+const speisekarte = !!demo.speisekarteKategorien;
 ---
 
 <PageLayout demo={demo} slug={slug}>
-  {bespoke ? <CinematicHero demo={demo} slug={slug} /> : <Hero demo={demo} slug={slug} />}
-  {bespoke ? <DoenerMenuTeaser demo={demo} slug={slug} /> : <Services demo={demo} slug={slug} mode="teaser" />}
-  {bespoke ? <DoenerTeam demo={demo} slug={slug} mode="teaser" /> : <Geschichte demo={demo} slug={slug} mode="teaser" />}
-  {bespoke ? (
+  {cinematic ? <CinematicHero demo={demo} slug={slug} /> : <Hero demo={demo} slug={slug} />}
+  {speisekarte ? <DoenerMenuTeaser demo={demo} slug={slug} /> : <Services demo={demo} slug={slug} mode="teaser" />}
+  {cinematic ? <DoenerTeam demo={demo} slug={slug} mode="teaser" /> : <Geschichte demo={demo} slug={slug} mode="teaser" />}
+  {speisekarte ? (
     <DoenerInfoStrip demo={demo} />
   ) : (
     !demo.galerieTeaserAusblenden && <Gallery demo={demo} slug={slug} mode="teaser" />

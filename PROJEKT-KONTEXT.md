@@ -164,13 +164,19 @@ dazu `style.css` und `main.js` (Mobile-Menü, Scroll-Animationen).
     bereits aktiv ("E-mail — für jede Formulareinreichung"), Empfänger-Adresse
     sollte nochmal geprüft werden.
 
-## Fixkosten-Übersicht (Software, Stand aktuell)
+## Fixkosten-Übersicht (Stand aktuell)
 
-| Kategorie | Anbieter | Betrag/Monat |
+| Kategorie | Anbieter/Wer | Betrag/Monat |
 |---|---|---|
-| Software | Claude Pro | 20,00 € |
+| Software | Claude (Plan aktualisiert, genaue Stufe nicht dokumentiert) | 120,00 € |
 | Software | Google Workspace Business Starter | 16,20 € |
 | Domain & E-Mail | GoDaddy (Domain + Microsoft 365) | ca. 4,00 € (Schätzung, exakten Betrag prüfen) |
+| Software | Händlerbund BASIC-Mitgliedschaft (Rechtstexte für böhnpartner.de, Vertrag seit 27.07.2026, Mindestlaufzeit bis 26.07.2027) | 15,35 € (lt. Vertragdetails im Kundencenter; Nutzer hatte vorher 25 € im Kopf — Differenz ggf. gegenprüfen) |
+| Software | eRecht24 Business (Agentur-Paket für Rechtstexte bei Kundenprojekten, z. B. Innenausbau Hultsch — Kundenwebseiten als eigene "Webprojekte" anlegen, eigene Seite bleibt bei Händlerbund) | ca. 40,00 € (aktueller Einführungspreis; regulär 80,00 € — vor Vertragsschluss prüfen, ab wann der reguläre Preis greift) |
+| Software | Lexware (Angebote/Rechnungen) | 22,90 € |
+| Krankenkasse | Jan (Tim ist familienversichert, zahlt nichts) — wird als Firmenkosten geführt | 300,00 € |
+
+**Summe: ca. 477,55–517,55 €/Monat** (je nachdem ob eRecht24 zum Einführungs- oder regulären Preis läuft)
 
 ## Hinweis zur Nutzung dieser Datei
 
