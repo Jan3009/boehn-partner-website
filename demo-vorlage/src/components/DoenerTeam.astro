@@ -1,0 +1,131 @@
+---
+// Bespoke "Über uns"-Teaser fuer die Startseite: Foto + erster Satz aus
+// "geschichte" + die beiden Bewertungs-Badges als Kennzahlen. Ersetzt
+// Geschichte.astro fuer Kunden mit kinoKapitel (siehe [slug]/index.astro).
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  slug: string;
+  mode?: 'teaser' | 'full';
+}
+
+const { demo, slug } = Astro.props;
+const image = demo.bilder[0];
+const anriss = demo.geschichte.split('. ')[0] + '.';
+---
+
+<section class="doener-team" id="ueber-uns">
+  <div class="doener-team__media">
+    {image.src && <img src={image.src} alt={image.alt} class="doener-team__img" loading="lazy" />}
+    <div class="doener-team__scrim" aria-hidden="true"></div>
+  </div>
+  <div class="doener-team__panel">
+    <div class="doener-team__content reveal">
+      <p class="kicker mb-4">Über uns</p>
+      <h2 class="font-heading text-4xl sm:text-5xl mb-7" style="color:var(--ink);">Das sind wir</h2>
+      <p class="text-xl mb-8" style="color:var(--ink-soft);">{anriss}</p>
+      {demo.bewertungenBadges && demo.bewertungenBadges.length > 0 && (
+        <div class="doener-team__stats">
+          {demo.bewertungenBadges.map((badge) => (
+            <div class="doener-team__stat">
+              <strong style="color:var(--ink);">{badge.wert}</strong>
+              <span>{badge.quelle}{badge.anzahl ? ` · ${badge.anzahl}` : ''}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <div class="mt-10">
+        <Button demo={demo} href={`/demo/${slug}/ueber-uns/`} onDark>Mehr über uns</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .doener-team {
+    display: grid;
+    min-height: 34rem;
+    position: relative;
+  }
+
+  @media (min-width: 900px) {
+    .doener-team {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .doener-team__media {
+    position: relative;
+    min-height: 20rem;
+  }
+
+  @media (min-width: 900px) {
+    .doener-team__media {
+      min-height: 100%;
+    }
+  }
+
+  .doener-team__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 85% top;
+  }
+
+  .doener-team__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.35) 100%);
+  }
+
+  @media (min-width: 900px) {
+    .doener-team__scrim {
+      background: linear-gradient(90deg, transparent 70%, var(--surface) 100%);
+    }
+  }
+
+  .doener-team__panel {
+    display: flex;
+    align-items: center;
+    padding: 3.5rem 1.5rem;
+    background: var(--gloss), var(--surface);
+  }
+
+  @media (min-width: 640px) {
+    .doener-team__panel {
+      padding: 4rem 3rem;
+    }
+  }
+
+  .doener-team__content {
+    width: 100%;
+    max-width: 46rem;
+  }
+
+  .doener-team__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .doener-team__stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .doener-team__stat strong {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .doener-team__stat span {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+</style>

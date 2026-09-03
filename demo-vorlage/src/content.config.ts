@@ -51,7 +51,7 @@ const demos = defineCollection({
         dark: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
       })
       .optional(),
-    style: z.enum(['editorial', 'schwarzgold', 'kontrast']),
+    style: z.enum(['editorial', 'schwarzgold', 'kontrast', 'kontrast-dunkel']),
     akzentfarbe: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Muss ein Hex-Farbcode sein, z. B. #C7A252'),
     leistungen: z
       .array(
@@ -174,6 +174,13 @@ const demos = defineCollection({
     // Story aus nummerierten Vollbild-Kapiteln (Foto + Zahl + Titel), die
     // sich beim Scrollen ueberblenden. Nur setzen, wenn der Betrieb starke,
     // grossflaechige Fotos hat -- sonst normalen Hero (bilder[0]) nutzen.
+    // min(1) statt min(2): CinematicHero.astro (setupCineHero) ueberspringt
+    // die Pin/Crossfade-Logik ohnehin bei nur einem Kapitel und zeigt dann
+    // einfach ein normales, nicht gepinntes Kopfzeilen-Video/-Bild -- genau
+    // das braucht Walsroder Doener (nur EIN Header-Video, danach normales
+    // Scrollen zur restlichen Seite, keine Foto-Slideshow im Header mehr;
+    // Nutzer-Feedback: die 6 Kapitel wirkten wie ploetzlich aufploppende
+    // Bilder im Header statt normalem Scrollen).
     kinoKapitel: z
       .array(
         z.object({
@@ -190,7 +197,7 @@ const demos = defineCollection({
           video: z.string().optional(),
         })
       )
-      .min(2)
+      .min(1)
       .max(6)
       .optional(),
     // Optional: Google-Maps-Kartenausschnitt auf der Kontaktseite (ohne API-

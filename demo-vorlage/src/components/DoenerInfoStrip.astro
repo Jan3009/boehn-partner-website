@@ -1,0 +1,72 @@
+---
+// Drei kompakte Info-Karten (Lieferservice, Terrasse/Parkplatz, Öffnungszeiten)
+// zwischen Team-Sektion und Bewertungen auf der Startseite. Die ersten beiden
+// Karten sind die letzten beiden Eintraege aus "leistungen" (dort stehen sie
+// bewusst als generische Info-Punkte, nicht als Speisekarten-Kategorie), die
+// dritte kommt direkt aus kontakt.oeffnungszeiten.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+const [lieferung, terrasse] = demo.leistungen.slice(-2);
+---
+
+<section class="px-6 sm:px-12 py-16 sm:py-24" style="background:var(--gloss), var(--bg);">
+  <div class="max-w-[1600px] mx-auto reveal">
+    <div class="doener-info-grid">
+      <div class="doener-info-card">
+        <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 13h13l3 4h2M3 13V7h11l3 4M3 13v4h2m10-4v4m0 0a2 2 0 104 0m-4 0a2 2 0 10-4 0m-6 0a2 2 0 104 0m-4 0a2 2 0 10-4 0" />
+        </svg>
+        <h3 class="font-heading text-xl sm:text-2xl mt-4 mb-2" style="color:var(--ink);">{lieferung.titel}</h3>
+        <p style="color:var(--ink-soft);">{lieferung.text}</p>
+      </div>
+      <div class="doener-info-card">
+        <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v18M3 12h18M5 5l4 4M19 5l-4 4M5 19l4-4M19 19l-4-4" />
+        </svg>
+        <h3 class="font-heading text-xl sm:text-2xl mt-4 mb-2" style="color:var(--ink);">{terrasse.titel}</h3>
+        <p style="color:var(--ink-soft);">{terrasse.text}</p>
+      </div>
+      <div class="doener-info-card">
+        <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 class="font-heading text-xl sm:text-2xl mt-4 mb-2" style="color:var(--ink);">Öffnungszeiten</h3>
+        <p style="color:var(--ink-soft);">{demo.kontakt.oeffnungszeiten}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .doener-info-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 700px) {
+    .doener-info-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .doener-info-card {
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+
+  @media (hover: hover) {
+    .doener-info-card:hover {
+      transform: translateY(-6px);
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      box-shadow: 0 20px 44px -10px color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+  }
+</style>

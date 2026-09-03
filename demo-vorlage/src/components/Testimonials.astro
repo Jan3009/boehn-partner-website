@@ -1,0 +1,128 @@
+---
+// Echte Kundenstimmen (Google/Facebook/Restaurant Guru) als Social Proof.
+// Rendert nichts, wenn der Kunde keine "bewertungen" in der YAML hinterlegt
+// hat (aktuell nur Walsroder Döner) -- kein Platzhaltertext mit erfundenen
+// Bewertungen.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+  mode?: 'teaser' | 'full';
+}
+
+const { demo } = Astro.props;
+const bewertungen = demo.bewertungen ?? [];
+const badges = demo.bewertungenBadges ?? [];
+---
+
+{bewertungen.length > 0 && (
+  <section class="px-6 sm:px-12 py-16 sm:py-24" style="background:var(--gloss), var(--surface);">
+    <div class="max-w-[1600px] mx-auto">
+      <div class="mb-14">
+        <p class="kicker mb-4">Bewertungen</p>
+        <h2 class="font-heading text-3xl sm:text-5xl max-w-2xl" style="color:var(--ink);">Das sagen unsere Kunden</h2>
+      </div>
+      {badges.length > 0 && (
+        <div class="flex flex-wrap gap-5 mb-14 reveal">
+          {badges.map((badge) => (
+            <div class="doener-testi-badge flex items-baseline gap-3 px-7 py-5 border" style="border-radius:var(--radius-pill); border-color:var(--line); background:var(--bg);">
+              <span class="font-heading text-4xl" data-count-to={badge.wert} style="color:var(--ink);">{badge.wert}</span>
+              <span class="text-base" style="color:var(--ink-soft);">{badge.quelle}{badge.anzahl ? ` · ${badge.anzahl}` : ''}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <div class="grid gap-8 sm:grid-cols-2 reveal">
+        {bewertungen.map((b) => (
+          <div class="doener-testi-card p-10 sm:p-12 border relative" style="border-radius:var(--radius-card); border-color:var(--line); background:var(--gloss), var(--bg);">
+            <span class="doener-testi-mark" aria-hidden="true">&rdquo;</span>
+            <p class="mb-5 text-xl" aria-hidden="true" style="color:var(--accent); letter-spacing:0.12em;">{'★'.repeat(b.sterne)}</p>
+            <p class="mb-7 text-xl sm:text-2xl leading-relaxed font-heading" style="color:var(--ink);">&ldquo;{b.text}&rdquo;</p>
+            <p class="text-sm font-semibold" style="color:var(--ink-soft);">{b.autor} · {b.quelle}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  function animateCount(el: HTMLElement) {
+    const raw = el.getAttribute('data-count-to') ?? el.textContent ?? '';
+    const match = raw.match(/[\d.,]+/);
+    if (!match || match.index === undefined) return;
+    const numberPart = match[0];
+    const prefix = raw.slice(0, match.index);
+    const suffix = raw.slice(match.index + numberPart.length);
+    const usesComma = numberPart.includes(',');
+    const target = parseFloat(numberPart.replace(',', '.'));
+    if (Number.isNaN(target)) return;
+    const decimals = usesComma ? numberPart.split(',')[1]?.length ?? 0 : 0;
+
+    let frame = 0;
+    const timer = window.setInterval(() => {
+      frame++;
+      const progress = Math.min(frame / 24, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      const formatted = decimals > 0 ? value.toFixed(decimals).replace('.', ',') : String(Math.round(value));
+      el.textContent = prefix + formatted + suffix;
+      if (progress >= 1) {
+        window.clearInterval(timer);
+        el.textContent = raw;
+      }
+    }, 32);
+  }
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const targets = document.querySelectorAll<HTMLElement>('[data-count-to]');
+    if (targets.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              animateCount(entry.target as HTMLElement);
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.4 }
+      );
+      targets.forEach((el) => observer.observe(el));
+    }
+  }
+</script>
+
+<style>
+  .doener-testi-card,
+  .doener-testi-badge {
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+
+  .doener-testi-card {
+    overflow: hidden;
+  }
+
+  @media (hover: hover) {
+    .doener-testi-card:hover,
+    .doener-testi-badge:hover {
+      transform: translateY(-6px);
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      box-shadow: 0 20px 44px -10px color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+  }
+
+  .doener-testi-mark {
+    position: absolute;
+    top: -1.5rem;
+    right: 1rem;
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 10rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.1;
+    pointer-events: none;
+    user-select: none;
+  }
+</style>

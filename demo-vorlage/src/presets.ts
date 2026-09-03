@@ -5,7 +5,7 @@
 // `akzentfarbe` bleibt pro Kunde frei wählbar und wirkt als Signalfarbe
 // innerhalb der jeweiligen Palette (z. B. der Metallton bei "schwarzgold").
 
-export type PresetName = 'editorial' | 'schwarzgold' | 'kontrast';
+export type PresetName = 'editorial' | 'schwarzgold' | 'kontrast' | 'kontrast-dunkel';
 export type ButtonStyle = 'outline-ink' | 'outline-accent' | 'solid-sharp';
 
 export interface Preset {
@@ -88,6 +88,30 @@ export const presets: Record<PresetName, Preset> = {
     radiusSm: '0px',
     radiusCard: '0px',
     radiusLg: '0px',
+    buttonStyle: 'solid-sharp',
+  },
+  // Dieselbe Space-Grotesk/"solid-sharp"-Struktur wie "kontrast", aber die
+  // dunkle Palette (statt Weiß) -- eigenes Preset statt Override, damit
+  // "kontrast" fuer andere Kunden (z. B. Malerbetrieb Müller) weiß bleibt.
+  // Walsroder Döners eigenes Branding/Feedback: bewusst dunkel, kein Weiß.
+  'kontrast-dunkel': {
+    label: 'Kontrast Dunkel',
+    headingFont: "'Space Grotesk', sans-serif",
+    headingWeight: '700',
+    headingTracking: '-0.02em',
+    bodyFont: "'Inter', sans-serif",
+    heroScale: 'clamp(3.2rem, 8vw, 6rem)',
+    bg: '#141210',
+    surface: '#1C1917',
+    ink: '#F2EDE4',
+    inkSoft: 'rgba(242, 237, 228, 0.6)',
+    line: 'rgba(242, 237, 228, 0.14)',
+    dark: '#0A0908',
+    darkInk: '#F2EDE4',
+    darkInkSoft: 'rgba(242, 237, 228, 0.65)',
+    radiusSm: '3px',
+    radiusCard: '6px',
+    radiusLg: '10px',
     buttonStyle: 'solid-sharp',
   },
 };
