@@ -1,0 +1,41 @@
+---
+// WIEDERHERGESTELLT, NICHT NEU ERFUNDEN.
+//
+// src/pages/[slug]/galerie.astro importiert diese Komponente seit jeher
+// (auch auf main), aber die Datei war nie im Repository -- sie taucht in der
+// gesamten Git-Historie nicht auf. Dadurch liess sich `npm run build` im
+// gesamten Projekt nicht mehr ausfuehren, nicht nur fuer die Doener-Demo:
+//   [UNRESOLVED_IMPORT] Could not resolve '../../components/DoenerGallery.astro'
+//
+// Diese Fassung stellt nur die Bauffaehigkeit wieder her. Sie zeigt die
+// Galerie im Vollformat, ohne Teaser-Kopfzeile und ohne "Alle ansehen"-Button
+// -- auf der eigenen Galerie-Seite waeren beide ueberfluessig. Bewusst OHNE
+// `slug`-Prop, weil die Aufrufstelle nur `demo` uebergibt.
+//
+// Falls fuer Walsroder Doener urspruenglich eine eigene Galerie-Optik geplant
+// war (Speisen gross, andere Rasterung), gehoert die hier hinein.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+---
+
+<section id="arbeiten" class="px-6 sm:px-12 py-16 sm:py-24">
+  <div class="max-w-[1320px] mx-auto">
+    <div class="reveal grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+      {demo.galerie.map((bild) => (
+        <div
+          class={`aspect-square overflow-hidden flex items-center justify-center ${bild.src ? '' : 'border border-dashed'}`}
+          style="border-radius:var(--radius-card); border-color:var(--line); background:var(--surface);"
+        >
+          {bild.src
+            ? <img src={bild.src} alt={bild.alt} class="w-full h-full object-cover" />
+            : <p class="text-xs text-center px-4" style="color:var(--ink-soft);">Foto-Platzhalter: {bild.alt}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

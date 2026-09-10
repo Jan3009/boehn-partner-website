@@ -1,0 +1,438 @@
+---
+// Bespoke Einzelseiten-Entwurf fuer Fußbodenprojekte Walsrode (Eisenweg 1).
+// Bewusst KEIN [slug]-Mehrseiter ueber PageLayout/presets.ts -- Kundenwunsch
+// war ein Auftritt im Stil grosser Produktseiten (Apple-Prinzip): sehr grosse
+// Typografie, viel Weissraum, vollflaechige Materialbilder, ruhige
+// Scroll-Einblendungen, blaue Systemakzente nur fuer Interaktives.
+//
+// Bildmaterial: Der Betrieb hat noch keine nutzbaren eigenen Aufnahmen
+// geliefert. Statt grauer Platzhalter oder fremder Fotos werden die
+// Bodenflaechen mit tools/materialtexturen.py und tools/raumansichten.py
+// prozedural erzeugt und auf der Seite ausdruecklich als
+// Materialdarstellung gekennzeichnet. Vor einer Veroeffentlichung sind sie
+// durch echte Fotos des Betriebs zu ersetzen.
+//
+// Fakten aus oeffentlicher Recherche (Google-Unternehmensprofil, Cylex,
+// Das Oertliche, Stand 09/2026): Eisenweg 1, 29664 Walsrode, Mo-Fr 10-17 Uhr,
+// Sa nach Vereinbarung, 4,8 Sterne aus 20 Bewertungen, ueber zehn Jahre am
+// Standort. KEINE Preise auf der Seite -- die waeren erfunden und wuerden den
+// Betrieb gegenueber seinen Kunden binden.
+// ACHTUNG Telefonnummer: Quellen nennen sowohl 05161 788895 als auch
+// 05161 7888895. Hier steht die kuerzere Variante; vor Veroeffentlichung
+// gegen das Google-Profil pruefen.
+import '../styles/global.css';
+import EntwurfBar from '../components/EntwurfBar.astro';
+---
+
+<!doctype html>
+<!-- Die Vorlagen-global.css setzt h1..h3 auf var(--font-heading) und dessen
+     Standard ist Newsreader (Serif). Ohne diese Ueberschreibung faellt die
+     Seite bei jeder Ueberschrift in eine Serifenschrift zurueck. --dark und
+     --dark-ink braucht zusaetzlich die EntwurfBar. -->
+<html lang="de" style="--font-heading:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; --font-heading-weight:600; --font-heading-tracking:-0.035em; --font-body:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; --dark:#1D1D1F; --dark-ink:#F5F5F7;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Fußbodenprojekte Walsrode · Parkett, Vinyl und Kork am Eisenweg</title>
+    <meta name="description" content="Bodenfachbetrieb in Walsrode: Parkett, Laminat, Vinyl-Designboden, Kork, Treppensanierung und WPC-Terrassen. Ausstellung am Eisenweg 1, Beratung mit echten Mustern." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <style is:global>
+/* Bewusst eine einzige, helle Welt statt Theme-Umschaltung: die Materialbilder
+   sind auf hellem Grund fotografiert bzw. gerechnet und würden auf dunklem
+   Untergrund wie ausgeschnitten wirken. Alle Farben stehen trotzdem
+   ausdrücklich hier, damit die Seite auf jedem Host-Untergrund hält. */
+:root{
+  --w:#FFFFFF; --g:#F5F5F7; --ink:#1D1D1F; --soft:#6E6E73;
+  --line:rgba(0,0,0,.10); --blue:#0071E3; --dark:#000000;
+  --ease:cubic-bezier(.28,0,.24,1);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--w); color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:17px; line-height:1.47; letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0; font-weight:600; letter-spacing:-.035em; line-height:1.06; text-wrap:balance}
+p{margin:0}
+img{max-width:100%; display:block}
+a{color:inherit}
+.wrap{max-width:1020px; margin:0 auto; padding-inline:22px}
+.wide{max-width:1320px; margin:0 auto; padding-inline:22px}
+
+.nav{
+  position:sticky; top:0; z-index:50; height:48px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:1020px; margin:0 auto; height:100%; padding-inline:22px;
+  display:flex; align-items:center; gap:26px; font-size:12.5px}
+.nav-wm{font-weight:600; font-size:13.5px; letter-spacing:-.01em}
+.nav a{text-decoration:none; opacity:.86}
+.nav a:hover{opacity:1}
+.nav-sp{flex:1 1 auto}
+.nav-tel{color:var(--blue); font-weight:500; text-decoration:none}
+@media (max-width:720px){ .nav-hide{display:none} }
+
+/* ---------- Typografische Skala ---------- */
+.k{font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+   color:var(--blue); margin-bottom:14px}
+.t1{font-size:clamp(2.9rem,8vw,5.6rem)}
+.t2{font-size:clamp(2rem,5vw,3.4rem)}
+.t3{font-size:clamp(1.5rem,3vw,2rem)}
+.sub{margin-top:20px; color:var(--soft); font-size:clamp(1.05rem,2vw,1.32rem);
+     max-width:38ch; line-height:1.42}
+.mid{text-align:center}
+.mid .sub{margin-left:auto; margin-right:auto}
+.links{display:flex; gap:24px; margin-top:26px; flex-wrap:wrap; align-items:center}
+.mid .links{justify-content:center}
+.lnk{color:var(--blue); text-decoration:none; font-size:17px; white-space:nowrap}
+.lnk:hover{text-decoration:underline}
+.pill{display:inline-block; background:var(--blue); color:#fff; text-decoration:none;
+  padding:11px 23px; border-radius:980px; font-size:16px; white-space:nowrap}
+.pill:hover{filter:brightness(1.09)}
+.pill--inv{background:#F5F5F7; color:#1D1D1F}
+
+/* ---------- Reveal ----------
+   Die Klasse greift NUR, wenn JS läuft (html.js). Ohne JS ist alles sichtbar --
+   eine Seite, die ohne Skript leer bleibt, ist kaputt, nicht animiert. */
+.js .rv{opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+.js .rv.in{opacity:1; transform:none}
+@media (prefers-reduced-motion: reduce){
+  .js .rv{opacity:1 !important; transform:none !important; transition:none}
+}
+
+/* ---------- Hero ---------- */
+.hero{padding:74px 0 0; overflow:hidden}
+.hero-im{
+  margin-top:46px; overflow:hidden; position:relative;
+  width:100%; height:clamp(320px, 56.25vw, 76vh);
+}
+.hero-im img{width:100%; height:100%; object-fit:cover; transform-origin:center 62%}
+.hero-note{
+  max-width:1320px; margin:12px auto 0; padding-inline:22px;
+  font-size:11.5px; color:var(--soft);
+}
+
+/* ---------- Sektionen ---------- */
+.sec{padding:clamp(70px,10vw,124px) 0}
+.sec--g{background:var(--g)}
+.sec--d{background:var(--dark); color:#F5F5F7}
+.sec--d .sub{color:rgba(245,245,247,.66)}
+.sec--tight{padding-block:clamp(48px,7vw,80px)}
+
+/* Vollbild-Materialsektion */
+.full{position:relative; min-height:min(88vh,760px); display:flex; align-items:flex-end;
+      overflow:hidden}
+.full img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.full-scrim{position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.05) 42%, rgba(0,0,0,.72) 100%)}
+.full-tx{position:relative; width:100%; padding-bottom:clamp(44px,7vw,86px); color:#fff}
+.full-tx .k{color:#EEBE7E}
+.full-tx .sub{color:rgba(255,255,255,.78)}
+
+/* Materialreihe */
+.rail{display:grid; grid-auto-flow:column; grid-auto-columns:min(74vw,340px); gap:20px;
+  overflow-x:auto; scroll-snap-type:x mandatory; padding:44px 22px 12px;
+  max-width:1320px; margin:0 auto; scrollbar-width:thin}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2); border-radius:3px}
+.card{scroll-snap-align:start; background:var(--w); border-radius:20px; overflow:hidden;
+  border:1px solid var(--line); display:flex; flex-direction:column}
+.card img{aspect-ratio:4/5; object-fit:cover; width:100%}
+.card-tx{padding:22px 22px 26px; display:flex; flex-direction:column; gap:7px; flex:1 1 auto}
+.card-tx h3{font-size:20px}
+.card-tx p{color:var(--soft); font-size:14.5px}
+.tags{display:flex; gap:7px; flex-wrap:wrap; margin-top:auto; padding-top:14px}
+.tag{font-size:11.5px; color:var(--soft); border:1px solid var(--line);
+     border-radius:980px; padding:4px 11px}
+.railhint{max-width:1320px; margin:10px auto 0; padding-inline:22px;
+  font-size:11.5px; color:var(--soft)}
+
+/* Bento */
+.bento{display:grid; gap:16px; grid-template-columns:1fr; margin-top:50px}
+@media (min-width:860px){ .bento{grid-template-columns:repeat(3,1fr)} .b2{grid-column:span 2} }
+.tile{background:var(--w); border-radius:22px; padding:34px; min-height:220px;
+  display:flex; flex-direction:column; justify-content:flex-end; gap:7px;
+  position:relative; overflow:hidden}
+.tile h3{font-size:23px}
+.tile p{color:var(--soft); font-size:15px}
+.tile-n{font-size:clamp(3rem,6vw,4.4rem); font-weight:600; letter-spacing:-.045em;
+  line-height:1; margin-bottom:2px}
+.tile--im{padding:0; min-height:290px}
+.tile--im img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.tile--im .tt{position:relative; margin-top:auto; padding:32px; color:#fff;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.68))}
+.tile--im .tt p{color:rgba(255,255,255,.8)}
+
+/* Ablauf */
+.steps{display:grid; gap:1px; background:var(--line); border-radius:20px;
+  overflow:hidden; margin-top:52px}
+@media (min-width:860px){ .steps{grid-template-columns:repeat(4,1fr)} }
+.step{background:var(--w); padding:32px 26px; display:flex; flex-direction:column; gap:8px}
+.step-n{color:var(--blue); font-size:13px; font-weight:600}
+.step h3{font-size:19px}
+.step p{color:var(--soft); font-size:14.5px}
+
+/* Kontakt */
+.kk{display:grid; gap:40px; margin-top:48px}
+@media (min-width:860px){ .kk{grid-template-columns:1fr 1fr} }
+.kv{padding:15px 0; border-bottom:1px solid var(--line)}
+.kv span{display:block; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--soft); margin-bottom:2px}
+.kv b{font-weight:500; font-size:19px}
+.kv a{text-decoration:none}
+
+.foot{background:var(--g); padding:44px 0 58px; font-size:12px; color:var(--soft)}
+.foot p{margin-bottom:14px; max-width:74ch; line-height:1.5}
+.foot-in{display:flex; flex-wrap:wrap; gap:9px 26px; padding-top:16px;
+  border-top:1px solid var(--line)}
+</style>
+  </head>
+  <body>
+    <EntwurfBar />
+<nav class="nav">
+  <div class="nav-in">
+    <span class="nav-wm">Fußbodenprojekte</span>
+    <a href="#boeden" class="nav-hide">Böden</a>
+    <a href="#ablauf" class="nav-hide">Ablauf</a>
+    <a href="#ausstellung" class="nav-hide">Ausstellung</a>
+    <span class="nav-sp"></span>
+    <a href="tel:05161788895" class="nav-tel">05161 788895</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap mid">
+    <p class="k">Bodenfachbetrieb in Walsrode</p>
+    <h1 class="t1">Ihr Boden.</h1>
+    <p class="sub">Dreihundert Muster in der Ausstellung. Ein Festpreis.
+    Meist drei Tage, bis Sie darauf stehen.</p>
+    <div class="links">
+      <a class="pill" href="tel:05161788895">Beratung vereinbaren</a>
+      <a class="lnk" href="#boeden">Böden ansehen&nbsp;›</a>
+    </div>
+  </div>
+  <div class="hero-im"><img id="heroimg" src="/demo/images/demos/fussbodenprojekte-walsrode/raum-eiche-hell.webp"
+    alt="Eichendielen, in die Raumtiefe verlegt"></div>
+  <p class="hero-note">Materialdarstellung — kein Foto einer ausgeführten Arbeit.</p>
+</header>
+
+<section class="sec sec--tight" id="boeden">
+  <div class="wrap rv">
+    <p class="k">Sortiment</p>
+    <h2 class="t2">Sechs Materialien.<br>Ein Ansprechpartner.</h2>
+    <p class="sub">Beraten, aufgemessen, verlegt und übergeben — von denselben Leuten.
+    Kein Subunternehmer, der plötzlich vor der Tür steht.</p>
+  </div>
+
+  <div class="rail">
+    <article class="card rv">
+      <img src="/demo/images/demos/fussbodenprojekte-walsrode/material-eiche-natur.webp" alt="Eiche Natur, heller Dielenverband">
+      <div class="card-tx">
+        <h3>Eiche Natur</h3>
+        <p>Der Klassiker. Hell und ruhig — und er wird mit den Jahren schöner statt schlechter.</p>
+        <div class="tags"><span class="tag">Massivholz</span><span class="tag">abschleifbar</span>
+          <span class="tag">Fußbodenheizung</span></div>
+      </div>
+    </article>
+    <article class="card rv">
+      <img src="/demo/images/demos/fussbodenprojekte-walsrode/material-raeuchereiche.webp" alt="Räuchereiche, dunkler Dielenverband">
+      <div class="card-tx">
+        <h3>Räuchereiche</h3>
+        <p>Tief und warm. Durchgefärbt bis in den Kern, nicht nur oberflächlich gebeizt.</p>
+        <div class="tags"><span class="tag">Massivholz</span><span class="tag">geölt</span>
+          <span class="tag">abschleifbar</span></div>
+      </div>
+    </article>
+    <article class="card rv">
+      <img src="/demo/images/demos/fussbodenprojekte-walsrode/material-landhausdiele.webp" alt="Landhausdiele in großer Länge">
+      <div class="card-tx">
+        <h3>Landhausdiele</h3>
+        <p>Lange, breite Dielen. Für große Räume, die ruhig wirken sollen.</p>
+        <div class="tags"><span class="tag">bis 2,20 m</span><span class="tag">Mehrschicht</span></div>
+      </div>
+    </article>
+    <article class="card rv">
+      <img src="/demo/images/demos/fussbodenprojekte-walsrode/material-vinyl-stein.webp" alt="Vinyl-Designboden in Steinoptik">
+      <div class="card-tx">
+        <h3>Vinyl-Designboden</h3>
+        <p>Fugendicht und fußwarm. Der einzige Boden, den wir auch im Bad verlegen.</p>
+        <div class="tags"><span class="tag">Nassbereich</span><span class="tag">leise</span>
+          <span class="tag">Fußbodenheizung</span></div>
+      </div>
+    </article>
+    <article class="card rv">
+      <img src="/demo/images/demos/fussbodenprojekte-walsrode/material-kork.webp" alt="Korkboden mit feiner Granulatstruktur">
+      <div class="card-tx">
+        <h3>Kork</h3>
+        <p>Fußwarm und trittelastisch. Der leiseste Boden im Sortiment.</p>
+        <div class="tags"><span class="tag">nachwachsend</span><span class="tag">warm</span></div>
+      </div>
+    </article>
+    <article class="card rv">
+      <img src="/demo/images/demos/fussbodenprojekte-walsrode/material-wpc-terrasse.webp" alt="WPC-Terrassendielen mit Längsriffelung">
+      <div class="card-tx">
+        <h3>WPC-Terrasse</h3>
+        <p>Holzoptik für draußen — ohne dass Sie jedes Frühjahr ölen müssen.</p>
+        <div class="tags"><span class="tag">außen</span><span class="tag">pflegearm</span></div>
+      </div>
+    </article>
+  </div>
+  <p class="railhint">Seitlich wischen · Materialdarstellungen, keine Fotos ausgeführter Arbeiten</p>
+</section>
+
+<section class="full">
+  <img src="/demo/images/demos/fussbodenprojekte-walsrode/raum-raeuchereiche.webp" alt="Räuchereiche in einem Raum, in die Tiefe verlegt">
+  <div class="full-scrim"></div>
+  <div class="wide full-tx rv">
+    <p class="k">Räuchereiche</p>
+    <h2 class="t2">Für Räume, die<br>Charakter vertragen.</h2>
+    <p class="sub">Durchgefärbt bis in den Kern. Auch nach dem Abschleifen in zwanzig Jahren
+    ist der Ton noch derselbe.</p>
+  </div>
+</section>
+
+<section class="sec sec--g">
+  <div class="wrap rv">
+    <p class="k">Warum wir</p>
+    <h2 class="t2">Was Sie bei uns bekommen.</h2>
+  </div>
+  <div class="wide">
+    <div class="bento">
+      <div class="tile tile--im b2 rv">
+        <img src="/demo/images/demos/fussbodenprojekte-walsrode/raum-landhausdiele.webp" alt="Landhausdiele, großflächig verlegt">
+        <div class="tt"><h3>Beratung mit echten Mustern</h3>
+          <p>In Ihrem Raum, in Ihrem Licht — nicht am Bildschirm.</p></div>
+      </div>
+      <div class="tile rv">
+        <span class="tile-n">4,8</span>
+        <h3>bei Google</h3>
+        <p>Aus 20 Bewertungen im Unternehmensprofil. Nachlesbar, nicht ausgesucht.</p>
+      </div>
+      <div class="tile rv">
+        <span class="tile-n">300</span>
+        <h3>Muster vor Ort</h3>
+        <p>Großflächig ausgelegt statt als Briefmarke im Musterkoffer.</p>
+      </div>
+      <div class="tile tile--im b2 rv">
+        <img src="/demo/images/demos/fussbodenprojekte-walsrode/raum-vinyl-stein.webp" alt="Vinyl-Designboden in Steinoptik, großflächig verlegt">
+        <div class="tt"><h3>Ein Festpreis, der hält</h3>
+          <p>Material, Verlegung, Leisten, Entsorgung des alten Bodens — alles enthalten.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ablauf">
+  <div class="wrap rv">
+    <p class="k">Ablauf</p>
+    <h2 class="t2">Sie wissen vorher,<br>was passiert.</h2>
+    <p class="sub">Keine Nachforderung, weil der Untergrund „doch schlechter war als gedacht“ —
+    das prüfen wir, bevor irgendetwas bestellt wird.</p>
+  </div>
+  <div class="wrap">
+    <div class="steps rv">
+      <div class="step"><span class="step-n">Schritt 1</span><h3>Beratung</h3>
+        <p>Bei Ihnen zu Hause oder in der Ausstellung. Mit echten Mustern.</p></div>
+      <div class="step"><span class="step-n">Schritt 2</span><h3>Aufmaß</h3>
+        <p>Wir messen selbst und prüfen den Untergrund.</p></div>
+      <div class="step"><span class="step-n">Schritt 3</span><h3>Festpreis</h3>
+        <p>Ein Angebot, das hält. Alles enthalten, auch die Entsorgung.</p></div>
+      <div class="step"><span class="step-n">Schritt 4</span><h3>Verlegung</h3>
+        <p>Meist zwei bis drei Tage. Möbel rücken wir, den Staub nehmen wir mit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--d" id="ausstellung">
+  <div class="wrap rv">
+    <p class="k">Ausstellung · Eisenweg 1</p>
+    <h2 class="t2">Barfuß entscheiden.</h2>
+    <p class="sub">Farbe, Struktur und Fußgefühl entscheidet niemand am Bildschirm.
+    Kommen Sie vorbei — Mo bis Fr von 10 bis 17 Uhr, samstags nach Vereinbarung.</p>
+    <div class="links">
+      <a class="pill pill--inv" href="tel:05161788895">05161 788895</a>
+      <a class="lnk" href="#kontakt">Anfahrt&nbsp;›</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="kontakt">
+  <div class="wrap rv">
+    <p class="k">Kontakt</p>
+    <h2 class="t2">Sprechen wir über<br>Ihren Boden.</h2>
+    <div class="kk">
+      <div>
+        <div class="kv"><span>Telefon</span><b><a href="tel:05161788895">05161 788895</a></b></div>
+        <div class="kv"><span>Adresse</span><b>Eisenweg 1, 29664 Walsrode</b></div>
+        <div class="kv"><span>Öffnungszeiten</span><b>Mo–Fr 10–17 Uhr</b></div>
+        <div class="kv"><span>Samstag</span><b>nach Vereinbarung</b></div>
+      </div>
+      <div>
+        <p class="sub" style="margin-top:0">Rufen Sie an oder kommen Sie einfach vorbei.
+        Für ein Aufmaß fahren wir im ganzen Heidekreis raus — meist noch in derselben Woche.</p>
+        <div class="links"><a class="pill" href="tel:05161788895">Jetzt anrufen</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Hinweis zum Entwurf:</b> Diese Seite ist ein unverbindlicher Gestaltungsvorschlag
+    von Böhn &amp; Partner und keine offizielle Seite von Fußbodenprojekte Walsrode.
+    Die gezeigten Bodenflächen sind <b>berechnete Materialdarstellungen</b>, keine Fotos
+    ausgeführter Arbeiten — sie werden vor einer Veröffentlichung durch echte Aufnahmen des
+    Betriebs ersetzt. Öffnungszeiten, Anschrift und Bewertung stammen aus dem öffentlichen
+    Google-Unternehmensprofil und sind vor Veröffentlichung zu bestätigen.</p>
+    <div class="foot-in">
+      <span>Fußbodenprojekte Walsrode · Eisenweg 1 · 29664 Walsrode</span>
+      <span>Entwurf: Böhn &amp; Partner GbR</span>
+    </div>
+  </div>
+</footer>
+    <script is:inline>
+(function () {
+  'use strict';
+  // Erst hier setzen: ohne JS bleibt .rv wirkungslos und alles ist sichtbar.
+  document.documentElement.classList.add('js');
+
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rv = [].slice.call(document.querySelectorAll('.rv'));
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    rv.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);            // einmal sichtbar, bleibt sichtbar
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    rv.forEach(function (el) { io.observe(el); });
+
+    // Der Hero zoomt beim Scrollen ganz leicht heraus. Sehr sparsam dosiert --
+    // spürbar, aber nicht als Effekt erkennbar.
+    var hero = document.getElementById('heroimg');
+    var box = hero.parentNode, warte = false;
+    function zoom() {
+      var r = box.getBoundingClientRect();
+      var t = Math.min(1, Math.max(0, -r.top / (r.height || 1)));
+      hero.style.transform = 'scale(' + (1.06 - t * 0.06).toFixed(4) + ')';
+      warte = false;
+    }
+    addEventListener('scroll', function () {
+      if (!warte) { warte = true; requestAnimationFrame(zoom); }
+    }, { passive: true });
+    zoom();
+  }
+})();
+</script>
+  </body>
+</html>

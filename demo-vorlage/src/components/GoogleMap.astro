@@ -1,0 +1,87 @@
+---
+// WIEDERHERGESTELLT, NICHT NEU ERFUNDEN.
+//
+// ContactCta.astro und src/pages/[slug]/kontakt.astro importieren diese
+// Komponente seit jeher (auch auf main), aber die Datei war nie im Repository
+// -- zusammen mit dem ebenfalls fehlenden DoenerGallery.astro liess sich
+// dadurch `npm run build` fuer das gesamte Projekt nicht mehr ausfuehren.
+//
+// ZWEI-KLICK-LOESUNG, BEWUSST SO:
+// Ein direkt eingebundener Google-Maps-iframe laedt beim Seitenaufruf
+// Google-Ressourcen, uebertraegt die IP-Adresse des Besuchers in die USA und
+// setzt Cookies -- ohne vorherige Einwilligung ist das nach DSGVO angreifbar.
+// Die Demos haben (anders als böhnpartner.de selbst) kein Consent-Tool
+// eingebunden. Deshalb wird hier zunaechst nur eine statische Vorschau mit
+// Adresse gezeigt; Google-Inhalte laden erst nach ausdruecklichem Klick.
+// Wer den Klick nicht macht, bekommt trotzdem Adresse und einen normalen Link
+// zur Routenplanung -- die Sektion ist also nie funktionslos.
+//
+// Kein Rechtsrat; vor einer echten Veroeffentlichung fuer einen Kunden
+// gehoert die Einbindung trotzdem einmal geprueft.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+const adresse = demo.kontakt.adresse ?? '';
+const suche = encodeURIComponent(`${demo.firmenname}, ${adresse}`);
+const einbetten = `https://www.google.com/maps?q=${suche}&output=embed`;
+const routeLink = `https://www.google.com/maps/dir/?api=1&destination=${suche}`;
+---
+
+<div
+  class="gm reveal relative overflow-hidden"
+  style="border-radius:var(--radius-card); border:1px solid var(--line); background:var(--surface); min-height:320px;"
+  data-embed={einbetten}
+>
+  <div class="gm-vorschau absolute inset-0 flex flex-col items-center justify-center gap-4 text-center px-6 py-10">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </svg>
+    <p class="font-heading text-xl" style="color:var(--ink);">{demo.firmenname}</p>
+    <p class="text-sm" style="color:var(--ink-soft);">{adresse}</p>
+    <button
+      type="button"
+      class="gm-laden text-sm font-medium px-5 py-2.5"
+      style="border-radius:var(--radius-sm); background:var(--accent); color:#fff; cursor:pointer; border:0;"
+    >
+      Karte laden
+    </button>
+    <p class="text-xs max-w-[38ch]" style="color:var(--ink-soft);">
+      Beim Laden werden Daten an Google übertragen.
+      <a href={routeLink} target="_blank" rel="noopener noreferrer" style="color:var(--accent); text-decoration:underline;">
+        Route ohne Karte öffnen
+      </a>
+    </p>
+  </div>
+</div>
+
+<script>
+  // Erst auf Klick wird der iframe erzeugt -- vorher geht keine Anfrage raus.
+  document.querySelectorAll('.gm').forEach((box) => {
+    const knopf = box.querySelector('.gm-laden');
+    const vorschau = box.querySelector('.gm-vorschau');
+    if (!(knopf instanceof HTMLElement) || !(vorschau instanceof HTMLElement)) return;
+
+    knopf.addEventListener('click', () => {
+      const src = box.getAttribute('data-embed');
+      if (!src) return;
+      const rahmen = document.createElement('iframe');
+      rahmen.src = src;
+      rahmen.loading = 'lazy';
+      rahmen.referrerPolicy = 'no-referrer-when-downgrade';
+      rahmen.title = 'Standort auf Google Maps';
+      rahmen.style.cssText = 'width:100%;height:100%;border:0;position:absolute;inset:0;';
+      box.appendChild(rahmen);
+      vorschau.remove();
+    });
+  });
+</script>
+
+<style>
+  .gm { min-height: 320px; }
+  @media (min-width: 640px) { .gm { min-height: 100%; } }
+</style>
