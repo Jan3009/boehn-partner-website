@@ -51,6 +51,38 @@
   font-display: swap;
   src: url('../fonts/inter-700.woff2') format('woff2');
 }
+/* Instrument Serif + Manrope -- nur fuer die Demo
+   "Fussbodenprojekte Walsrode" (Atelier-Design, helle Palette). Bewusst
+   andere Schriftpaarung als die uebrigen Demos, damit die Entwuerfe nicht
+   alle gleich aussehen. */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/instrument-serif-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/manrope-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/manrope-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/manrope-700.woff2') format('woff2');
+}
 @font-face {
   font-family: 'Alex Brush';
   font-style: normal;
