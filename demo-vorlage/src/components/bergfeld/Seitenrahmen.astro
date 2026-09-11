@@ -65,6 +65,38 @@ const nav = [
     <main><slot /></main>
 
     <script>
+      // Hero-Parallax: Bild läuft langsamer als die Seite, Textblock zieht
+      // leicht mit und blendet aus. Gerechnet wird nur in einem rAF-Callback,
+      // der Scroll-Listener selbst setzt bloß ein Flag -- sonst rechnet man
+      // pro Scroll-Event und das ruckelt.
+      (() => {
+        const hero = document.querySelector('.bf-hero');
+        if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const bild = hero.querySelector('.bf-hero-bild');
+        const inhalt = hero.querySelector('.bf-hero-inhalt');
+        const hinweis = hero.querySelector('.bf-scrollhinweis');
+        let offen = false;
+
+        const zeichnen = () => {
+          offen = false;
+          const y = window.scrollY;
+          const hoehe = hero.offsetHeight;
+          if (y > hoehe) return; // außerhalb des Heros nichts mehr rechnen
+          const anteil = Math.min(y / hoehe, 1);
+          if (bild) bild.style.transform = `translate3d(0, ${y * 0.28}px, 0) scale(${1 + anteil * 0.06})`;
+          if (inhalt) {
+            inhalt.style.transform = `translate3d(0, ${y * -0.12}px, 0)`;
+            inhalt.style.opacity = String(Math.max(1 - anteil * 1.7, 0));
+          }
+          if (hinweis) hinweis.style.opacity = String(Math.max(0.55 - anteil * 2, 0));
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!offen) { offen = true; requestAnimationFrame(zeichnen); }
+        }, { passive: true });
+        zeichnen();
+      })();
+
       // Dezentes Einblenden. Bei prefers-reduced-motion bleibt alles sichtbar.
       const ziele = document.querySelectorAll('.bf-auf');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -228,16 +260,16 @@ const nav = [
 
   /* ---------- Hero: vollflaechig, dunkel, Bild als Grund ------------------ */
   .bf-hero {
-    position: relative; min-height: 88vh; display: flex; align-items: flex-end;
+    position: relative; min-height: 92vh; display: flex; align-items: flex-end;
     background: var(--nacht); color: var(--papier); overflow: hidden;
-    padding-block: 9rem 4rem;
+    padding-block: 9rem 4.5rem;
   }
   /* Hero-Foto plus Verlauf darüber. Der Verlauf ist unten am dichtesten --
      dort steht die Headline, und ohne ihn ist weiße Schrift auf einem Foto
      nie zuverlässig lesbar (das Foto kann jederzeit gegen ein helleres
      getauscht werden). */
   .bf-hero-bild {
-    position: absolute; inset: 0;
+    position: absolute; inset: -12% 0; will-change: transform;
   }
   .bf-hero-bild img {
     width: 100%; height: 100%; object-fit: cover; display: block;
@@ -245,20 +277,15 @@ const nav = [
   .bf-hero-grund {
     position: absolute; inset: 0;
     background:
-      /* Von links: verdunkelt die Textseite, lässt das Motiv rechts stehen.
-         Ohne das liegt die Vorzeile auf der hellen Wandnische und ist nicht
-         mehr lesbar. */
-      linear-gradient(to right,
-        rgba(14, 11, 9, 0.82) 0%,
-        rgba(14, 11, 9, 0.66) 42%,
-        rgba(14, 11, 9, 0.28) 72%,
-        rgba(14, 11, 9, 0.2) 100%),
-      /* Von unten: trägt den Textblock und blendet zum Kennzahlenband über. */
-      linear-gradient(to top,
-        rgba(14, 11, 9, 0.9) 0%,
-        rgba(14, 11, 9, 0.45) 40%,
-        rgba(14, 11, 9, 0.1) 72%,
-        rgba(14, 11, 9, 0.45) 100%);
+      /* Elliptischer Schatten unter dem Textblock links unten. Trägt die
+         Schrift, ohne das ganze Bild flächig zuzuziehen. */
+      radial-gradient(120% 85% at 8% 100%,
+        rgba(12, 10, 8, 0.92) 0%,
+        rgba(12, 10, 8, 0.7) 35%,
+        rgba(12, 10, 8, 0.25) 62%,
+        transparent 80%),
+      /* Leichter Gesamtschleier, damit helle Motivstellen nicht ausbrennen. */
+      linear-gradient(to top, rgba(12, 10, 8, 0.5) 0%, rgba(12, 10, 8, 0.12) 45%, rgba(12, 10, 8, 0.4) 100%);
   }
   @media (max-width: 46rem) {
     /* Schmal liegt der Text über der ganzen Breite, der Links-Verlauf reicht
@@ -276,14 +303,39 @@ const nav = [
     text-transform: uppercase; opacity: 0.4;
   }
   @media (max-width: 60rem) { .bf-hero-marke { display: none; } }
-  .bf-hero-inhalt { position: relative; width: 100%; }
-  .bf-hero h1 { font-size: clamp(2.8rem, 8vw, 6.5rem); max-width: 16ch; }
-  .bf-hero .bf-label { color: rgba(247, 244, 239, 0.9); margin-bottom: 1.6rem; }
+  .bf-hero-inhalt { position: relative; width: 100%; will-change: transform, opacity; }
+  /* Textblock unten links, bewusst schmal: er soll auf dem Bild sitzen,
+     nicht darüberliegen. */
+  .bf-hero-block { max-width: 34rem; }
+  .bf-hero h1 { font-size: clamp(2rem, 3.6vw, 3.2rem); }
+  .bf-hero .bf-label { color: rgba(247, 244, 239, 0.85); margin-bottom: 1.1rem; }
   .bf-hero-fuss {
-    display: flex; flex-wrap: wrap; align-items: flex-end; gap: 2.5rem;
-    margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--linie-dunkel);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2rem;
+    margin-top: 1.8rem; padding-top: 1.6rem; border-top: 1px solid var(--linie-dunkel);
   }
-  .bf-hero-fuss p { margin: 0; max-width: 32rem; opacity: 0.8; font-size: 1.02rem; }
+  .bf-hero-fuss p { margin: 0; opacity: 0.78; font-size: 0.98rem; max-width: 26rem; }
+
+  /* Scroll-Hinweis am unteren Rand: dünne Linie, die langsam durchläuft. */
+  .bf-scrollhinweis {
+    position: absolute; right: 2rem; bottom: 4.5rem; display: flex;
+    align-items: center; gap: 0.9rem; font-size: 0.66rem; letter-spacing: 0.22em;
+    text-transform: uppercase; opacity: 0.55; will-change: opacity;
+  }
+  .bf-scrollhinweis-linie {
+    width: 1px; height: 54px; background: rgba(247, 244, 239, 0.25);
+    position: relative; overflow: hidden;
+  }
+  .bf-scrollhinweis-linie::after {
+    content: ''; position: absolute; inset-inline: 0; height: 18px;
+    background: var(--papier); animation: bf-lauf 2.4s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+  }
+  @keyframes bf-lauf {
+    0% { transform: translateY(-20px); opacity: 0; }
+    35% { opacity: 1; }
+    100% { transform: translateY(56px); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bf-scrollhinweis-linie::after { animation: none; } }
+  @media (max-width: 60rem) { .bf-scrollhinweis { display: none; } }
 
   /* ---------- Kennzahlenband -------------------------------------------- */
   .bf-band { background: var(--nacht-weich); color: var(--papier); }

@@ -17,17 +17,17 @@ const kennzahlen = [
 
 const leistungen = [
   { titel: 'Badsanierung im Bestand', text: 'Unser Schwerpunkt, meist Altbau aus den 1950er- bis 1980er-Jahren.' },
-  { titel: 'Bodengleiche Duschen', text: 'Gefälle, Rutschhemmung und Ablauf — die drei Dinge, an denen es hängt.' },
+  { titel: 'Bodengleiche Duschen', text: 'Gefälle, Rutschhemmung und Ablauf. Daran hängt das Ergebnis.' },
   { titel: 'Großformatfliesen', text: 'Bis 120 × 260 cm, zu zweit mit Saugheber und im Nivelliersystem.' },
-  { titel: 'Naturstein', text: 'Marmor, Schiefer, Granit — mit ehrlichem Hinweis auf die Pflege.' },
+  { titel: 'Naturstein', text: 'Marmor, Schiefer, Granit, mit ehrlichem Hinweis auf die Pflege.' },
   { titel: 'Reparaturen', text: 'Einzelne Fliesen, ausgebrochene Fugen, erneuertes Silikon.' },
 ];
 
 const ablauf = [
-  { schritt: 'Anruf', text: 'Sie schildern kurz, worum es geht. Wir sagen Ihnen am Telefon, ob wir der richtige Betrieb sind — und wann wir frühestens können.' },
+  { schritt: 'Anruf', text: 'Sie schildern kurz, worum es geht. Wir sagen Ihnen am Telefon, ob wir der richtige Betrieb sind und wann wir frühestens können.' },
   { schritt: 'Termin vor Ort', text: 'Wir sehen uns den Raum an, messen auf und prüfen den Untergrund. Das dauert etwa eine halbe Stunde und kostet nichts.' },
   { schritt: 'Angebot', text: 'Innerhalb einer Woche, schriftlich, nach Positionen aufgeschlüsselt. Sie sehen, was Material kostet und was Arbeitszeit.' },
-  { schritt: 'Ausführung', text: 'Zum vereinbarten Termin, mit fester Dauer. Wir melden uns, wenn sich etwas verschiebt — nicht erst, wenn Sie nachfragen.' },
+  { schritt: 'Ausführung', text: 'Zum vereinbarten Termin, mit fester Dauer. Wir melden uns, wenn sich etwas verschiebt, nicht erst, wenn Sie nachfragen.' },
 ];
 
 const nichtImAngebot = [
@@ -54,16 +54,22 @@ const nichtImAngebot = [
     </div>
     <div class="bf-hero-grund" aria-hidden="true"></div>
     <div class="bf-hero-inhalt bf-bahn">
-      <p class="bf-label">Fliesenlegermeisterbetrieb · Verden (Aller)</p>
-      <h1 class="bf-display">Bäder sanieren, während Sie darin wohnen.</h1>
-      <div class="bf-hero-fuss">
-        <p>
-          Die meisten unserer Aufträge sind Altbauten, in denen jemand lebt.
-          Das heißt: ein funktionierendes Bad am Wochenende, Staubschutz an der
-          Tür und ein Termin, der hält.
-        </p>
-        <a class="bf-knopf" href={telefonHref}>{betrieb.telefon}</a>
+      <div class="bf-hero-block">
+        <p class="bf-label">Fliesenlegermeisterbetrieb · {betrieb.ort}</p>
+        <h1 class="bf-display">Bäder sanieren, während Sie darin wohnen.</h1>
+        <div class="bf-hero-fuss">
+          <p>
+            Die meisten unserer Aufträge sind Altbauten, in denen jemand lebt.
+            Ein funktionierendes Bad am Wochenende, Staubschutz an der Tür,
+            ein Termin, der hält.
+          </p>
+          <a class="bf-knopf" href={telefonHref}>{betrieb.telefon}</a>
+        </div>
       </div>
+    </div>
+    <div class="bf-scrollhinweis" aria-hidden="true">
+      <span>Scrollen</span>
+      <span class="bf-scrollhinweis-linie"></span>
     </div>
   </section>
 
@@ -94,7 +100,7 @@ const nichtImAngebot = [
         <p>
           Wir arbeiten für private Eigentümer und für Hausverwaltungen, im
           Umkreis von etwa 50 Kilometern um {betrieb.ort}. Wenn ein Mieter im
-          Haus wohnt, stimmen wir die Bad-Ausfallzeit vorher ab — bei einer
+          Haus wohnt, stimmen wir die Bad-Ausfallzeit vorher ab. Bei einer
           Komplettsanierung sind das üblicherweise zwei bis drei Wochen.
         </p>
         <div style="margin-top:2.5rem; max-width:24rem;">
