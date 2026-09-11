@@ -228,13 +228,43 @@ const nav = [
     background: var(--nacht); color: var(--papier); overflow: hidden;
     padding-block: 9rem 4rem;
   }
-  /* Platzhalterfläche: diagonale Schraffur statt grauer Kasten, damit die
-     Fläche auch ohne Foto als bewusst gesetzt lesbar bleibt. */
+  /* Hero-Foto plus Verlauf darüber. Der Verlauf ist unten am dichtesten --
+     dort steht die Headline, und ohne ihn ist weiße Schrift auf einem Foto
+     nie zuverlässig lesbar (das Foto kann jederzeit gegen ein helleres
+     getauscht werden). */
+  .bf-hero-bild {
+    position: absolute; inset: 0;
+  }
+  .bf-hero-bild img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .bf-hero-grund {
     position: absolute; inset: 0;
     background:
-      linear-gradient(to top, rgba(20,16,13,0.94) 0%, rgba(20,16,13,0.6) 45%, rgba(20,16,13,0.45) 100%),
-      repeating-linear-gradient(135deg, #1e1a16 0 22px, #191511 22px 44px);
+      /* Von links: verdunkelt die Textseite, lässt das Motiv rechts stehen.
+         Ohne das liegt die Vorzeile auf der hellen Wandnische und ist nicht
+         mehr lesbar. */
+      linear-gradient(to right,
+        rgba(14, 11, 9, 0.82) 0%,
+        rgba(14, 11, 9, 0.66) 42%,
+        rgba(14, 11, 9, 0.28) 72%,
+        rgba(14, 11, 9, 0.2) 100%),
+      /* Von unten: trägt den Textblock und blendet zum Kennzahlenband über. */
+      linear-gradient(to top,
+        rgba(14, 11, 9, 0.9) 0%,
+        rgba(14, 11, 9, 0.45) 40%,
+        rgba(14, 11, 9, 0.1) 72%,
+        rgba(14, 11, 9, 0.45) 100%);
+  }
+  @media (max-width: 46rem) {
+    /* Schmal liegt der Text über der ganzen Breite, der Links-Verlauf reicht
+       dann nicht -- hier wird flächig abgedunkelt. */
+    .bf-hero-grund {
+      background: linear-gradient(to top,
+        rgba(14, 11, 9, 0.93) 0%,
+        rgba(14, 11, 9, 0.78) 45%,
+        rgba(14, 11, 9, 0.6) 100%);
+    }
   }
   .bf-hero-marke {
     position: absolute; right: 2rem; top: 45%; transform: rotate(90deg);
@@ -244,7 +274,7 @@ const nav = [
   @media (max-width: 60rem) { .bf-hero-marke { display: none; } }
   .bf-hero-inhalt { position: relative; width: 100%; }
   .bf-hero h1 { font-size: clamp(2.8rem, 8vw, 6.5rem); max-width: 16ch; }
-  .bf-hero .bf-label { color: var(--gruen); margin-bottom: 1.6rem; }
+  .bf-hero .bf-label { color: rgba(247, 244, 239, 0.9); margin-bottom: 1.6rem; }
   .bf-hero-fuss {
     display: flex; flex-wrap: wrap; align-items: flex-end; gap: 2.5rem;
     margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--linie-dunkel);
