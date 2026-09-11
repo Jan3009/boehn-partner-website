@@ -1,9 +1,8 @@
 ---
-// Kontaktseite. Formularfelder sind bewusst fachlich gewählt: Mit "Bad, 8 m²,
-// Altbau, Frühjahr" kann ein Fliesenleger ein Angebot vorbereiten, mit einem
-// leeren Feld "Nachricht" nicht.
+// Kontaktseite. Formularfelder sind fachlich gewählt: Mit "Wohnung, 3 Zimmer,
+// Altbau, Raufaser vorhanden" kann ein Maler ein Angebot vorbereiten.
 import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
-import { fliesenBergfeld as betrieb, telHref } from '../../components/bergfeld/betrieb';
+import { malerAllerufer as betrieb, telHref } from '../../components/bergfeld/betrieb';
 
 const telefonHref = telHref(betrieb);
 
@@ -13,15 +12,15 @@ const einzugsgebiet = [
 ];
 
 const danach = [
-  'Wir melden uns innerhalb von zwei Werktagen zurück.',
-  'Passt es grundsätzlich, vereinbaren wir einen Termin vor Ort. Der dauert etwa eine halbe Stunde und kostet nichts.',
-  'Danach bekommen Sie innerhalb einer Woche ein schriftliches Angebot nach Positionen.',
+  { titel: 'Rückmeldung', text: 'Wir melden uns innerhalb von zwei Werktagen zurück.' },
+  { titel: 'Termin vor Ort', text: 'Passt es grundsätzlich, sehen wir uns die Räume an. Der Termin dauert etwa eine halbe Stunde und kostet nichts.' },
+  { titel: 'Angebot', text: 'Danach bekommen Sie innerhalb einer Woche ein schriftliches Angebot nach Positionen, mit der Spachtelstufe als eigener Zeile.' },
 ];
 ---
 
 <Seitenrahmen
-  titel="Kontakt · Fliesen Bergfeld"
-  beschreibung="Fliesen Bergfeld in Verden (Aller) erreichen: telefonisch oder über das Anfrageformular. Einzugsgebiet rund 50 Kilometer."
+  titel="Kontakt · Malerwerkstatt Allerufer"
+  beschreibung="Malerwerkstatt Allerufer in Verden (Aller) erreichen: telefonisch oder über das Anfrageformular. Einzugsgebiet rund 50 Kilometer."
   aktiv="kontakt"
   firma={betrieb}
   heller_kopf={true}
@@ -30,16 +29,19 @@ const danach = [
     <p class="bf-label" style="color:var(--gruen); margin-bottom:1.5rem;">Kontakt</p>
     <h1 class="bf-display" style="font-size:clamp(2.6rem, 7vw, 5rem); max-width:14ch;">So erreichen Sie uns</h1>
     <p class="bf-eng" style="margin:2rem 0 2.5rem; font-size:1.12rem; color:var(--tinte-leise);">
-      Am schnellsten geht es telefonisch. Montag bis Freitag, 7 bis 17 Uhr. Wenn niemand abnimmt, sind wir auf der Baustelle.
+      Am schnellsten geht es telefonisch. Montag bis Freitag, 7 bis 17 Uhr.
+      Wenn niemand abnimmt, sind wir auf der Baustelle.
     </p>
     <a class="bf-tel-gross" href={telefonHref}>{betrieb.telefon}</a>
     <p class="bf-eng" style="margin-top:1.5rem; color:var(--tinte-leise);">
-      Sprechen Sie auf, wir rufen am selben oder nächsten Tag zurück. Bei einem{' '}
-      <strong>Wasserschaden</strong> rufen Sie bitte an und schreiben nicht. Da zählt jeder Tag.
+      Sprechen Sie auf, wir rufen am selben oder nächsten Tag zurück. Wenn Sie
+      einen <strong>festen Übergabetermin</strong> haben, etwa bei einem
+      Mieterwechsel, sagen Sie das gleich dazu. Danach richtet sich, ob wir
+      überhaupt zusagen können.
     </p>
   </section>
 
-  <section class="bf-bahn bf-abschnitt">
+  <section class="bf-bahn bf-abschnitt bf-auf">
     <div class="bf-zweispaltig">
       <div class="bf-kopfspalte">
         <p class="bf-label" style="color:var(--gruen);">Anfrage</p>
@@ -71,24 +73,36 @@ const danach = [
           <div class="bf-feld">
             <label for="art">Worum geht es?</label>
             <select id="art" name="art">
-              <option>Komplette Badsanierung</option>
-              <option>Bodengleiche Dusche</option>
-              <option>Einzelner Raum, neu zu fliesen</option>
-              <option>Reparatur oder Fugen</option>
-              <option>Wasserschaden</option>
+              <option>Komplette Wohnung streichen</option>
+              <option>Einzelne Räume</option>
+              <option>Treppenhaus oder Gewerbe</option>
+              <option>Türen, Fenster, Heizkörper lackieren</option>
+              <option>Tapezieren oder Tapete entfernen</option>
+              <option>Fassade</option>
               <option>Etwas anderes</option>
             </select>
           </div>
 
           <div class="bf-feld-paar">
             <div class="bf-feld">
-              <label for="groesse">Ungefähre Fläche in m²</label>
-              <input type="text" id="groesse" name="groesse" placeholder="z. B. 8, oder: weiß ich nicht" />
+              <label for="raeume">Wie viele Räume oder m²?</label>
+              <input type="text" id="raeume" name="raeume" placeholder="z. B. 3 Zimmer, oder: weiß ich nicht" />
             </div>
             <div class="bf-feld">
               <label for="baujahr">Baujahr des Hauses, falls bekannt</label>
-              <input type="text" id="baujahr" name="baujahr" placeholder="z. B. 1962" />
+              <input type="text" id="baujahr" name="baujahr" placeholder="z. B. 1954" />
             </div>
+          </div>
+
+          <div class="bf-feld">
+            <label for="untergrund">Was ist aktuell an den Wänden?</label>
+            <select id="untergrund" name="untergrund">
+              <option>Raufaser, gestrichen</option>
+              <option>Glatte Tapete</option>
+              <option>Direkt gestrichener Putz</option>
+              <option>Alte Farbe, blättert oder wischt ab</option>
+              <option>Weiß ich nicht</option>
+            </select>
           </div>
 
           <div class="bf-feld-paar">
@@ -96,8 +110,8 @@ const danach = [
               <label for="zeitraum">Wann soll es losgehen?</label>
               <select id="zeitraum" name="zeitraum">
                 <option>So schnell wie möglich</option>
+                <option>Fester Termin, steht schon</option>
                 <option>In den nächsten drei Monaten</option>
-                <option>Dieses Jahr</option>
                 <option>Noch offen, erst mal informieren</option>
               </select>
             </div>
@@ -125,7 +139,7 @@ const danach = [
   </section>
 
   <div class="bf-hell-flaeche">
-    <section class="bf-bahn bf-abschnitt">
+    <section class="bf-bahn bf-abschnitt bf-auf">
       <div class="bf-zweispaltig">
         <div class="bf-kopfspalte">
           <p class="bf-label" style="color:var(--gruen);">Ablauf</p>
@@ -133,8 +147,8 @@ const danach = [
         </div>
         <div>
           <ol class="bf-schritte">
-            {danach.map((d, i) => (
-              <li><h3>{['Rückmeldung', 'Termin vor Ort', 'Angebot'][i]}</h3><p>{d}</p></li>
+            {danach.map((d) => (
+              <li><h3>{d.titel}</h3><p>{d.text}</p></li>
             ))}
           </ol>
           <p style="margin-top:1.5rem; color:var(--tinte-leise);">
@@ -146,7 +160,7 @@ const danach = [
     </section>
   </div>
 
-  <section class="bf-bahn bf-abschnitt">
+  <section class="bf-bahn bf-abschnitt bf-auf">
     <div class="bf-zweispaltig">
       <div class="bf-kopfspalte">
         <p class="bf-label" style="color:var(--gruen);">Einzugsgebiet</p>
@@ -154,13 +168,11 @@ const danach = [
       </div>
       <div>
         <p>Etwa 50 Kilometer um {betrieb.ort}, unter anderem:</p>
-        <p style="font-size:1.02rem; line-height:2;">
-          {einzugsgebiet.join(' · ')}
-        </p>
+        <p style="font-size:1.02rem; line-height:2;">{einzugsgebiet.join(' · ')}</p>
         <p style="color:var(--tinte-leise);">
-          Liegt Ihr Ort nicht dabei, fragen Sie trotzdem. Bei größeren
-          Aufträgen fahren wir auch weiter, bei einer einzelnen Fuge lohnt sich
-          die Anfahrt nicht. Das sagen wir Ihnen ehrlich am Telefon.
+          Liegt Ihr Ort nicht dabei, fragen Sie trotzdem. Bei einer ganzen
+          Wohnung fahren wir auch weiter, für eine einzelne Tür lohnt sich die
+          Anfahrt nicht. Das sagen wir Ihnen ehrlich am Telefon.
         </p>
       </div>
     </div>

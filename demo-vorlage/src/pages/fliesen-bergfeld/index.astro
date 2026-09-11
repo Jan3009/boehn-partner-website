@@ -5,7 +5,9 @@
 // "hochwertigen" Eindruck -- eine durchgehend weiße Seite wirkt flach,
 // egal wie gut der Text ist.
 import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
-import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
+import { fliesenBergfeld as betrieb, telHref } from '../../components/bergfeld/betrieb';
+
+const telefonHref = telHref(betrieb);
 import Bild from '../../components/bergfeld/Bild.astro';
 
 const kennzahlen = [
@@ -41,6 +43,7 @@ const nichtImAngebot = [
   titel="Fliesen Bergfeld · Fliesenlegermeister in Verden (Aller)"
   beschreibung="Badsanierung im bewohnten Altbau, bodengleiche Duschen und Großformatfliesen. Meisterbetrieb in Verden (Aller), seit 2011."
   aktiv="start"
+  firma={betrieb}
 >
   <section class="bf-hero">
     <div class="bf-hero-bild">

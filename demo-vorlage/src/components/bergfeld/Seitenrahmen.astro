@@ -16,22 +16,25 @@
 //    Seiten.
 import '../../styles/global.css';
 import EntwurfBar from '../EntwurfBar.astro';
-import { betrieb, telefonHref } from './betrieb';
+import { type Betrieb, telHref } from './betrieb';
 
 interface Props {
   titel: string;
   beschreibung: string;
   aktiv: 'start' | 'leistungen' | 'kontakt';
+  /** Welcher Musterbetrieb dargestellt wird. */
+  firma: Betrieb;
   /** true auf Seiten ohne dunklen Hero -- der Kopf steht dann auf hellem Grund. */
   heller_kopf?: boolean;
 }
 
-const { titel, beschreibung, aktiv, heller_kopf = false } = Astro.props;
+const { titel, beschreibung, aktiv, firma, heller_kopf = false } = Astro.props;
+const telefonHref = telHref(firma);
 
 const nav = [
-  { href: '/demo/fliesen-bergfeld/', label: 'Start', id: 'start' },
-  { href: '/demo/fliesen-bergfeld/leistungen/', label: 'Leistungen', id: 'leistungen' },
-  { href: '/demo/fliesen-bergfeld/kontakt/', label: 'Kontakt', id: 'kontakt' },
+  { href: firma.basis, label: 'Start', id: 'start' },
+  { href: `${firma.basis}leistungen/`, label: 'Leistungen', id: 'leistungen' },
+  { href: `${firma.basis}kontakt/`, label: 'Kontakt', id: 'kontakt' },
 ];
 ---
 
@@ -49,16 +52,16 @@ const nav = [
 
     <header class={`bf-kopf${heller_kopf ? ' ist-hell' : ''}`}>
       <div class="bf-kopf-innen">
-        <a class="bf-marke" href="/demo/fliesen-bergfeld/">
-          <span class="bf-marke-name">Fliesen Bergfeld</span>
-          <span class="bf-marke-zusatz">Fliesenlegermeister · {betrieb.ort}</span>
+        <a class="bf-marke" href={firma.basis}>
+          <span class="bf-marke-name">{firma.marke}</span>
+          <span class="bf-marke-zusatz">{firma.titel} · {firma.ort}</span>
         </a>
         <nav class="bf-nav" aria-label="Hauptnavigation">
           {nav.map((n) => (
             <a href={n.href} aria-current={aktiv === n.id ? 'page' : undefined}>{n.label}</a>
           ))}
         </nav>
-        <a class="bf-kopf-tel" href={telefonHref}>{betrieb.telefon}</a>
+        <a class="bf-kopf-tel" href={telefonHref}>{firma.telefon}</a>
       </div>
     </header>
 
@@ -120,20 +123,20 @@ const nav = [
     <footer class="bf-fuss">
       <div class="bf-fuss-innen">
         <div>
-          <p class="bf-fuss-name">Fliesen Bergfeld</p>
+          <p class="bf-fuss-name">{firma.name}</p>
           <p>
-            {betrieb.inhaber}, {betrieb.titel}<br />
-            {betrieb.strasse}<br />
-            {betrieb.plz} {betrieb.ort}
+            {firma.inhaber}, {firma.titel}<br />
+            {firma.strasse}<br />
+            {firma.plz} {firma.ort}
           </p>
-          <p><a href={telefonHref}>{betrieb.telefon}</a></p>
+          <p><a href={telefonHref}>{firma.telefon}</a></p>
         </div>
         <div>
           <p class="bf-fuss-name">Seiten</p>
           <p>
-            <a href="/demo/fliesen-bergfeld/">Start</a><br />
-            <a href="/demo/fliesen-bergfeld/leistungen/">Leistungen</a><br />
-            <a href="/demo/fliesen-bergfeld/kontakt/">Kontakt</a>
+            <a href={firma.basis}>Start</a><br />
+            <a href={`${firma.basis}leistungen/`}>Leistungen</a><br />
+            <a href={`${firma.basis}kontakt/`}>Kontakt</a>
           </p>
         </div>
         <div>
@@ -229,13 +232,18 @@ const nav = [
     display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
   }
   .bf-marke { text-decoration: none; margin-right: auto; }
+  /* Wortmarke in der Grotesk, nicht in der Display-Serife: Bodonis
+     Haarstriche brechen bei 1,4 rem optisch weg und wirken dünn statt
+     wertig. Versalien mit weitem Tracking sind bei kleiner Größe robust,
+     und der Kontrast Grotesk-Marke zu Serifen-Headline ist beabsichtigt. */
   .bf-marke-name {
-    display: block; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700;
-    font-size: 1.45rem; letter-spacing: 0.02em;
+    display: block; font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600; font-size: 1.02rem; letter-spacing: 0.17em;
+    text-transform: uppercase;
   }
   .bf-marke-zusatz {
-    display: block; font-size: 0.68rem; letter-spacing: 0.2em;
-    text-transform: uppercase; opacity: 0.7; margin-top: 0.15rem;
+    display: block; font-size: 0.66rem; letter-spacing: 0.14em;
+    text-transform: uppercase; opacity: 0.55; margin-top: 0.3rem;
   }
   .bf-nav { display: flex; gap: 1.8rem; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .bf-nav a { text-decoration: none; opacity: 0.75; padding-bottom: 3px; border-bottom: 1px solid transparent; }
@@ -271,6 +279,18 @@ const nav = [
   .bf-hero-bild {
     position: absolute; inset: -12% 0; will-change: transform;
   }
+  /* Hero ohne Foto: diagonale Schraffur statt leerer Fläche, plus ein
+     beschrifteter Hinweis, welches Bild hier hingehört. */
+  .bf-hero-leer {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, #211d19 0 26px, #1a1713 26px 52px);
+  }
+  .bf-hero-leer-marke {
+    position: absolute; right: 2rem; top: 42%; transform: rotate(90deg);
+    transform-origin: right center; font-size: 0.66rem; letter-spacing: 0.24em;
+    text-transform: uppercase; color: rgba(247, 244, 239, 0.4); white-space: nowrap;
+  }
+  @media (max-width: 60rem) { .bf-hero-leer-marke { display: none; } }
   .bf-hero-bild img {
     width: 100%; height: 100%; object-fit: cover; display: block;
   }

@@ -2,7 +2,9 @@
 // Leistungsseite. Jede Leistung nennt auch, wann sie NICHT sinnvoll ist --
 // eine Seite, die nur Vorteile aufzählt, liest sich wie ein Katalogtext.
 import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
-import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
+import { fliesenBergfeld as betrieb, telHref } from '../../components/bergfeld/betrieb';
+
+const telefonHref = telHref(betrieb);
 import Bild from '../../components/bergfeld/Bild.astro';
 ---
 
@@ -10,6 +12,7 @@ import Bild from '../../components/bergfeld/Bild.astro';
   titel="Leistungen · Fliesen Bergfeld"
   beschreibung="Badsanierung im Bestand, bodengleiche Duschen, Großformat, Naturstein und Reparaturen. Fliesenlegermeisterbetrieb in Verden (Aller)."
   aktiv="leistungen"
+  firma={betrieb}
   heller_kopf={true}
 >
   <section class="bf-bahn bf-abschnitt">

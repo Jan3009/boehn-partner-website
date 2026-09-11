@@ -15,16 +15,18 @@ interface Props {
   dunkel?: boolean;
   /** Platzhalter-Nummer, nur wenn kein Bild vorliegt. */
   platz?: string;
+  /** Unterordner in public/images/demos/. */
+  ordner?: string;
 }
 
-const { datei, alt, format = 'quer', unterschrift, dunkel = false, platz } = Astro.props;
+const { datei, alt, format = 'quer', unterschrift, dunkel = false, platz, ordner = 'fliesen-bergfeld' } = Astro.props;
 const quote = { hoch: '3 / 4', quer: '4 / 3', breit: '16 / 9', frei: 'auto' }[format];
 ---
 
 {datei ? (
   <figure class="bf-figur">
     <div class="bf-bildrahmen" style={`aspect-ratio:${quote};`}>
-      <img src={`/demo/images/demos/fliesen-bergfeld/${datei}`} alt={alt} loading="lazy" decoding="async" />
+      <img src={`/demo/images/demos/${ordner}/${datei}`} alt={alt} loading="lazy" decoding="async" />
     </div>
     {unterschrift && <figcaption>{unterschrift}</figcaption>}
   </figure>
