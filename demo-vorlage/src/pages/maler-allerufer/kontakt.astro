@@ -54,20 +54,19 @@ const danach = [
         </p>
 
         <form>
+          <!-- Vier Pflichtfelder. Recherche zu Handwerks-Websites: jedes
+               zusätzliche Pflichtfeld kostet Anfragen. Die fachlichen Angaben
+               helfen zwar beim Vorbereiten, dürfen aber niemanden abhalten --
+               deshalb stehen sie eingeklappt darunter und sind freiwillig. -->
           <div class="bf-feld-paar">
             <div class="bf-feld">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" autocomplete="name" required />
             </div>
             <div class="bf-feld">
-              <label for="telefon">Telefonnummer für den Rückruf</label>
+              <label for="telefon">Telefonnummer</label>
               <input type="tel" id="telefon" name="telefon" autocomplete="tel" required />
             </div>
-          </div>
-
-          <div class="bf-feld">
-            <label for="ort">Ort</label>
-            <input type="text" id="ort" name="ort" autocomplete="address-level2" required />
           </div>
 
           <div class="bf-feld">
@@ -83,50 +82,58 @@ const danach = [
             </select>
           </div>
 
-          <div class="bf-feld-paar">
-            <div class="bf-feld">
-              <label for="raeume">Wie viele Räume oder m²?</label>
-              <input type="text" id="raeume" name="raeume" placeholder="z. B. 3 Zimmer, oder: weiß ich nicht" />
-            </div>
-            <div class="bf-feld">
-              <label for="baujahr">Baujahr des Hauses, falls bekannt</label>
-              <input type="text" id="baujahr" name="baujahr" placeholder="z. B. 1954" />
-            </div>
-          </div>
-
           <div class="bf-feld">
-            <label for="untergrund">Was ist aktuell an den Wänden?</label>
-            <select id="untergrund" name="untergrund">
-              <option>Raufaser, gestrichen</option>
-              <option>Glatte Tapete</option>
-              <option>Direkt gestrichener Putz</option>
-              <option>Alte Farbe, blättert oder wischt ab</option>
-              <option>Weiß ich nicht</option>
-            </select>
+            <label for="nachricht">Was steht an?</label>
+            <textarea id="nachricht" name="nachricht" rows="4"
+              placeholder="Ein, zwei Sätze reichen."></textarea>
           </div>
 
-          <div class="bf-feld-paar">
-            <div class="bf-feld">
-              <label for="zeitraum">Wann soll es losgehen?</label>
-              <select id="zeitraum" name="zeitraum">
-                <option>So schnell wie möglich</option>
-                <option>Fester Termin, steht schon</option>
-                <option>In den nächsten drei Monaten</option>
-                <option>Noch offen, erst mal informieren</option>
-              </select>
+          <details class="bf-mehr">
+            <summary>Mehr Angaben, damit wir besser vorbereiten können</summary>
+            <div class="bf-mehr-inhalt">
+              <div class="bf-feld">
+                <label for="ort">Ort</label>
+                <input type="text" id="ort" name="ort" autocomplete="address-level2" />
+              </div>
+              <div class="bf-feld-paar">
+                <div class="bf-feld">
+                  <label for="raeume">Wie viele Räume oder m²?</label>
+                  <input type="text" id="raeume" name="raeume" placeholder="z. B. 3 Zimmer" />
+                </div>
+                <div class="bf-feld">
+                  <label for="baujahr">Baujahr des Hauses</label>
+                  <input type="text" id="baujahr" name="baujahr" placeholder="z. B. 1954" />
+                </div>
+              </div>
+              <div class="bf-feld">
+                <label for="untergrund">Was ist aktuell an den Wänden?</label>
+                <select id="untergrund" name="untergrund">
+                  <option>Weiß ich nicht</option>
+                  <option>Raufaser, gestrichen</option>
+                  <option>Glatte Tapete</option>
+                  <option>Direkt gestrichener Putz</option>
+                  <option>Alte Farbe, blättert oder wischt ab</option>
+                </select>
+              </div>
+              <div class="bf-feld-paar">
+                <div class="bf-feld">
+                  <label for="zeitraum">Wann soll es losgehen?</label>
+                  <select id="zeitraum" name="zeitraum">
+                    <option>Noch offen</option>
+                    <option>So schnell wie möglich</option>
+                    <option>Fester Termin, steht schon</option>
+                    <option>In den nächsten drei Monaten</option>
+                  </select>
+                </div>
+                <div class="bf-feld">
+                  <label for="rueckruf">Wann erreichen wir Sie?</label>
+                  <input type="text" id="rueckruf" name="rueckruf" placeholder="z. B. nach 18 Uhr" />
+                </div>
+              </div>
             </div>
-            <div class="bf-feld">
-              <label for="rueckruf">Wann erreichen wir Sie?</label>
-              <input type="text" id="rueckruf" name="rueckruf" placeholder="z. B. vormittags, oder: nach 18 Uhr" />
-            </div>
-          </div>
+          </details>
 
-          <div class="bf-feld">
-            <label for="nachricht">Was sollen wir noch wissen?</label>
-            <textarea id="nachricht" name="nachricht" rows="5"></textarea>
-          </div>
-
-          <p style="margin-top:1.5rem;">
+          <p style="margin-top:1.8rem;">
             <button class="bf-knopf" type="submit">Anfrage senden</button>
           </p>
           <p style="font-size:0.85rem; color:var(--tinte-leise);">

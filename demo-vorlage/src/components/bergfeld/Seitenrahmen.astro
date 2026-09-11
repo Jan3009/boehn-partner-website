@@ -48,6 +48,7 @@ const nav = [
     <meta name="description" content={beschreibung} />
   </head>
   <body class="bf">
+    <div class={`bf-oben${heller_kopf ? ' ist-hell' : ''}`}>
     <EntwurfBar />
 
     <header class={`bf-kopf${heller_kopf ? ' ist-hell' : ''}`}>
@@ -64,6 +65,7 @@ const nav = [
         <a class="bf-kopf-tel" href={telefonHref}>{firma.telefon}</a>
       </div>
     </header>
+    </div>
 
     <main><slot /></main>
 
@@ -225,8 +227,13 @@ const nav = [
   @media (max-width: 40rem) { .bf-bahn { padding-inline: 1.25rem; } }
   .bf-zweispaltig > *, .bf-kopf-innen > *, .bf-fuss-innen > * { min-width: 0; }
 
-  /* ---------- Kopf: über dem dunklen Hero, deshalb hell und transparent ---- */
-  .bf-kopf { position: absolute; top: 0; left: 0; right: 0; z-index: 10; color: #f7f4ef; }
+  /* ---------- Kopf: über dem dunklen Hero, deshalb hell und transparent ----
+     Entwurf-Leiste und Kopf liegen gemeinsam in .bf-oben. Wäre nur der Kopf
+     absolut positioniert, läge er auf der Leiste, sobald diese mehrzeilig
+     umbricht -- genau das passierte auf dem Handy. */
+  .bf-oben { position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+  .bf-oben.ist-hell { position: static; }
+  .bf-kopf { color: #f7f4ef; }
   .bf-kopf-innen {
     max-width: 72rem; margin: 0 auto; padding: 1.6rem 2rem;
     display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
@@ -256,14 +263,16 @@ const nav = [
   }
   .bf-kopf-tel:hover { background: rgba(247, 244, 239, 0.1); }
   /* Auf Unterseiten ohne dunklen Hero steht der Kopf auf hellem Grund. */
-  .bf-kopf.ist-hell { position: static; color: var(--tinte); border-bottom: 1px solid var(--linie); }
+  .bf-kopf.ist-hell { color: var(--tinte); border-bottom: 1px solid var(--linie); }
   .bf-kopf.ist-hell .bf-kopf-tel { border-color: var(--linie); }
   .bf-kopf.ist-hell .bf-kopf-tel:hover { background: var(--flaeche); }
   @media (max-width: 46rem) {
-    .bf-kopf-innen { gap: 0.8rem 1.4rem; padding: 1.1rem 1.25rem; }
+    .bf-kopf-innen { gap: 0.55rem 1rem; padding: 0.9rem 1.25rem; }
     .bf-marke { width: 100%; margin-right: 0; }
-    .bf-nav { gap: 1.3rem; font-size: 0.76rem; }
-    .bf-kopf-tel { padding: 0.4rem 0.8rem; font-size: 0.78rem; }
+    .bf-marke-name { font-size: 0.94rem; letter-spacing: 0.14em; }
+    .bf-marke-zusatz { font-size: 0.6rem; margin-top: 0.2rem; }
+    .bf-nav { gap: 1.1rem; font-size: 0.72rem; margin-right: auto; }
+    .bf-kopf-tel { padding: 0.35rem 0.7rem; font-size: 0.74rem; }
   }
 
   /* ---------- Hero: vollflaechig, dunkel, Bild als Grund ------------------ */
@@ -382,22 +391,40 @@ const nav = [
   .bf-band-wert { font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 2.4rem; line-height: 1; }
   .bf-band-text { font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin: 0.6rem 0 0; }
   @media (max-width: 40rem) {
-    .bf-band-innen { padding-inline: 1.25rem; }
-    .bf-band-zelle { padding-left: 0; border-left: none; border-top: 1px solid var(--linie-dunkel); padding-block: 1.4rem; }
-    .bf-band-zelle:first-child { border-top: none; }
+    .bf-band-innen { padding-inline: 1.25rem; grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .bf-band-zelle { padding: 1.3rem 0 1.3rem 0.9rem; border-left: 1px solid var(--linie-dunkel); border-top: none; }
+    .bf-band-zelle:first-child { padding-left: 0; border-left: none; }
+    .bf-band-wert { font-size: 1.45rem; }
+    .bf-band-text { font-size: 0.62rem; letter-spacing: 0.08em; margin-top: 0.4rem; }
   }
 
   /* ---------- Abschnitte ------------------------------------------------- */
   .bf-abschnitt { padding-block: 6rem; }
-  @media (max-width: 40rem) { .bf-abschnitt { padding-block: 3.5rem; } }
+  @media (max-width: 40rem) {
+    .bf-abschnitt { padding-block: 2.6rem; }
+    .bf-abschnitt h2 { font-size: 1.55rem; }
+    .bf-abschnitt p { margin-bottom: 0.9rem; }
+    .bf-abschnitt h3 { margin-top: 1.4rem; }
+    .bf-hero h1 { font-size: 1.85rem; }
+    .bf-hero { min-height: 76vh; padding-block: 9.5rem 2.5rem; }
+    .bf-hero .bf-label { font-size: 0.62rem; letter-spacing: 0.14em; margin-bottom: 0.9rem; }
+    .bf-hero-fuss { margin-top: 1.3rem; padding-top: 1.2rem; gap: 1.1rem; }
+    .bf-liste li { padding: 1.1rem 0; grid-template-columns: 2rem 1fr; gap: 1rem; }
+    .bf-schritte li { padding: 1.1rem 0; }
+    .bf-band-zelle { padding-block: 1.1rem; }
+    .bf-band-wert { font-size: 1.8rem; }
+  }
   .bf-abschnitt h2 { font-size: clamp(1.9rem, 4.2vw, 3.1rem); }
   .bf-abschnitt h3 { font-size: 1.02rem; font-weight: 600; margin: 2rem 0 0.4rem; }
   .bf-abschnitt p { margin: 0 0 1.1rem; }
   .bf-abschnitt .bf-label { color: var(--gruen); margin-bottom: 1.2rem; }
 
+  /* Unter 58rem steht alles untereinander. Ohne eigenen Abstand klebt die
+     Kopfspalte am Folgetext -- gap greift dort nicht, weil kein Grid. */
+  .bf-kopfspalte { margin-bottom: 1.8rem; }
   @media (min-width: 58rem) {
     .bf-zweispaltig { display: grid; grid-template-columns: 20rem 1fr; gap: 4.5rem; }
-    .bf-zweispaltig > .bf-kopfspalte { position: sticky; top: 3rem; align-self: start; }
+    .bf-zweispaltig > .bf-kopfspalte { position: sticky; top: 3rem; align-self: start; margin-bottom: 0; }
   }
   .bf-kopfspalte h2 { margin-bottom: 1rem; }
 
@@ -505,6 +532,17 @@ const nav = [
   }
   .bf-feld textarea { border: 1px solid var(--linie); padding: 0.85rem; }
   @media (min-width: 42rem) { .bf-feld-paar { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  /* Optionale Zusatzangaben: sichtbar, aber freiwillig und zugeklappt. */
+  .bf-mehr { margin-top: 0.5rem; border-top: 1px solid var(--linie); padding-top: 1.2rem; }
+  .bf-mehr summary {
+    cursor: pointer; font-size: 0.88rem; color: var(--gruen);
+    font-weight: 600; list-style: none;
+  }
+  .bf-mehr summary::-webkit-details-marker { display: none; }
+  .bf-mehr summary::before { content: '+ '; font-weight: 400; }
+  .bf-mehr[open] summary::before { content: '– '; }
+  .bf-mehr summary:focus-visible { outline: 2px solid var(--gruen); outline-offset: 3px; }
+  .bf-mehr-inhalt { padding-top: 1.4rem; }
 
   /* ---------- Fuss ------------------------------------------------------- */
   .bf-fuss { background: var(--nacht); color: var(--papier); padding-block: 4.5rem 2rem; }

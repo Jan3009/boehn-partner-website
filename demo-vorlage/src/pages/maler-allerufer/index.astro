@@ -1,6 +1,11 @@
 ---
 // Startseite des Musterentwurfs "Malerwerkstatt Allerufer".
-// Gleiche Struktur wie der Fliesen-Entwurf, andere Branche und Fachinhalte.
+//
+// Reihenfolge nach Recherche zu Handwerks-Websites: 60-85 % der Besucher
+// kommen per Handy, und der häufigste Fehler ist zu viel Inhalt auf der
+// Startseite. Deshalb hier nur die Punkte, die eine Entscheidung tragen --
+// Ergebnis zuerst (Vorher/Nachher ist beim Maler das stärkste Argument),
+// die fachliche Tiefe steht auf der Leistungsseite.
 import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
 import Bild from '../../components/bergfeld/Bild.astro';
 import { malerAllerufer as betrieb, telHref } from '../../components/bergfeld/betrieb';
@@ -10,30 +15,23 @@ const o = betrieb.bildordner;
 
 const kennzahlen = [
   { wert: String(betrieb.gegruendet), text: 'Gegründet' },
-  { wert: '5', text: 'Leute im Betrieb' },
+  { wert: '5', text: 'Im Betrieb' },
   { wert: '50 km', text: 'Einzugsgebiet' },
-  { wert: 'VOB/C', text: 'Untergrund geprüft' },
 ];
 
 const leistungen = [
-  { titel: 'Innenanstriche', text: 'Unser Schwerpunkt. Wohnungen, Treppenhäuser, Büros, meist im bewohnten Zustand.' },
-  { titel: 'Spachtelarbeiten', text: 'Von Q2 bis Q4. Welche Stufe Sie brauchen, hängt am Licht im Raum.' },
-  { titel: 'Fassadenanstriche', text: 'Silikat, Silikonharz oder Dispersion, je nach Untergrund und Lage.' },
-  { titel: 'Lackierarbeiten', text: 'Türen, Zargen, Fenster, Heizkörper. Innen, wasserbasiert.' },
-  { titel: 'Tapezierarbeiten', text: 'Raufaser bis Vliestapete, auch Entfernen alter Schichten.' },
+  { titel: 'Innenanstriche', text: 'Wohnungen, Treppenhäuser, Büros. Meist im bewohnten Zustand.' },
+  { titel: 'Spachtelarbeiten', text: 'Von Q2 bis Q4, je nachdem wie das Licht im Raum steht.' },
+  { titel: 'Fassadenanstriche', text: 'Silikat, Silikonharz oder Dispersion, je nach Untergrund.' },
+  { titel: 'Lackierarbeiten', text: 'Türen, Zargen, Fenster, Heizkörper. Innen wasserbasiert.' },
+  { titel: 'Tapezierarbeiten', text: 'Raufaser bis Vlies, auch das Entfernen alter Schichten.' },
 ];
 
 const ablauf = [
-  { schritt: 'Anruf', text: 'Sie schildern kurz, worum es geht. Wir sagen Ihnen am Telefon, ob wir der richtige Betrieb sind und wann wir frühestens können.' },
-  { schritt: 'Termin vor Ort', text: 'Wir sehen uns die Räume an und prüfen den Untergrund. Kreidet die alte Farbe? Sandet der Putz? Das entscheidet über Aufwand und Preis.' },
-  { schritt: 'Angebot', text: 'Innerhalb einer Woche, schriftlich, nach Positionen. Die Spachtelstufe steht als eigene Zeile darin, nicht im Kleingedruckten.' },
-  { schritt: 'Ausführung', text: 'Zum vereinbarten Termin, mit fester Dauer. Wir melden uns, wenn sich etwas verschiebt, nicht erst, wenn Sie nachfragen.' },
-];
-
-const nichtImAngebot = [
-  { was: 'Industrie- und Fahrzeuglack', warum: 'Andere Technik, andere Kabine. Dafür sind wir nicht eingerichtet.' },
-  { was: 'Bodenbeläge', warum: 'Teppich, Vinyl und Parkett verlegen wir nicht. Wir arbeiten regelmäßig mit zwei Bodenlegern zusammen und nennen Ihnen gern einen.' },
-  { was: 'Trockenbau als eigenes Gewerk', warum: 'Wir stellen eine Wand, wenn sie zu unserer Arbeit gehört. Als Einzelauftrag nehmen wir Trockenbau nicht an.' },
+  { schritt: 'Anruf', text: 'Wir sagen Ihnen am Telefon, ob wir passen und wann wir können.' },
+  { schritt: 'Termin vor Ort', text: 'Räume ansehen, Untergrund prüfen. Eine halbe Stunde, kostenlos.' },
+  { schritt: 'Angebot', text: 'Innerhalb einer Woche, nach Positionen, Spachtelstufe als eigene Zeile.' },
+  { schritt: 'Ausführung', text: 'Zum vereinbarten Termin, mit fester Dauer.' },
 ];
 ---
 
@@ -60,8 +58,7 @@ const nichtImAngebot = [
         <h1 class="bf-display">Renovieren, ohne dass Sie ausziehen müssen.</h1>
         <div class="bf-hero-fuss">
           <p>
-            Die meisten unserer Aufträge sind Wohnungen, in denen jemand lebt.
-            Möbel in der Mitte, Folie auf dem Boden, abends wieder benutzbar.
+            Möbel in die Mitte, Folie auf den Boden, abends wieder benutzbar.
           </p>
           <a class="bf-knopf" href={telefonHref}>{betrieb.telefon}</a>
         </div>
@@ -84,6 +81,86 @@ const nichtImAngebot = [
     </div>
   </div>
 
+  <div class="bf-dunkel">
+    <section class="bf-bahn bf-abschnitt bf-auf">
+      <div class="bf-zweispaltig">
+        <div class="bf-kopfspalte">
+          <p class="bf-label">Referenz</p>
+          <h2 class="bf-display">Altbauwohnung,<br />Baujahr 1954.</h2>
+        </div>
+        <div>
+          <div class="bf-paar">
+            <Bild ordner={o} datei="vorher.webp" format="hoch" unterschrift="Vorher"
+              alt="Der Raum vor den Arbeiten: fleckige Decke, abblätternder Putz, dunkle Ränder in der Ecke" />
+            <Bild ordner={o} datei="nachher.webp" format="hoch" unterschrift="Nachher"
+              alt="Derselbe Raum nach den Arbeiten: gleichmäßig gestrichene Wände, saubere Decke, neue Fußleisten" />
+          </div>
+          <p style="margin-top:1.6rem;">
+            Vier Räume, 78 m². Im Flur ließ sich die alte Farbe mit dem Finger
+            abwischen, das war <strong>Leimfarbe</strong> und musste erst nass
+            abgewaschen werden. Über der Heizung und an der Küchendecke kam{' '}
+            <strong>Sperrgrund</strong> drauf, sonst schlagen Nikotin und
+            Wasserflecken durch jeden neuen Anstrich.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="bf-bahn bf-abschnitt bf-auf">
+    <div class="bf-zweispaltig">
+      <div class="bf-kopfspalte">
+        <p class="bf-label">Leistungen</p>
+        <h2 class="bf-serif">Was wir machen.</h2>
+      </div>
+      <div>
+        <ul class="bf-liste">
+          {leistungen.map((l) => (
+            <li>
+              <div>
+                <span class="bf-liste-titel">{l.titel}</span>
+                <span class="bf-liste-text">{l.text}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p style="margin-top:2rem;">
+          <a class="bf-knopf bf-knopf--linie" href={`${betrieb.basis}leistungen/`}>Alle Leistungen</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bf-hell-flaeche">
+    <section class="bf-bahn bf-abschnitt bf-auf">
+      <div class="bf-zweispaltig">
+        <div class="bf-kopfspalte">
+          <p class="bf-label">Handwerk</p>
+          <h2 class="bf-serif">Warum Ihre Wand bei Sonne uneben aussieht.</h2>
+        </div>
+        <div>
+          <p>
+            Weil Licht von der Seite kommt. Bei <strong>Streiflicht</strong>
+            zeichnet sich jede Kelle ab, bei diffusem Licht nicht. Deshalb
+            entscheidet vor dem Spachteln nicht der Wunsch, sondern die Frage,
+            wo im Raum die Fenster stehen.
+          </p>
+          <p>
+            Dafür gibt es vier Stufen, Q1 bis Q4. Bei uns steht die Stufe als
+            eigene Position im Angebot, nicht im Kleingedruckten.
+          </p>
+          <p style="margin-top:1.6rem;">
+            <a href={`${betrieb.basis}leistungen/#spachtel`}>Die vier Stufen im Einzelnen →</a>
+          </p>
+          <div style="margin-top:2rem;">
+            <Bild ordner={o} datei="streiflicht.webp" format="breit"
+              alt="Hand mit Glättkelle beim Spachteln einer Wand, seitliches Licht zeichnet die Struktur nach" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <section class="bf-bahn bf-abschnitt bf-auf">
     <div class="bf-zweispaltig">
       <div class="bf-kopfspalte">
@@ -92,18 +169,12 @@ const nichtImAngebot = [
       </div>
       <div>
         <p>
-          {betrieb.name} gibt es seit {betrieb.gegruendet}. {betrieb.inhaber} ist{' '}
-          {betrieb.titel}, dazu kommen drei Gesellen und ein Auszubildender.
-          Sie haben auf der Baustelle immer denselben Ansprechpartner, und der
-          war auch beim Aufmaß dabei.
+          {betrieb.inhaber} ist {betrieb.titel}, dazu kommen drei Gesellen und
+          ein Auszubildender. Sie haben auf der Baustelle immer denselben
+          Ansprechpartner, und der war auch beim Aufmaß dabei. Eine
+          Dreizimmerwohnung schaffen wir in drei bis fünf Arbeitstagen.
         </p>
-        <p>
-          Wir arbeiten für private Eigentümer, Mieter und Hausverwaltungen, im
-          Umkreis von etwa 50 Kilometern um {betrieb.ort}. Eine Dreizimmerwohnung
-          streichen wir in drei bis fünf Arbeitstagen, je nachdem was der
-          Untergrund vorher braucht.
-        </p>
-        <div style="margin-top:2.5rem; max-width:24rem;">
+        <div style="margin-top:2rem; max-width:22rem;">
           <Bild
             ordner={o}
             datei="betrieb.webp"
@@ -116,150 +187,30 @@ const nichtImAngebot = [
     </div>
   </section>
 
-  <div class="bf-dunkel">
-    <section class="bf-bahn bf-abschnitt bf-auf">
-      <div class="bf-zweispaltig">
-        <div class="bf-kopfspalte">
-          <p class="bf-label">Referenz</p>
-          <h2 class="bf-display">Altbauwohnung,<br />Baujahr 1954.</h2>
-        </div>
-        <div>
-          <p class="bf-label" style="color:var(--gruen); margin-bottom:1.5rem;">78 m² · vier Räume · vorher vermietet</p>
-          <p>
-            Die Wohnung stand nach einem Auszug leer. An den Wänden über der
-            Heizung dunkle Ränder, in der Küche eine vergilbte Decke, und im
-            Flur ließ sich die alte Farbe mit dem Finger abwischen.
-          </p>
-          <p>
-            Das Abwischbare war <strong>Leimfarbe</strong>. Die gibt es in
-            Altbauten häufiger, als man denkt, und keine Dispersionsfarbe hält
-            darauf. Sie muss nass abgewaschen werden, sonst löst sich der neue
-            Anstrich in Schollen ab. Das war ein ganzer Arbeitstag, bevor
-            überhaupt Farbe ins Haus kam.
-          </p>
-          <p>
-            Die Ränder über der Heizung und die Küchendecke haben wir mit
-            <strong>Sperrgrund</strong> behandelt. Nikotin und Wasserflecken
-            schlagen sonst durch jede Deckschicht durch, auch nach dem dritten
-            Anstrich noch.
-          </p>
-          <div class="bf-paar" style="margin-top:2.5rem;">
-            <Bild ordner={o} datei="vorher.webp" format="hoch" unterschrift="Vorher"
-              alt="Der Raum vor den Arbeiten: fleckige Decke, abblätternder Putz, dunkle Ränder in der Ecke" />
-            <Bild ordner={o} datei="nachher.webp" format="hoch" unterschrift="Nachher"
-              alt="Derselbe Raum nach den Arbeiten: gleichmäßig gestrichene Wände, saubere Decke, neue Fußleisten" />
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <section class="bf-bahn bf-abschnitt bf-auf">
-    <div class="bf-zweispaltig">
-      <div class="bf-kopfspalte">
-        <p class="bf-label">Handwerk</p>
-        <h2 class="bf-display">Warum Ihre Wand bei Sonne plötzlich uneben aussieht.</h2>
-      </div>
-      <div>
-        <p>
-          Weil Licht von der Seite kommt. Bei diffusem Licht wirkt eine Wand
-          glatt, bei <strong>Streiflicht</strong> zeichnet sich jede Kelle ab.
-          Deshalb ist die entscheidende Frage vor dem Spachteln nicht, wie
-          glatt Sie es haben wollen, sondern wo im Raum die Fenster stehen.
-        </p>
-        <p>
-          Dafür gibt es vier Stufen. <strong>Q2</strong> ist der Regelfall und
-          reicht für Raufaser oder Strukturputz. <strong>Q3</strong> hat einen
-          breiteren Übergang und trägt glatte Tapeten und matte Anstriche.
-          <strong>Q4</strong> ist vollflächig gespachtelt und die einzige Stufe,
-          die bei Streiflicht, Glanzlack oder Metalleffekt hält, was sie
-          verspricht.
-        </p>
-        <p>
-          Der Unterschied zwischen Q2 und Q4 ist erheblich, in Arbeitszeit wie
-          im Preis. Deshalb steht die Stufe bei uns als eigene Position im
-          Angebot. Wenn in einem Angebot nur „spachteln" steht, fragen Sie nach,
-          welche Stufe gemeint ist.
-        </p>
-        <div style="margin-top:2.5rem;">
-          <Bild ordner={o} datei="streiflicht.webp" format="quer"
-            alt="Hand mit Glättkelle beim Spachteln einer Wand, seitliches Licht zeichnet die Struktur nach"
-            unterschrift="Bei Streiflicht zeigt die Wand jede Unebenheit. Deshalb entscheidet die Fensterlage über die Spachtelstufe." />
-        </div>
-      </div>
-    </div>
-  </section>
-
   <div class="bf-hell-flaeche">
     <section class="bf-bahn bf-abschnitt bf-auf">
       <div class="bf-zweispaltig">
         <div class="bf-kopfspalte">
-          <p class="bf-label">Leistungen</p>
-          <h2 class="bf-serif">Was wir machen.</h2>
+          <p class="bf-label">Ablauf</p>
+          <h2 class="bf-serif">In vier Schritten.</h2>
         </div>
-        <div>
-          <ul class="bf-liste">
-            {leistungen.map((l) => (
-              <li>
-                <div>
-                  <span class="bf-liste-titel">{l.titel}</span>
-                  <span class="bf-liste-text">{l.text}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <p style="margin-top:2.5rem;">
-            <a class="bf-knopf bf-knopf--linie" href={`${betrieb.basis}leistungen/`}>Alle Leistungen</a>
-          </p>
-        </div>
+        <ol class="bf-schritte">
+          {ablauf.map((s) => (
+            <li><h3>{s.schritt}</h3><p>{s.text}</p></li>
+          ))}
+        </ol>
       </div>
     </section>
   </div>
-
-  <section class="bf-bahn bf-abschnitt bf-auf">
-    <div class="bf-zweispaltig">
-      <div class="bf-kopfspalte">
-        <p class="bf-label">Ablauf</p>
-        <h2 class="bf-serif">Vom Anruf bis zum letzten Pinselstrich.</h2>
-      </div>
-      <ol class="bf-schritte">
-        {ablauf.map((s) => (
-          <li><h3>{s.schritt}</h3><p>{s.text}</p></li>
-        ))}
-      </ol>
-    </div>
-  </section>
 
   <div class="bf-dunkel">
-    <section class="bf-bahn bf-abschnitt bf-auf">
-      <div class="bf-zweispaltig">
-        <div class="bf-kopfspalte">
-          <p class="bf-label">Abgrenzung</p>
-          <h2 class="bf-display">Was wir nicht machen.</h2>
-        </div>
-        <div>
-          <p style="margin-bottom:1.5rem;">Damit Sie sich den Anruf sparen, wenn wir nicht passen:</p>
-          <table class="bf-tabelle">
-            <thead><tr><th>Nicht im Angebot</th><th>Warum</th></tr></thead>
-            <tbody>
-              {nichtImAngebot.map((n) => (
-                <tr><td>{n.was}</td><td>{n.warum}</td></tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="bf-hell-flaeche">
     <section class="bf-bahn bf-abschnitt" style="text-align:center;">
       <p class="bf-label" style="color:var(--gruen);">Kontakt</p>
       <h2 class="bf-display" style="margin:1.2rem auto 1.5rem; max-width:14ch;">Sprechen Sie uns an.</h2>
       <a class="bf-tel-gross" href={telefonHref}>{betrieb.telefon}</a>
-      <p style="max-width:34rem; margin:1.5rem auto 2rem; color:var(--tinte-leise);">
-        Montags bis freitags zwischen 7 und 17 Uhr. Wenn wir auf der Baustelle
-        sind, rufen wir zurück.
+      <p style="max-width:32rem; margin:1.5rem auto 2rem; opacity:0.8;">
+        Montags bis freitags, 7 bis 17 Uhr. Wenn wir auf der Baustelle sind,
+        rufen wir zurück.
       </p>
       <a class="bf-knopf" href={`${betrieb.basis}kontakt/`}>Anfrage schreiben</a>
     </section>
