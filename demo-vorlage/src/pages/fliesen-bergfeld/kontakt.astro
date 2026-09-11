@@ -9,121 +9,159 @@ const einzugsgebiet = [
   'Verden (Aller)', 'Achim', 'Ottersberg', 'Langwedel', 'Kirchlinteln',
   'Dörverden', 'Blender', 'Thedinghausen', 'Rotenburg (Wümme)', 'Walsrode',
 ];
+
+const danach = [
+  'Wir melden uns innerhalb von zwei Werktagen zurück.',
+  'Passt es grundsätzlich, vereinbaren wir einen Termin vor Ort. Der dauert etwa eine halbe Stunde und kostet nichts.',
+  'Danach bekommen Sie innerhalb einer Woche ein schriftliches Angebot nach Positionen.',
+];
 ---
 
 <Seitenrahmen
   titel="Kontakt · Fliesen Bergfeld"
   beschreibung="Fliesen Bergfeld in Verden (Aller) erreichen: telefonisch oder über das Anfrageformular. Einzugsgebiet rund 50 Kilometer."
   aktiv="kontakt"
+  heller_kopf={true}
 >
-  <h1>So erreichen Sie uns</h1>
-
-  <h2>Anrufen</h2>
-  <p>
-    <a href={telefonHref}><strong>{betrieb.telefon}</strong></a>
-  </p>
-  <p>
-    Montag bis Freitag, 7 bis 17 Uhr. Wenn niemand abnimmt, sind wir auf der
-    Baustelle — sprechen Sie auf, wir rufen am selben oder nächsten Tag zurück.
-  </p>
-  <p>
-    Bei einem Wasserschaden rufen Sie bitte an und schreiben nicht. Da zählt
-    jeder Tag.
-  </p>
-
-  <h2>Schreiben</h2>
-  <p>
-    Je genauer, desto besser können wir vorbereiten. Sie müssen nicht alles
-    wissen — was Sie nicht beantworten können, lassen Sie leer.
-  </p>
-
-  <form>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" autocomplete="name" required />
-
-    <label for="telefon">Telefonnummer für den Rückruf</label>
-    <input type="tel" id="telefon" name="telefon" autocomplete="tel" required />
-
-    <label for="ort">Ort</label>
-    <input type="text" id="ort" name="ort" autocomplete="address-level2" required />
-
-    <label for="art">Worum geht es?</label>
-    <select id="art" name="art">
-      <option>Komplette Badsanierung</option>
-      <option>Bodengleiche Dusche</option>
-      <option>Einzelner Raum, neu zu fliesen</option>
-      <option>Reparatur oder Fugen</option>
-      <option>Wasserschaden</option>
-      <option>Etwas anderes</option>
-    </select>
-
-    <label for="groesse">Ungefähre Fläche in Quadratmetern</label>
-    <input type="text" id="groesse" name="groesse" placeholder="z. B. 8, oder: weiß ich nicht" />
-
-    <label for="baujahr">Baujahr des Hauses, falls bekannt</label>
-    <input type="text" id="baujahr" name="baujahr" placeholder="z. B. 1962" />
-
-    <label for="zeitraum">Wann soll es losgehen?</label>
-    <select id="zeitraum" name="zeitraum">
-      <option>So schnell wie möglich</option>
-      <option>In den nächsten drei Monaten</option>
-      <option>Dieses Jahr</option>
-      <option>Noch offen, erst mal informieren</option>
-    </select>
-
-    <label for="rueckruf">Wann erreichen wir Sie am besten?</label>
-    <input type="text" id="rueckruf" name="rueckruf" placeholder="z. B. vormittags, oder: nach 18 Uhr" />
-
-    <label for="nachricht">Was sollen wir noch wissen?</label>
-    <textarea id="nachricht" name="nachricht" rows="5"></textarea>
-
-    <p style="margin-top:1.5rem;">
-      <button type="submit">Anfrage senden</button>
+  <section class="bf-bahn bf-abschnitt">
+    <p class="bf-label" style="color:var(--gruen); margin-bottom:1.5rem;">Kontakt</p>
+    <h1 class="bf-display" style="font-size:clamp(2.6rem, 7vw, 5rem); max-width:14ch;">So erreichen Sie uns</h1>
+    <p class="bf-eng" style="margin:2rem 0 2.5rem; font-size:1.12rem; color:var(--tinte-leise);">
+      Am schnellsten geht es telefonisch. Montag bis Freitag, 7 bis 17 Uhr —
+      wenn niemand abnimmt, sind wir auf der Baustelle.
     </p>
-    <p class="hinweis">
-      Im Musterentwurf ist das Formular ohne Funktion — es wird nichts
-      verschickt und nichts gespeichert.
+    <a class="bf-tel-gross" href={telefonHref}>{betrieb.telefon}</a>
+    <p class="bf-eng" style="margin-top:1.5rem; color:var(--tinte-leise);">
+      Sprechen Sie auf, wir rufen am selben oder nächsten Tag zurück. Bei einem{' '}
+      <strong>Wasserschaden</strong> rufen Sie bitte an und schreiben nicht —
+      da zählt jeder Tag.
     </p>
-  </form>
+  </section>
 
-  <h2>Was danach passiert</h2>
-  <ol>
-    <li>Wir melden uns innerhalb von zwei Werktagen zurück.</li>
-    <li>
-      Passt es grundsätzlich, vereinbaren wir einen Termin vor Ort. Der dauert
-      etwa eine halbe Stunde und kostet nichts.
-    </li>
-    <li>
-      Danach bekommen Sie innerhalb einer Woche ein schriftliches Angebot nach
-      Positionen.
-    </li>
-  </ol>
-  <p>
-    Wenn wir absagen, sagen wir das gleich beim ersten Anruf — und wenn wir
-    jemanden kennen, der besser passt, nennen wir Ihnen den.
-  </p>
+  <section class="bf-bahn bf-abschnitt">
+    <div class="bf-zweispaltig">
+      <div class="bf-kopfspalte">
+        <p class="bf-label" style="color:var(--gruen);">Anfrage</p>
+        <h2 class="bf-serif">Oder schreiben Sie uns.</h2>
+      </div>
+      <div>
+        <p style="margin-bottom:2rem;">
+          Je genauer, desto besser können wir vorbereiten. Sie müssen nicht
+          alles wissen — was Sie nicht beantworten können, lassen Sie leer.
+        </p>
 
-  <h2>Wo wir arbeiten</h2>
-  <p>
-    Etwa 50 Kilometer um {betrieb.ort}, unter anderem:
-  </p>
-  <ul>
-    {einzugsgebiet.map((o) => <li>{o}</li>)}
-  </ul>
-  <p>
-    Liegt Ihr Ort nicht dabei, fragen Sie trotzdem. Bei größeren Aufträgen
-    fahren wir auch weiter, bei einer einzelnen Fuge lohnt sich die Anfahrt
-    nicht — das sagen wir Ihnen ehrlich am Telefon.
-  </p>
+        <form>
+          <div class="bf-feld-paar">
+            <div class="bf-feld">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required />
+            </div>
+            <div class="bf-feld">
+              <label for="telefon">Telefonnummer für den Rückruf</label>
+              <input type="tel" id="telefon" name="telefon" autocomplete="tel" required />
+            </div>
+          </div>
 
-  <h2>Anschrift</h2>
-  <p>
-    {betrieb.name}<br />
-    {betrieb.inhaber}, {betrieb.titel}<br />
-    {betrieb.strasse}<br />
-    {betrieb.plz} {betrieb.ort}
-  </p>
-  <p class="hinweis">
-    Musterentwurf: Anschrift und Telefonnummer sind Platzhalter.
-  </p>
+          <div class="bf-feld">
+            <label for="ort">Ort</label>
+            <input type="text" id="ort" name="ort" autocomplete="address-level2" required />
+          </div>
+
+          <div class="bf-feld">
+            <label for="art">Worum geht es?</label>
+            <select id="art" name="art">
+              <option>Komplette Badsanierung</option>
+              <option>Bodengleiche Dusche</option>
+              <option>Einzelner Raum, neu zu fliesen</option>
+              <option>Reparatur oder Fugen</option>
+              <option>Wasserschaden</option>
+              <option>Etwas anderes</option>
+            </select>
+          </div>
+
+          <div class="bf-feld-paar">
+            <div class="bf-feld">
+              <label for="groesse">Ungefähre Fläche in m²</label>
+              <input type="text" id="groesse" name="groesse" placeholder="z. B. 8, oder: weiß ich nicht" />
+            </div>
+            <div class="bf-feld">
+              <label for="baujahr">Baujahr des Hauses, falls bekannt</label>
+              <input type="text" id="baujahr" name="baujahr" placeholder="z. B. 1962" />
+            </div>
+          </div>
+
+          <div class="bf-feld-paar">
+            <div class="bf-feld">
+              <label for="zeitraum">Wann soll es losgehen?</label>
+              <select id="zeitraum" name="zeitraum">
+                <option>So schnell wie möglich</option>
+                <option>In den nächsten drei Monaten</option>
+                <option>Dieses Jahr</option>
+                <option>Noch offen, erst mal informieren</option>
+              </select>
+            </div>
+            <div class="bf-feld">
+              <label for="rueckruf">Wann erreichen wir Sie?</label>
+              <input type="text" id="rueckruf" name="rueckruf" placeholder="z. B. vormittags, oder: nach 18 Uhr" />
+            </div>
+          </div>
+
+          <div class="bf-feld">
+            <label for="nachricht">Was sollen wir noch wissen?</label>
+            <textarea id="nachricht" name="nachricht" rows="5"></textarea>
+          </div>
+
+          <p style="margin-top:1.5rem;">
+            <button class="bf-knopf" type="submit">Anfrage senden</button>
+          </p>
+          <p style="font-size:0.85rem; color:var(--tinte-leise);">
+            Im Musterentwurf ist das Formular ohne Funktion — es wird nichts
+            verschickt und nichts gespeichert.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="bf-hell-flaeche">
+    <section class="bf-bahn bf-abschnitt">
+      <div class="bf-zweispaltig">
+        <div class="bf-kopfspalte">
+          <p class="bf-label" style="color:var(--gruen);">Ablauf</p>
+          <h2 class="bf-serif">Was danach passiert.</h2>
+        </div>
+        <div>
+          <ol class="bf-schritte">
+            {danach.map((d, i) => (
+              <li><h3>{['Rückmeldung', 'Termin vor Ort', 'Angebot'][i]}</h3><p>{d}</p></li>
+            ))}
+          </ol>
+          <p style="margin-top:1.5rem; color:var(--tinte-leise);">
+            Wenn wir absagen, sagen wir das gleich beim ersten Anruf — und wenn
+            wir jemanden kennen, der besser passt, nennen wir Ihnen den.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="bf-bahn bf-abschnitt">
+    <div class="bf-zweispaltig">
+      <div class="bf-kopfspalte">
+        <p class="bf-label" style="color:var(--gruen);">Einzugsgebiet</p>
+        <h2 class="bf-serif">Wo wir arbeiten.</h2>
+      </div>
+      <div>
+        <p>Etwa 50 Kilometer um {betrieb.ort}, unter anderem:</p>
+        <p style="font-size:1.02rem; line-height:2;">
+          {einzugsgebiet.join(' · ')}
+        </p>
+        <p style="color:var(--tinte-leise);">
+          Liegt Ihr Ort nicht dabei, fragen Sie trotzdem. Bei größeren
+          Aufträgen fahren wir auch weiter, bei einer einzelnen Fuge lohnt sich
+          die Anfahrt nicht — das sagen wir Ihnen ehrlich am Telefon.
+        </p>
+      </div>
+    </div>
+  </section>
 </Seitenrahmen>

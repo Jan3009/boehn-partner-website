@@ -1,43 +1,38 @@
 ---
 // Startseite des Musterentwurfs "Fliesen Bergfeld".
-// Reihenfolge der Abschnitte nach PLANUNG-fliesen-bergfeld.md, Seite 1.
+// Aufbau: dunkler Vollflächen-Hero, Kennzahlenband, danach Wechsel aus hellen
+// und dunklen Sektionen. Der Wechsel ist der eigentliche Hebel für den
+// "hochwertigen" Eindruck -- eine durchgehend weiße Seite wirkt flach,
+// egal wie gut der Text ist.
 import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
 import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
 
-// Bewusst EIN Projekt ausführlich statt einer Galerie aus acht Bildern:
-// Eine Galerie zeigt Ergebnisse, eine Projektbeschreibung zeigt Können.
+const kennzahlen = [
+  { wert: String(betrieb.gegruendet), text: 'Gegründet' },
+  { wert: '4', text: 'Leute im Betrieb' },
+  { wert: '50 km', text: 'Einzugsgebiet' },
+  { wert: 'DIN 18534', text: 'Abdichtung nach Norm' },
+];
+
+const leistungen = [
+  { titel: 'Badsanierung im Bestand', text: 'Unser Schwerpunkt, meist Altbau aus den 1950er- bis 1980er-Jahren.' },
+  { titel: 'Bodengleiche Duschen', text: 'Gefälle, Rutschhemmung und Ablauf — die drei Dinge, an denen es hängt.' },
+  { titel: 'Großformatfliesen', text: 'Bis 120 × 260 cm, zu zweit mit Saugheber und im Nivelliersystem.' },
+  { titel: 'Naturstein', text: 'Marmor, Schiefer, Granit — mit ehrlichem Hinweis auf die Pflege.' },
+  { titel: 'Reparaturen', text: 'Einzelne Fliesen, ausgebrochene Fugen, erneuertes Silikon.' },
+];
+
 const ablauf = [
-  {
-    schritt: 'Anruf',
-    text: 'Sie schildern kurz, worum es geht. Wir sagen Ihnen am Telefon, ob wir dafür der richtige Betrieb sind — und wann wir frühestens können.',
-  },
-  {
-    schritt: 'Termin vor Ort',
-    text: 'Wir sehen uns den Raum an, messen auf und prüfen den Untergrund. Das dauert etwa eine halbe Stunde und kostet nichts.',
-  },
-  {
-    schritt: 'Angebot',
-    text: 'Innerhalb einer Woche, schriftlich, nach Positionen aufgeschlüsselt. Sie sehen, was Material kostet und was Arbeitszeit.',
-  },
-  {
-    schritt: 'Ausführung',
-    text: 'Zum vereinbarten Termin, mit fester Dauer. Wir melden uns, wenn sich etwas verschiebt — nicht erst, wenn Sie nachfragen.',
-  },
+  { schritt: 'Anruf', text: 'Sie schildern kurz, worum es geht. Wir sagen Ihnen am Telefon, ob wir der richtige Betrieb sind — und wann wir frühestens können.' },
+  { schritt: 'Termin vor Ort', text: 'Wir sehen uns den Raum an, messen auf und prüfen den Untergrund. Das dauert etwa eine halbe Stunde und kostet nichts.' },
+  { schritt: 'Angebot', text: 'Innerhalb einer Woche, schriftlich, nach Positionen aufgeschlüsselt. Sie sehen, was Material kostet und was Arbeitszeit.' },
+  { schritt: 'Ausführung', text: 'Zum vereinbarten Termin, mit fester Dauer. Wir melden uns, wenn sich etwas verschiebt — nicht erst, wenn Sie nachfragen.' },
 ];
 
 const nichtImAngebot = [
-  {
-    was: 'Neubauprojekte über 300 m²',
-    warum: 'Dafür sind wir zu klein. Wir würden Ihren Termin reißen, und das hilft niemandem.',
-  },
-  {
-    was: 'Estrich als eigenes Gewerk',
-    warum: 'Wir bringen Estrich ein, wenn er zu unserer Fliesenarbeit gehört. Als Einzelauftrag nehmen wir ihn nicht an.',
-  },
-  {
-    was: 'Nur Material liefern',
-    warum: 'Wir verlegen, was wir liefern. Für Fliesen ohne Verlegung ist der Fachhandel die bessere Adresse.',
-  },
+  { was: 'Neubau über 300 m²', warum: 'Dafür sind wir zu klein. Wir würden Ihren Termin reißen, und das hilft niemandem.' },
+  { was: 'Estrich als eigenes Gewerk', warum: 'Wir bringen Estrich ein, wenn er zu unserer Fliesenarbeit gehört. Als Einzelauftrag nehmen wir ihn nicht an.' },
+  { was: 'Nur Material liefern', warum: 'Wir verlegen, was wir liefern. Für Fliesen ohne Verlegung ist der Fachhandel die bessere Adresse.' },
 ];
 ---
 
@@ -46,122 +41,204 @@ const nichtImAngebot = [
   beschreibung="Badsanierung im bewohnten Altbau, bodengleiche Duschen und Großformatfliesen. Meisterbetrieb in Verden (Aller), seit 2011."
   aktiv="start"
 >
-  <h1>Bäder sanieren, während Sie darin wohnen.</h1>
+  <section class="bf-hero">
+    <div class="bf-hero-grund" aria-hidden="true"></div>
+    <p class="bf-hero-marke" aria-hidden="true">Bildplatz 1 · Hero, Querformat</p>
+    <div class="bf-hero-inhalt bf-bahn">
+      <p class="bf-label">Fliesenlegermeisterbetrieb · Verden (Aller)</p>
+      <h1 class="bf-display">Bäder sanieren, während Sie darin wohnen.</h1>
+      <div class="bf-hero-fuss">
+        <p>
+          Die meisten unserer Aufträge sind Altbauten, in denen jemand lebt.
+          Das heißt: ein funktionierendes Bad am Wochenende, Staubschutz an der
+          Tür und ein Termin, der hält.
+        </p>
+        <a class="bf-knopf" href={telefonHref}>{betrieb.telefon}</a>
+      </div>
+    </div>
+  </section>
 
-  <p>
-    Die meisten unserer Aufträge sind Altbauten, in denen jemand lebt. Das
-    heißt: ein funktionierendes Bad am Wochenende, Staubschutz an der Tür und
-    ein Termin, der hält. Wir sind ein Meisterbetrieb aus {betrieb.ort} und
-    arbeiten im Umkreis von etwa 50 Kilometern.
-  </p>
-
-  <p>
-    <a href={telefonHref}><strong>{betrieb.telefon} anrufen</strong></a>
-  </p>
-
-  <div class="bildplatz">
-    Platzhalter: Querformat, ein fertig saniertes Altbau-Bad. Kein
-    Katalogbild — der Raum soll bewohnt aussehen.
-  </div>
-
-  <h2>Der Betrieb</h2>
-  <p>
-    {betrieb.name} gibt es seit {betrieb.gegruendet}. {betrieb.inhaber} ist
-    {betrieb.titel}, dazu kommen zwei Gesellen und ein Auszubildender. Vier
-    Leute heißt: Sie haben auf der Baustelle immer denselben Ansprechpartner,
-    und der war auch beim Aufmaß dabei.
-  </p>
-  <p>
-    Wir arbeiten für private Eigentümer und für Hausverwaltungen. Wenn ein
-    Mieter im Haus wohnt, stimmen wir die Bad-Ausfallzeit vorher ab — bei einer
-    Komplettsanierung sind das üblicherweise zwei bis drei Wochen.
-  </p>
-
-  <h2>Ein Projekt im Detail: Reihenhaus von 1962</h2>
-  <p>
-    Ein Bad im Obergeschoss, 7,5 m², Holzbalkendecke. Die alten Fliesen hatten
-    an mehreren Stellen Risse in der Fuge, und in einer Ecke war der Estrich
-    unter der Dusche feucht.
-  </p>
-  <p>
-    Die Risse kamen nicht von schlechter Verlegung, sondern vom Untergrund: Eine
-    Holzbalkendecke arbeitet, eine Fliese nicht. Wer darauf direkt verlegt,
-    bekommt die Bewegung früher oder später in der Fuge zu sehen. Wir haben den
-    alten Aufbau herausgenommen, eine Entkopplungsmatte eingebaut und darauf neu
-    verlegt. Die Matte nimmt die Bewegung der Decke auf, bevor sie die Fliese
-    erreicht.
-  </p>
-  <p>
-    Die feuchte Ecke war ein zweites Thema: Unter der alten Dusche gab es keine
-    Abdichtung, nur Fliesenkleber. Der ist nicht wasserdicht, das war er nie.
-  </p>
-
-  <div class="bildplatz">
-    Platzhalter: Vorher/Nachher, zwei Aufnahmen aus derselben Position.
-    Das Vorher-Bild darf ruhig unschön sein — das ist der Punkt.
-  </div>
-
-  <h2>Warum die Abdichtung über alles entscheidet</h2>
-  <p>
-    Der teuerste Fehler im Bad liegt unter der Fliese. Eine bodengleiche Dusche
-    braucht eine Verbundabdichtung nach <strong>DIN 18534</strong>, im
-    Duschbereich nach Wassereinwirkungsklasse <strong>W3-I</strong>. Das ist
-    keine Empfehlung, sondern der Stand der Technik.
-  </p>
-  <p>
-    Sichtbar ist davon später nichts. Merkbar wird sie erst, wenn sie fehlt:
-    dann meist zwei bis fünf Jahre später, an der Decke des Raums darunter. Die
-    Reparatur kostet dann ein Vielfaches der Abdichtung.
-  </p>
-  <p>
-    Deshalb steht die Abdichtung bei uns als eigene Position im Angebot, mit
-    Produktangabe. Sie können nachlesen, was verbaut wurde. Wenn Ihnen jemand
-    ein Bad anbietet, in dem diese Position fehlt, fragen Sie nach.
-  </p>
-
-  <h2>Was wir machen</h2>
-  <ul>
-    <li><strong>Badsanierung im Bestand</strong> — unser Schwerpunkt, meist Altbau</li>
-    <li><strong>Bodengleiche Duschen</strong> — Gefälle, Rutschhemmung, Ablauf</li>
-    <li><strong>Großformatfliesen</strong> — bis 120 × 260 cm</li>
-    <li><strong>Naturstein</strong> — mit ehrlichem Hinweis auf die Pflege</li>
-    <li><strong>Reparaturen</strong> — einzelne Fliesen, Fugen, Silikon</li>
-  </ul>
-  <p><a href="/demo/fliesen-bergfeld/leistungen/">Ausführlich auf der Leistungsseite</a></p>
-
-  <h2>So läuft ein Auftrag ab</h2>
-  <ol>
-    {ablauf.map((s) => (
-      <li>
-        <h3>{s.schritt}</h3>
-        <p>{s.text}</p>
-      </li>
-    ))}
-  </ol>
-
-  <h2>Was wir nicht machen</h2>
-  <p>
-    Damit Sie sich den Anruf sparen, wenn wir nicht passen:
-  </p>
-  <table>
-    <thead>
-      <tr><th>Nicht im Angebot</th><th>Warum</th></tr>
-    </thead>
-    <tbody>
-      {nichtImAngebot.map((n) => (
-        <tr><td>{n.was}</td><td>{n.warum}</td></tr>
+  <div class="bf-band">
+    <div class="bf-band-innen">
+      {kennzahlen.map((k) => (
+        <div class="bf-band-zelle">
+          <p class="bf-band-wert">{k.wert}</p>
+          <p class="bf-band-text">{k.text}</p>
+        </div>
       ))}
-    </tbody>
-  </table>
+    </div>
+  </div>
 
-  <h2>Sprechen Sie uns an</h2>
-  <p>
-    Am schnellsten geht es telefonisch:
-    <a href={telefonHref}><strong>{betrieb.telefon}</strong></a>. Wir sind
-    montags bis freitags zwischen 7 und 17 Uhr erreichbar — wenn wir auf der
-    Baustelle sind, rufen wir zurück.
-  </p>
-  <p>
-    Lieber schreiben? <a href="/demo/fliesen-bergfeld/kontakt/">Zum Kontaktformular</a>
-  </p>
+  <section class="bf-bahn bf-abschnitt bf-auf">
+    <div class="bf-zweispaltig">
+      <div class="bf-kopfspalte">
+        <p class="bf-label">Der Betrieb</p>
+        <h2 class="bf-serif">Vier Leute, ein Ansprechpartner.</h2>
+      </div>
+      <div>
+        <p>
+          {betrieb.name} gibt es seit {betrieb.gegruendet}. {betrieb.inhaber} ist{' '}
+          {betrieb.titel}, dazu kommen zwei Gesellen und ein Auszubildender.
+          Sie haben auf der Baustelle immer denselben Ansprechpartner, und der
+          war auch beim Aufmaß dabei.
+        </p>
+        <p>
+          Wir arbeiten für private Eigentümer und für Hausverwaltungen, im
+          Umkreis von etwa 50 Kilometern um {betrieb.ort}. Wenn ein Mieter im
+          Haus wohnt, stimmen wir die Bad-Ausfallzeit vorher ab — bei einer
+          Komplettsanierung sind das üblicherweise zwei bis drei Wochen.
+        </p>
+        <div class="bf-bildplatz bf-quer" style="margin-top:2rem;">
+          <p class="bf-label">Bildplatz 2 · Querformat</p>
+          <span>Der Inhaber bei der Arbeit oder das Team vor dem Firmenwagen. Kein gestelltes Studioporträt.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bf-dunkel">
+    <section class="bf-bahn bf-abschnitt bf-auf">
+      <div class="bf-zweispaltig">
+        <div class="bf-kopfspalte">
+          <p class="bf-label">Referenz</p>
+          <h2 class="bf-display">Reihenhaus,<br />Baujahr 1962.</h2>
+        </div>
+        <div>
+          <p class="bf-label" style="color:var(--gruen); margin-bottom:1.5rem;">7,5 m² · Obergeschoss · Holzbalkendecke</p>
+          <p>
+            Die alten Fliesen hatten an mehreren Stellen Risse in der Fuge, und
+            in einer Ecke war der Estrich unter der Dusche feucht.
+          </p>
+          <p>
+            Die Risse kamen nicht von schlechter Verlegung, sondern vom
+            Untergrund: Eine Holzbalkendecke arbeitet, eine Fliese nicht. Wer
+            darauf direkt verlegt, bekommt die Bewegung früher oder später in
+            der Fuge zu sehen. Wir haben den alten Aufbau herausgenommen, eine
+            <strong>Entkopplungsmatte</strong> eingebaut und darauf neu verlegt.
+          </p>
+          <p>
+            Die feuchte Ecke war ein zweites Thema: Unter der alten Dusche gab
+            es keine Abdichtung, nur Fliesenkleber. Der ist nicht wasserdicht,
+            das war er nie.
+          </p>
+          <div class="bf-paar" style="margin-top:2rem;">
+            <div class="bf-bildplatz bf-bildplatz--dunkel bf-hoch">
+              <p class="bf-label">Bildplatz 3 · Vorher</p>
+              <span>Das alte Bad, aus der Türposition. Darf unschön sein.</span>
+            </div>
+            <div class="bf-bildplatz bf-bildplatz--dunkel bf-hoch">
+              <p class="bf-label">Bildplatz 4 · Nachher</p>
+              <span>Gleiche Position, gleicher Bildausschnitt, fertiger Raum.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="bf-bahn bf-abschnitt bf-auf">
+    <div class="bf-zweispaltig">
+      <div class="bf-kopfspalte">
+        <p class="bf-label">Handwerk</p>
+        <h2 class="bf-display">Der teuerste Fehler liegt unter der Fliese.</h2>
+      </div>
+      <div>
+        <p>
+          Eine bodengleiche Dusche braucht eine Verbundabdichtung nach
+          <strong>DIN 18534</strong>, im Duschbereich nach
+          Wassereinwirkungsklasse <strong>W3-I</strong>. Das ist keine
+          Empfehlung, sondern der Stand der Technik.
+        </p>
+        <p>
+          Sichtbar ist davon später nichts. Merkbar wird sie erst, wenn sie
+          fehlt: dann meist zwei bis fünf Jahre später, an der Decke des Raums
+          darunter. Die Reparatur kostet dann ein Vielfaches der Abdichtung.
+        </p>
+        <p>
+          Deshalb steht die Abdichtung bei uns als eigene Position im Angebot,
+          mit Produktangabe. Sie können nachlesen, was verbaut wurde. Wenn Ihnen
+          jemand ein Bad anbietet, in dem diese Position fehlt, fragen Sie nach.
+        </p>
+        <div class="bf-bildplatz bf-quer" style="margin-top:2rem;">
+          <p class="bf-label">Bildplatz 5 · Querformat</p>
+          <span>Aufgetragene Abdichtung im Rohbau — die typisch türkis oder graue Fläche vor dem Verfliesen.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bf-hell-flaeche">
+    <section class="bf-bahn bf-abschnitt bf-auf">
+      <div class="bf-zweispaltig">
+        <div class="bf-kopfspalte">
+          <p class="bf-label">Leistungen</p>
+          <h2 class="bf-serif">Was wir machen.</h2>
+        </div>
+        <div>
+          <ul class="bf-liste">
+            {leistungen.map((l) => (
+              <li>
+                <div>
+                  <span class="bf-liste-titel">{l.titel}</span>
+                  <span class="bf-liste-text">{l.text}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p style="margin-top:2.5rem;">
+            <a class="bf-knopf bf-knopf--linie" href="/demo/fliesen-bergfeld/leistungen/">Alle Leistungen</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="bf-bahn bf-abschnitt bf-auf">
+    <div class="bf-zweispaltig">
+      <div class="bf-kopfspalte">
+        <p class="bf-label">Ablauf</p>
+        <h2 class="bf-serif">Vom Anruf bis zur letzten Fuge.</h2>
+      </div>
+      <ol class="bf-schritte">
+        {ablauf.map((s) => (
+          <li><h3>{s.schritt}</h3><p>{s.text}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <div class="bf-dunkel">
+    <section class="bf-bahn bf-abschnitt bf-auf">
+      <div class="bf-zweispaltig">
+        <div class="bf-kopfspalte">
+          <p class="bf-label">Abgrenzung</p>
+          <h2 class="bf-display">Was wir nicht machen.</h2>
+        </div>
+        <div>
+          <p style="margin-bottom:1.5rem;">Damit Sie sich den Anruf sparen, wenn wir nicht passen:</p>
+          <table class="bf-tabelle">
+            <thead><tr><th>Nicht im Angebot</th><th>Warum</th></tr></thead>
+            <tbody>
+              {nichtImAngebot.map((n) => (
+                <tr><td>{n.was}</td><td>{n.warum}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="bf-hell-flaeche">
+    <section class="bf-bahn bf-abschnitt" style="text-align:center;">
+      <p class="bf-label" style="color:var(--gruen);">Kontakt</p>
+      <h2 class="bf-display" style="margin:1.2rem auto 1.5rem; max-width:14ch;">Sprechen Sie uns an.</h2>
+      <a class="bf-tel-gross" href={telefonHref}>{betrieb.telefon}</a>
+      <p style="max-width:34rem; margin:1.5rem auto 2rem; color:var(--tinte-leise);">
+        Montags bis freitags zwischen 7 und 17 Uhr. Wenn wir auf der Baustelle
+        sind, rufen wir zurück.
+      </p>
+      <a class="bf-knopf" href="/demo/fliesen-bergfeld/kontakt/">Anfrage schreiben</a>
+    </section>
+  </div>
 </Seitenrahmen>
