@@ -1,0 +1,31 @@
+---
+// Galerie-Raster für Bespoke-Kunden (aktuell Walsroder Döner).
+// Unterschied zu Gallery.astro: kein Teaser-Kopf und mehr vertikaler Abstand,
+// weil die Seite bei Bespoke-Kunden einen eigenen PageHeader mitbringt.
+// Rekonstruiert aus dem ausgelieferten Stand unter demo/walsroder-doener/
+// galerie/ -- die Komponente fehlte im Repo und brach damit jeden Build.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+---
+
+<section id="arbeiten" class="px-6 sm:px-12 py-24 sm:py-32">
+  <div class="max-w-[1320px] mx-auto">
+    <div class="reveal grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+      {demo.galerie.map((bild) => (
+        <div
+          class={`aspect-square overflow-hidden flex items-center justify-center ${bild.src ? '' : 'border border-dashed'}`}
+          style="border-radius:var(--radius-card); border-color:var(--line); background:var(--surface);"
+        >
+          {bild.src
+            ? <img src={bild.src} alt={bild.alt} class="w-full h-full object-cover" loading="lazy" />
+            : <p class="text-xs text-center px-4" style="color:var(--ink-soft);">Foto-Platzhalter: {bild.alt}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,71 @@
+---
+// Kartenausschnitt für die Kontaktseite, erzeugt aus kontakt.adresse.
+//
+// BEWUSST als Zwei-Klick-Lösung: Ein direkt eingebettetes Maps-iframe baut
+// beim Seitenaufruf eine Verbindung zu Google auf und setzt Cookies, bevor
+// der Besucher irgendetwas einwilligen konnte. Das ist ohne Einwilligung
+// nicht zulässig. Hier wird erst nach einem Klick geladen, davor steht eine
+// beschriftete Fläche mit Hinweis. Kein API-Key nötig, der öffentliche
+// "output=embed"-Link genügt.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  demo: CollectionEntry<'demos'>['data'];
+}
+
+const { demo } = Astro.props;
+const adresse = demo.kontakt.adresse;
+// encodeURIComponent, damit Umlaute und Leerzeichen in der Adresse nicht die
+// URL zerlegen.
+const kartenUrl = `https://www.google.com/maps?q=${encodeURIComponent(adresse)}&output=embed`;
+const linkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adresse)}`;
+---
+
+<div class="karte" data-karte data-url={kartenUrl}>
+  <button type="button" class="karte-schalter" data-karte-schalter>
+    <span class="karte-titel">Karte anzeigen</span>
+    <span class="karte-adresse">{adresse}</span>
+    <span class="karte-hinweis">
+      Beim Laden der Karte werden Daten an Google übertragen. Alternativ
+      <a href={linkUrl} target="_blank" rel="noopener noreferrer">in Google Maps öffnen</a>.
+    </span>
+  </button>
+</div>
+
+<style>
+  .karte {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .karte :global(iframe) { width: 100%; height: 100%; border: 0; display: block; }
+  .karte-schalter {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.6rem;
+    padding: 1.5rem; text-align: center; cursor: pointer;
+    background: none; border: none; font: inherit; color: var(--ink);
+  }
+  .karte-schalter:hover .karte-titel { text-decoration: underline; }
+  .karte-titel { font-weight: 600; }
+  .karte-adresse { font-size: 0.9rem; color: var(--ink-soft); }
+  .karte-hinweis { font-size: 0.75rem; color: var(--ink-soft); max-width: 26rem; line-height: 1.5; }
+  .karte-hinweis a { text-decoration: underline; }
+</style>
+
+<script>
+  document.querySelectorAll('[data-karte]').forEach((behaelter) => {
+    const schalter = behaelter.querySelector('[data-karte-schalter]');
+    schalter?.addEventListener('click', () => {
+      const rahmen = document.createElement('iframe');
+      rahmen.src = (behaelter as HTMLElement).dataset.url ?? '';
+      rahmen.loading = 'lazy';
+      rahmen.title = 'Karte';
+      rahmen.referrerPolicy = 'no-referrer-when-downgrade';
+      rahmen.allowFullscreen = true;
+      behaelter.replaceChildren(rahmen);
+    });
+  });
+</script>
