@@ -43,11 +43,16 @@ const nichtImAngebot = [
   aktiv="start"
   firma={betrieb}
 >
-  <section class="bf-hero">
+  <section class="bf-hero bf-hero--hell">
     <div class="bf-hero-bild">
-      <div class="bf-hero-leer" aria-hidden="true"></div>
+      <img
+        src="/demo/images/demos/maler-allerufer/hero.webp"
+        alt="Frisch gestrichener Wohnraum in gedecktem Taupe, Streiflicht vom Fenster wirft Schatten über die Wand"
+        width="1536"
+        height="1024"
+        fetchpriority="high"
+      />
     </div>
-    <p class="bf-hero-leer-marke" aria-hidden="true">Bildplatz 1 · Hero, Querformat</p>
     <div class="bf-hero-grund" aria-hidden="true"></div>
     <div class="bf-hero-inhalt bf-bahn">
       <div class="bf-hero-block">
@@ -101,9 +106,10 @@ const nichtImAngebot = [
         <div style="margin-top:2.5rem; max-width:24rem;">
           <Bild
             ordner={o}
-            platz="2"
+            datei="betrieb.webp"
             format="hoch"
-            alt="Der Inhaber bei der Arbeit oder das Team vor dem Firmenwagen. Kein gestelltes Studioporträt."
+            alt={`${betrieb.inhaber} in Arbeitskleidung mit Farbeimer und Rolle vor dem Firmenwagen`}
+            unterschrift={`${betrieb.inhaber}, ${betrieb.titel}`}
           />
         </div>
       </div>
@@ -138,10 +144,10 @@ const nichtImAngebot = [
             Anstrich noch.
           </p>
           <div class="bf-paar" style="margin-top:2.5rem;">
-            <Bild ordner={o} platz="3 · Vorher" format="hoch" dunkel={true}
-              alt="Der Raum vor den Arbeiten, aus der Türposition. Darf unschön sein." />
-            <Bild ordner={o} platz="4 · Nachher" format="hoch" dunkel={true}
-              alt="Gleiche Position, gleicher Bildausschnitt, fertiger Raum." />
+            <Bild ordner={o} datei="vorher.webp" format="hoch" unterschrift="Vorher"
+              alt="Der Raum vor den Arbeiten: fleckige Decke, abblätternder Putz, dunkle Ränder in der Ecke" />
+            <Bild ordner={o} datei="nachher.webp" format="hoch" unterschrift="Nachher"
+              alt="Derselbe Raum nach den Arbeiten: gleichmäßig gestrichene Wände, saubere Decke, neue Fußleisten" />
           </div>
         </div>
       </div>
@@ -176,8 +182,9 @@ const nichtImAngebot = [
           welche Stufe gemeint ist.
         </p>
         <div style="margin-top:2.5rem;">
-          <Bild ordner={o} platz="5" format="quer"
-            alt="Frisch gespachtelte Wand im Streiflicht, Spachtel noch angesetzt. Die Fläche muss im Bild sichtbar glatt sein." />
+          <Bild ordner={o} datei="streiflicht.webp" format="quer"
+            alt="Hand mit Glättkelle beim Spachteln einer Wand, seitliches Licht zeichnet die Struktur nach"
+            unterschrift="Bei Streiflicht zeigt die Wand jede Unebenheit. Deshalb entscheidet die Fensterlage über die Spachtelstufe." />
         </div>
       </div>
     </div>
