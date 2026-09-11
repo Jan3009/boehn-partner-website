@@ -1,0 +1,127 @@
+---
+// Gemeinsamer Rahmen der drei Bergfeld-Seiten: Kopf, Navigation, Fuß.
+//
+// Bewusst NICHT über PageLayout/presets.ts gebaut. Die vier Presets erzeugen
+// "gleiche Struktur, andere Akzentfarbe" -- genau der Eindruck, den ein
+// Interessent als Agentur-Baukasten erkennt (siehe Kommentar oben in
+// presets.ts, das Problem gab es bei v1 schon einmal).
+//
+// ETAPPE 1 von 2: Hier steht erst die Struktur mit den fertigen Texten. Das
+// Styling beschränkt sich auf Lesbarkeit -- keine Farben, keine Flächen, keine
+// Bilder. Absicht: Der Inhalt wird geprüft, bevor das Design davon ablenkt
+// (WEBSITE-SOP.md, Phase 3, Etappe 1). Das Design folgt in Etappe 2.
+import '../../styles/global.css';
+import EntwurfBar from '../EntwurfBar.astro';
+import { betrieb, telefonHref } from './betrieb';
+
+interface Props {
+  titel: string;
+  beschreibung: string;
+  aktiv: 'start' | 'leistungen' | 'kontakt';
+}
+
+const { titel, beschreibung, aktiv } = Astro.props;
+
+
+const nav = [
+  { href: '/demo/fliesen-bergfeld/', label: 'Start', id: 'start' },
+  { href: '/demo/fliesen-bergfeld/leistungen/', label: 'Leistungen', id: 'leistungen' },
+  { href: '/demo/fliesen-bergfeld/kontakt/', label: 'Kontakt', id: 'kontakt' },
+];
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{titel}</title>
+    <meta name="description" content={beschreibung} />
+  </head>
+  <body class="geruest">
+    <EntwurfBar />
+
+    <header>
+      <p class="wortmarke"><strong>Fliesen Bergfeld</strong><br />Fliesenlegermeister · Verden (Aller)</p>
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          {nav.map((n) => (
+            <li>
+              <a href={n.href} aria-current={aktiv === n.id ? 'page' : undefined}>{n.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <p class="kopf-telefon">
+        Telefon: <a href={telefonHref}>{betrieb.telefon}</a>
+      </p>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>
+        <strong>Fliesen Bergfeld</strong><br />
+        Malte Bergfeld, Fliesenlegermeister<br />
+        Musterweg 00, 27283 Verden (Aller)<br />
+        Telefon <a href={telefonHref}>{betrieb.telefon}</a>
+      </p>
+      <p>
+        <a href="/demo/fliesen-bergfeld/leistungen/">Leistungen</a> ·
+        <a href="/demo/fliesen-bergfeld/kontakt/">Kontakt</a> ·
+        <a href="/impressum.html">Impressum</a> ·
+        <a href="/datenschutz.html">Datenschutz</a>
+      </p>
+      <p class="hinweis">
+        Musterentwurf. Der Betrieb ist frei erfunden, Anschrift und
+        Telefonnummer sind Platzhalter.
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  /* Etappe-1-Styling: nur so viel, dass sich der Text gut liest.
+     Wird in Etappe 2 vollständig ersetzt. */
+  body.geruest {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  body.geruest h1 { font-size: 1.9rem; margin: 2rem 0 0.5rem; line-height: 1.2; }
+  body.geruest h2 { font-size: 1.35rem; margin: 2.5rem 0 0.5rem; line-height: 1.25; }
+  body.geruest h3 { font-size: 1.05rem; margin: 1.75rem 0 0.35rem; }
+  body.geruest header,
+  body.geruest footer { border-block: 1px solid #ccc; padding: 1rem 0; margin: 1.5rem 0; }
+  body.geruest nav ul { list-style: none; padding: 0; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  body.geruest nav a[aria-current='page'] { font-weight: 700; }
+  body.geruest .bildplatz {
+    border: 2px dashed #999;
+    padding: 2rem 1rem;
+    margin: 1.25rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  body.geruest .hinweis { font-size: 0.85rem; color: #666; }
+  body.geruest label { display: block; margin-top: 1rem; font-weight: 600; }
+  body.geruest input,
+  body.geruest select,
+  body.geruest textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #999;
+    font: inherit;
+    margin-top: 0.25rem;
+  }
+  body.geruest table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  body.geruest th,
+  body.geruest td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; vertical-align: top; }
+</style>

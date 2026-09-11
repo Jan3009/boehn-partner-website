@@ -1,0 +1,144 @@
+---
+// Leistungsseite. Jede Leistung nennt auch, wann sie NICHT sinnvoll ist --
+// eine Seite, die nur Vorteile aufzählt, liest sich wie ein Katalogtext.
+import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
+import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
+---
+
+<Seitenrahmen
+  titel="Leistungen · Fliesen Bergfeld"
+  beschreibung="Badsanierung im Bestand, bodengleiche Duschen, Großformat, Naturstein und Reparaturen. Fliesenlegermeisterbetrieb in Verden (Aller)."
+  aktiv="leistungen"
+>
+  <h1>Leistungen</h1>
+  <p>
+    Wir sind auf Bäder spezialisiert. Fußböden in Wohnräumen und Terrassen
+    machen wir, wenn ohnehin ein Bad dazugehört — als Einzelauftrag eher
+    selten.
+  </p>
+
+  <h2>Badsanierung im bewohnten Bestand</h2>
+  <p>
+    Der Großteil unserer Arbeit. Meist Häuser aus den 1950er- bis
+    1980er-Jahren, in denen das Bad seit dem Einzug unverändert ist.
+  </p>
+  <h3>Wie lange dauert das?</h3>
+  <p>
+    Ein komplettes Bad mit Rückbau, neuem Aufbau, Abdichtung und Verlegung
+    dauert zwei bis drei Wochen. Davon sind etwa drei Tage laut und staubig
+    — der Rückbau. Den Rest merken Sie vor allem daran, dass Werkzeug im Flur
+    steht.
+  </p>
+  <h3>Und wo duschen wir währenddessen?</h3>
+  <p>
+    Das klären wir vorher, nicht am ersten Arbeitstag. Wenn es ein zweites Bad
+    gibt, ist die Frage erledigt. Wenn nicht, planen wir die Dusche als erstes
+    wieder nutzbar ein — das verschiebt andere Arbeiten nach hinten, ist aber
+    fast immer die bessere Reihenfolge.
+  </p>
+  <h3>Staub</h3>
+  <p>
+    Staubschutzwand an der Tür, Absaugung direkt am Gerät, Abdeckung der Wege.
+    Staubfrei wird eine Sanierung nicht. Wir sagen Ihnen vorher, mit was Sie
+    rechnen müssen, statt hinterher zu erklären, dass das normal ist.
+  </p>
+
+  <div class="bildplatz">
+    Platzhalter: Drei Aufnahmen aus einer laufenden Sanierung —
+    Rückbau, Abdichtung im Rohbau, fertiger Raum.
+  </div>
+
+  <h2>Bodengleiche Duschen</h2>
+  <p>
+    Die meistgefragte Einzelleistung, vor allem beim altersgerechten Umbau.
+    Drei Dinge entscheiden über das Ergebnis:
+  </p>
+  <h3>Gefälle</h3>
+  <p>
+    Zwischen ein und zwei Prozent Richtung Ablauf. Zu wenig, und das Wasser
+    steht. Zu viel, und der Duschstuhl kippt. Bei einem Punktablauf muss die
+    Fläche aus vier Richtungen zulaufen, bei einer Rinne nur aus einer — das
+    ist mit großen Fliesen einfacher sauber hinzubekommen.
+  </p>
+  <h3>Rutschhemmung</h3>
+  <p>
+    Im Bad reicht üblicherweise <strong>R10</strong>. In der bodengleichen
+    Dusche empfehlen wir <strong>R11</strong>, bei barrierefreien Bädern
+    zusätzlich Verdrängungsraum. Höhere Rutschhemmung heißt gröbere Oberfläche
+    — die ist sicherer, aber auch aufwendiger zu reinigen. Diesen Zielkonflikt
+    entscheiden Sie, nicht wir.
+  </p>
+  <h3>Ablauf</h3>
+  <p>
+    Punktablauf ist günstiger, Rinne ist unauffälliger und verzeiht beim
+    Gefälle mehr. Bei einer Holzbalkendecke ist die Aufbauhöhe oft die
+    eigentliche Einschränkung — das prüfen wir beim Aufmaß, bevor irgendetwas
+    geplant wird.
+  </p>
+
+  <h2>Großformatfliesen</h2>
+  <p>
+    Formate bis 120 × 260 cm. Wenige Fugen, ruhige Fläche, in kleinen Bädern
+    wirkt der Raum größer.
+  </p>
+  <p>
+    <strong>Wann es nicht sinnvoll ist:</strong> Bei stark unebenen Wänden. Eine
+    große Platte verzeiht nichts — der Untergrund muss vorher in die Ebene
+    gebracht werden, und das kann mehr kosten als der Materialunterschied. Bei
+    kleinteiligen Grundrissen mit vielen Nischen entsteht außerdem viel
+    Verschnitt.
+  </p>
+  <p>
+    Wir verlegen Großformat grundsätzlich zu zweit mit Saugheber und im
+    Nivelliersystem. Anders bekommt man auf der Länge keinen kantenfreien
+    Übergang.
+  </p>
+
+  <h2>Naturstein</h2>
+  <p>
+    Marmor, Schiefer, Granit. Jede Platte ist anders, und das sieht man — das
+    ist der Grund, warum Leute Naturstein wollen.
+  </p>
+  <p>
+    <strong>Was Sie vorher wissen sollten:</strong> Naturstein ist offenporig
+    und muss imprägniert werden, im Bad etwa alle zwei bis drei Jahre. Kalkstein
+    und Marmor reagieren empfindlich auf säurehaltige Reiniger — der falsche
+    Badreiniger hinterlässt matte Flecken, die sich nicht wegputzen lassen.
+    Wenn Sie ein pflegeleichtes Bad wollen, ist Feinsteinzeug in Steinoptik die
+    ehrlichere Empfehlung.
+  </p>
+
+  <h2>Reparaturen</h2>
+  <p>
+    Einzelne gerissene Fliesen, ausgebrochene Fugen, Bohrlöcher, erneuerte
+    Silikonfugen. Wir machen das, planen solche Aufträge aber zwischen die
+    großen — rechnen Sie mit zwei bis vier Wochen Vorlauf.
+  </p>
+  <h3>Zum Thema Silikon</h3>
+  <p>
+    Silikonfugen in Ecken und an Anschlüssen sind <strong>Wartungsfugen</strong>.
+    Sie sind Verschleißteil, kein Mangel, und halten je nach Nutzung fünf bis
+    zehn Jahre. Das ist der häufigste Streitpunkt nach einer Abnahme, deshalb
+    sagen wir es lieber vorher: Wenn eine Silikonfuge nach einigen Jahren
+    dunkel wird, ist die Arbeit nicht schlecht gewesen — die Fuge ist fällig.
+  </p>
+
+  <h2>Warum hier keine Preise stehen</h2>
+  <p>
+    Weil jede Zahl, die wir hier hinschreiben würden, falsch wäre. Was ein Bad
+    kostet, hängt am Untergrund, an der Aufbauhöhe, am Format und daran, wie
+    viel vom alten Aufbau raus muss. Das sieht man erst vor Ort.
+  </p>
+  <p>
+    Was wir zusagen können: Das Aufmaß kostet nichts, das Angebot kommt
+    innerhalb einer Woche, und es ist nach Positionen aufgeschlüsselt — Material
+    und Arbeitszeit getrennt. Was darin steht, gilt.
+  </p>
+
+  <h2>Passt das?</h2>
+  <p>
+    Rufen Sie an: <a href={telefonHref}><strong>{betrieb.telefon}</strong></a>.
+    Oder <a href="/demo/fliesen-bergfeld/kontakt/">schreiben Sie uns</a>, was
+    ansteht.
+  </p>
+</Seitenrahmen>

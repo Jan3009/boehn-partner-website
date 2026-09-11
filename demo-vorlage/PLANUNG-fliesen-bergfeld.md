@@ -52,7 +52,7 @@ ablehnt. Genau diesen Abschnitt hat keine generierte Handwerkerseite.
 | Entscheidung | Gewählt | Begründung |
 |---|---|---|
 | Grundton | Hell, warmes Papierweiß + Lehmton | Alle drei bestehenden Fliesen-Demos sind dunkel. Hell wirkt wie ein Ausstellungsraum und hebt Bilder besser hervor. |
-| Akzent | Gedecktes Terracotta `#B4552F` | Ton ist das Material des Gewerks. Kein Blau — das nimmt jede Handwerkerseite. |
+| Akzent | Salbeigrün `#46604F` | Terracotta war zu nah an der eigenen Marke `#C2541F` — eine Demo darf nicht nach Agentur-Template aussehen. Grün kommt im gesamten Demo-Bestand nicht vor (belegt sind Gold, Rot, Navy, zwei Orangetöne) und ist im Fliesenhandwerk unüblich. |
 | Headline | Newsreader 600 (vorhanden) | Serife wirkt handwerklich-solide. Playfair ist bei Hölscher belegt. |
 | Fließtext | Inter (vorhanden) | Neutral, gut lesbar, self-hosted vorhanden. |
 | Raster | Bewusst asymmetrisch | Das Dreier-Icon-Raster ist das klarste KI-Erkennungsmerkmal. |
