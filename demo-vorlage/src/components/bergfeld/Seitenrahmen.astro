@@ -165,7 +165,11 @@ const nav = [
     overflow-wrap: break-word;
     -webkit-font-smoothing: antialiased;
   }
-  body.bf h1, body.bf h2, body.bf h3 { margin: 0; }
+  body.bf h1, body.bf h2, body.bf h3 {
+    margin: 0;
+    overflow-wrap: normal;
+    hyphens: auto;
+  }
   body.bf a { color: inherit; }
 
   /* Display: sehr gross, engere Zeilen, feine Unterschneidung. */

@@ -1,0 +1,47 @@
+---
+// Bildfläche des Bergfeld-Entwurfs. Ohne `datei` wird ein beschrifteter
+// Platzhalter gerendert statt eine leere Fläche -- so bleibt im
+// Kundengespräch sichtbar, welches Foto an welche Stelle gehört.
+interface Props {
+  /** Dateiname in public/images/demos/fliesen-bergfeld/, ohne Pfad. */
+  datei?: string;
+  /** Bildbeschreibung. Bei fehlendem Bild zugleich der Platzhaltertext. */
+  alt: string;
+  /** Seitenverhältnis der Fläche. Das Bild wird darin beschnitten. */
+  format?: 'hoch' | 'quer' | 'breit' | 'frei';
+  /** Beschriftung unter dem Bild. */
+  unterschrift?: string;
+  /** Auf dunklem Grund: heller Platzhalter passt dort nicht. */
+  dunkel?: boolean;
+  /** Platzhalter-Nummer, nur wenn kein Bild vorliegt. */
+  platz?: string;
+}
+
+const { datei, alt, format = 'quer', unterschrift, dunkel = false, platz } = Astro.props;
+const quote = { hoch: '3 / 4', quer: '4 / 3', breit: '16 / 9', frei: 'auto' }[format];
+---
+
+{datei ? (
+  <figure class="bf-figur">
+    <div class="bf-bildrahmen" style={`aspect-ratio:${quote};`}>
+      <img src={`/demo/images/demos/fliesen-bergfeld/${datei}`} alt={alt} loading="lazy" decoding="async" />
+    </div>
+    {unterschrift && <figcaption>{unterschrift}</figcaption>}
+  </figure>
+) : (
+  <div class={`bf-bildplatz ${dunkel ? 'bf-bildplatz--dunkel' : ''}`} style={`aspect-ratio:${quote};`}>
+    {platz && <p class="bf-label">Bildplatz {platz}</p>}
+    <span>{alt}</span>
+  </div>
+)}
+
+<style is:global>
+  .bf-figur { margin: 0; }
+  .bf-bildrahmen { overflow: hidden; background: #1b1713; }
+  .bf-bildrahmen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bf-figur figcaption {
+    margin-top: 0.7rem; font-size: 0.78rem; letter-spacing: 0.04em;
+    color: var(--tinte-leise); line-height: 1.5;
+  }
+  .bf-dunkel .bf-figur figcaption { color: rgba(247, 244, 239, 0.55); }
+</style>

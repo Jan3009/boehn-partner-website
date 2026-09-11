@@ -3,6 +3,7 @@
 // eine Seite, die nur Vorteile aufzählt, liest sich wie ein Katalogtext.
 import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
 import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
+import Bild from '../../components/bergfeld/Bild.astro';
 ---
 
 <Seitenrahmen
@@ -54,9 +55,13 @@ import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
             mit was Sie rechnen müssen, statt hinterher zu erklären, dass das
             normal ist.
           </p>
-          <div class="bf-bildplatz bf-bildplatz--dunkel bf-quer" style="margin-top:2rem;">
-            <p class="bf-label">Bildplatz 6 · Querformat</p>
-            <span>Eine laufende Baustelle: Staubschutzwand, abgedeckter Flur, Werkzeug. Bewusst nicht aufgeräumt.</span>
+          <div style="margin-top:2.5rem;">
+            <Bild
+              datei="baustelle.webp"
+              format="quer"
+              alt="Laufende Baustelle: Staubschutzwand mit Reißverschluss in der Türöffnung, abgedeckter Boden, Bausauger und Werkzeugkisten im Flur"
+              unterschrift="Staubschutzwand und abgedeckte Wege — so sieht es bei uns während der Arbeiten aus"
+            />
           </div>
         </div>
       </div>
@@ -96,9 +101,13 @@ import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
           eigentliche Einschränkung — das prüfen wir beim Aufmaß, bevor
           irgendetwas geplant wird.
         </p>
-        <div class="bf-bildplatz bf-quer" style="margin-top:2rem;">
-          <p class="bf-label">Bildplatz 7 · Querformat</p>
-          <span>Fertige bodengleiche Dusche mit sichtbarer Rinne oder Punktablauf.</span>
+        <div style="margin-top:2.5rem;">
+          <Bild
+            datei="dusche.webp"
+            format="hoch"
+            alt="Fertige bodengleiche Dusche mit Duschrinne am Übergang, großformatigen Wandfliesen und beleuchteter Ablagenische"
+            unterschrift="Bodengleiche Dusche mit Rinne — das Gefälle läuft aus einer Richtung zu"
+          />
         </div>
       </div>
     </div>
@@ -152,9 +161,13 @@ import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
           nicht wegputzen lassen. Wenn Sie ein pflegeleichtes Bad wollen, ist
           Feinsteinzeug in Steinoptik die ehrlichere Empfehlung.
         </p>
-        <div class="bf-bildplatz bf-quer" style="margin-top:2rem;">
-          <p class="bf-label">Bildplatz 8 · Querformat</p>
-          <span>Naturstein in Nahaufnahme — die Maserung soll erkennbar sein.</span>
+        <div style="margin-top:2.5rem;">
+          <Bild
+            datei="naturstein.webp"
+            format="breit"
+            alt="Nahaufnahme einer Natursteinplatte mit deutlicher Schichtung in Grau-, Weiß- und Ockertönen"
+            unterschrift="Jede Platte hat ihre eigene Zeichnung — das ist der Grund für Naturstein, und zugleich der Grund, warum sich Muster nie exakt wiederholen lassen"
+          />
         </div>
       </div>
     </div>

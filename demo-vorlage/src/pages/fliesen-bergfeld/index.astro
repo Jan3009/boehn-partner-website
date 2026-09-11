@@ -6,6 +6,7 @@
 // egal wie gut der Text ist.
 import Seitenrahmen from '../../components/bergfeld/Seitenrahmen.astro';
 import { betrieb, telefonHref } from '../../components/bergfeld/betrieb';
+import Bild from '../../components/bergfeld/Bild.astro';
 
 const kennzahlen = [
   { wert: String(betrieb.gegruendet), text: 'Gegründet' },
@@ -81,7 +82,7 @@ const nichtImAngebot = [
     <div class="bf-zweispaltig">
       <div class="bf-kopfspalte">
         <p class="bf-label">Der Betrieb</p>
-        <h2 class="bf-serif">Vier Leute, ein Ansprechpartner.</h2>
+        <h2 class="bf-serif">Vier Leute,<br />ein Ansprechpartner.</h2>
       </div>
       <div>
         <p>
@@ -96,9 +97,13 @@ const nichtImAngebot = [
           Haus wohnt, stimmen wir die Bad-Ausfallzeit vorher ab — bei einer
           Komplettsanierung sind das üblicherweise zwei bis drei Wochen.
         </p>
-        <div class="bf-bildplatz bf-quer" style="margin-top:2rem;">
-          <p class="bf-label">Bildplatz 2 · Querformat</p>
-          <span>Der Inhaber bei der Arbeit oder das Team vor dem Firmenwagen. Kein gestelltes Studioporträt.</span>
+        <div style="margin-top:2.5rem; max-width:24rem;">
+          <Bild
+            datei="betrieb.webp"
+            format="hoch"
+            alt={`${betrieb.inhaber} mit Werkzeugkoffer vor dem Firmenwagen`}
+            unterschrift={`${betrieb.inhaber}, ${betrieb.titel}`}
+          />
         </div>
       </div>
     </div>
@@ -129,15 +134,19 @@ const nichtImAngebot = [
             es keine Abdichtung, nur Fliesenkleber. Der ist nicht wasserdicht,
             das war er nie.
           </p>
-          <div class="bf-paar" style="margin-top:2rem;">
-            <div class="bf-bildplatz bf-bildplatz--dunkel bf-hoch">
-              <p class="bf-label">Bildplatz 3 · Vorher</p>
-              <span>Das alte Bad, aus der Türposition. Darf unschön sein.</span>
-            </div>
-            <div class="bf-bildplatz bf-bildplatz--dunkel bf-hoch">
-              <p class="bf-label">Bildplatz 4 · Nachher</p>
-              <span>Gleiche Position, gleicher Bildausschnitt, fertiger Raum.</span>
-            </div>
+          <div class="bf-paar" style="margin-top:2.5rem;">
+            <Bild
+              datei="vorher.webp"
+              format="hoch"
+              alt="Das Bad vor der Sanierung: beige Wandfliesen, eingebaute Badewanne unter dem Fenster"
+              unterschrift="Vorher"
+            />
+            <Bild
+              datei="nachher.webp"
+              format="hoch"
+              alt="Dasselbe Bad nach der Sanierung: großformatige dunkle Fliesen, bodengleiche Dusche, schwebender Waschtisch"
+              unterschrift="Nachher"
+            />
           </div>
         </div>
       </div>
@@ -167,9 +176,13 @@ const nichtImAngebot = [
           mit Produktangabe. Sie können nachlesen, was verbaut wurde. Wenn Ihnen
           jemand ein Bad anbietet, in dem diese Position fehlt, fragen Sie nach.
         </p>
-        <div class="bf-bildplatz bf-quer" style="margin-top:2rem;">
-          <p class="bf-label">Bildplatz 5 · Querformat</p>
-          <span>Aufgetragene Abdichtung im Rohbau — die typisch türkis oder graue Fläche vor dem Verfliesen.</span>
+        <div style="margin-top:2.5rem;">
+          <Bild
+            datei="abdichtung.webp"
+            format="quer"
+            alt="Fertige Verbundabdichtung im Duschbereich: türkise Dichtschlämme mit eingearbeiteten Dichtbändern in den Ecken und am Bodenablauf"
+            unterschrift="Verbundabdichtung mit Dichtband in allen Ecken und am Ablauf, vor dem Verfliesen"
+          />
         </div>
       </div>
     </div>
